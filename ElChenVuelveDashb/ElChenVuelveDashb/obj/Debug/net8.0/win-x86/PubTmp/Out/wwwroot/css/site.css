@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #FFBA00;
+    font-family: Arial, sans-serif;
+    background-image: url(../img/bgloginlines.png);
+    padding-top: 50px;
+    height: 100vh;
+    margin: -20px 0 50px;   
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.head {
+    background-color: #4A3E88;
+    padding: 15px;
+}
+
+    .head h5 {
+        color: white;
+    }
+
+h1 {
+    margin: 40px 0 20px;
+    font-size: 36px;
+}
+
+.form {
+    background-color: #F3F3F6;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 8px;
+        text-align: left;
+    }
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+
+.background-container {
+    background: #FFBA00;
+    background-image: url(../img/bgloginlines.png);
+    background-size: contain;
+    background-position: center;
+    padding: 50px;
+    margin: -20px 0 200px;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #0078d4;
+    color: white;
+    align-items: center;
+}
+
+
+/*Para establecer un tamaño específico para las celdas de una tabla (<td>), puedes aplicar estilos CSS directamente a esos elementos. Aquí tienes un ejemplo de cómo hacerlo:
+
+css
+Copiar código*/
+table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+    table th {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd; /* Agregar un borde para mejor visibilidad */
+        color: black; /* Establecer el color de las letras en negro */
+    }
+
+/* Establecer un tamaño específico para las celdas */
+    table td {
+        width: 150px; /* Ancho fijo para cada celda */
+        max-width: 150px; /* Evitar que se expanda más allá de este tamaño */
+        overflow: hidden; /* Ocultar el contenido que desborda */
+        text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es demasiado largo */
+        font-size: 14px; /* Tamaño de letra */
+        color: #333; /* Color del texto, opcional */
+    }
+
+
+.thead-light th {
+    color: black; /* Color de letra negro para los encabezados */
+}
+
+.thead-light th {
+    color: black; /* Color de letra negro para los encabezados */
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Borde para mejor visibilidad */
+}
+
+table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Borde para mejor visibilidad */
+    color: black; /* Color de letra negro para las celdas */
+}
+
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+        .nombre {
+            width: 25%;
+        }
+
+        .nic-ruc {
+            width: 10%;
+        }
+
+        .telefono {
+            width: 10%;
+        }
+
+        .formulario {
+            width: 10%;
+        }
+
+        .nombre-comercial {
+            width: 15%;
+        }
+
+        .correo {
+            width: 15%;
+        }
+
+        .inversion {
+            width: 10%;
+        }
+
+        .atencion {
+            width: 10%;
+        }
+
+        .acciones {
+            width: 5%;
+
+        }
+.texto-blanco {
+    color: white;
+}
+
+
+.custom-dropdown option:first-child {
+    color: #b3b3b3; 
+}
+
