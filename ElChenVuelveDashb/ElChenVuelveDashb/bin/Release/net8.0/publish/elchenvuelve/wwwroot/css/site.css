@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #0078d4;
+    color: white;
+    align-items: center;
+}
+
+.body-from {
+    background-color: #FFBA00;
+    background-image: url(../img/bgloginlines.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    font-family: Arial, sans-serif;
+    padding-top: 50px;
+    height: 100vh;
+    margin: 0; /* Elimina duplicación del margin */
+}
+
+.navbar {
+    z-index: 1000; /* Asegura que el navbar esté sobre otros elementos */
+}
+
+.background-container {
+    background-color: rgba(255, 255, 255, 0); /* Transparente */
+    min-height: calc(100vh - 70px); 
+    padding: 50px;
+    margin: -20px 0 50px;
+    height: 200px;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.head {
+    background-color: #4A3E88;
+    padding: 15px;
+}
+
+    .head h5 {
+        color: white;
+    }
+
+h1 {
+    margin: 40px 0 20px;
+    font-size: 36px;
+}
+
+.form {
+    background-color: #F3F3F6;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 8px;
+        text-align: left;
+    }
+
+.btn {
+    background-color: #FFBA00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .btn:hover {
+        background-color: #FFBA00;
+    }
+
+
+
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+    table th {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd; 
+        color: black; 
+    }
+
+    table td {
+        width: 150px; 
+        max-width: 150px; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        font-size: 14px; 
+        color: #333; 
+    }
+
+
+.thead-light th {
+    color: black; /* Color de letra negro para los encabezados */
+}
+
+.thead-light th {
+    color: black; /* Color de letra negro para los encabezados */
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Borde para mejor visibilidad */
+}
+
+table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Borde para mejor visibilidad */
+    color: black; /* Color de letra negro para las celdas */
+}
+
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #FFBA00          ;
+}
+
+        .nombre {
+            width: 25%;
+        }
+
+        .nic-ruc {
+            width: 10%;
+        }
+
+        .telefono {
+            width: 10%;
+        }
+
+        .formulario {
+            width: 10%;
+        }
+
+        .nombre-comercial {
+            width: 15%;
+        }
+
+        .correo {
+            width: 15%;
+        }
+
+        .inversion {
+            width: 10%;
+        }
+
+        .atencion {
+            width: 10%;
+        }
+
+        .acciones {
+            width: 5%;
+
+        }
+.texto-blanco {
+    color: white;
+}
+
+
+.custom-dropdown option:first-child {
+    color: #FFBA00;
+}
+

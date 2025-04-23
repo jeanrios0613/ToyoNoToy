@@ -1,0 +1,152 @@
+﻿@model ElChenVuelveDashb.Formulario
+@{
+    Layout = "../Home/index";
+}
+<div class="head">
+    <h5>Formulario Nro.: @Html.DisplayFor(model => model.Id)</h5>
+</div>
+
+
+<div class="form">
+  
+    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index")'">Volver a la lista</button>
+    <hr>
+         
+      
+            @using (Html.BeginForm("Edit", "Formularios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+
+                                     <!-- Sección: Datos Solicitante -->
+                    <div class="mb-4">
+                        <h5 class="text-primary">Datos del Solicitante</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="NombreCompleto" class="form-label">Nombre</label>
+                                <input for="NombreCompleto" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Cedula" class="form-label">Cédula</label>
+                                <input asp-for="Cedula" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label">Correo</label>
+                                <input asp-for="Email" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Celular" class="form-label">Celular</label>
+                                <input asp-for="Celular" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Datos del Emprendimiento -->
+                    <div class="mb-4">
+                        <h5 class="text-primary">Datos del Emprendimiento</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="NombreEmpresa" class="form-label">Nombre del Emprendimiento</label>
+                                <input asp-for="NombreEmpresa" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="RedesSociales" class="form-label">Redes Sociales</label>
+                                <input asp-for="RedesSociales" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="ActividadEconomica" class="form-label">Actividad Económica</label>
+                                <input asp-for="ActividadEconomica" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="MontoInversion" class="form-label">Monto de Inversión</label>
+                                <input asp-for="MontoInversion" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Descripciones -->
+                    <div class="mb-4">
+                        <h5 class="text-primary">Descripción del Negocio e Inversión</h5>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label asp-for="DescripcionNegocio" class="form-label">Descripción del Negocio</label>
+                                <textarea asp-for="DescripcionNegocio" class="form-control"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <label asp-for="DescripcionInversion" class="form-label">Descripción de la Inversión</label>
+                                <textarea asp-for="DescripcionInversion" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Información para el Agente -->
+                    <div class="mb-4">
+                        <h5 class="text-primary">Información para el Agente</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="RazonCambio" class="form-label">Razón del Cambio</label>
+                                <input asp-for="RazonCambio" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="IndicaSolicitud" class="form-label">Atendido Por</label>
+                                <input asp-for="IndicaSolicitud" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="FechaRegistro" class="form-label">Fecha de Registro</label>
+                                <input asp-for="FechaRegistro" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="UsuarioAnalista" class="form-label">Usuario Analista</label>
+                                <input asp-for="UsuarioAnalista" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="FechaAtencion" class="form-label">Fecha de Atención</label>
+                                <input asp-for="FechaAtencion" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="UsuarioSupervisor" class="form-label">Usuario Supervisor</label>
+                                <input asp-for="UsuarioSupervisor" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+        <br />
+        <br />
+                    <!-- Sección: Archivos -->
+        <hr> 
+                    <div class="mb-4">
+                        <h5 class="text-primary">Archivos Asociados</h5>
+                        <div class="form-group">
+                            <label for="archivo">Subir archivo</label>
+                            <input type="file" id="archivo" name="archivo" class="form-control" />
+                            <label for="descripcionArchivo">Descripción del archivo</label>
+                            <input type="text" id="descripcionArchivo" name="descripcionArchivo" class="form-control" />
+                        </div>
+                    @if (ViewBag.Archivos != null && ViewBag.Archivos.Count > 0)
+                    {
+                                <ul>
+                            @foreach (var archivo in ViewBag.Archivos)
+                            {
+                                            <li>
+                                                <a href="@archivo.RutaArchivo" target="_blank">@archivo.Descripcion</a>
+                                            </li>
+
+                               Console.WriteLine(@archivo.RutaArchivo);
+                            }
+                                </ul>
+                    }
+                    else
+                    {
+                                <p>No hay archivos asociados.</p>
+                    }
+                    </div>
+
+                    <!-- Sección: Datos adicionales -->
+                    <div class="text-end mt-3">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+                    </div>
+            }
+  </div>
+
+

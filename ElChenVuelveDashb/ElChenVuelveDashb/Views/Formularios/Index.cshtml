@@ -1,0 +1,139 @@
+﻿@model object 
+
+@{
+    Layout = "../Home/index";
+}
+
+<script>
+function buscarFormulario() {
+    var buscaform = document.getElementById('buscaform').value; 
+    var nicruc = document.getElementById('nicruc').value;
+    if (buscaform || nicruc) {
+        window.location.href = '../Formularios/Index?Id=' + buscaform + '&NIC=' + nicruc; 
+    } else {
+        window.location.href = '../Formularios/Index';
+    }
+}
+</script>
+
+<div class="head ">
+<h5>Registros de Formularios</h5>
+</div>
+
+<div class="form">
+
+<form class="row g-3" onsubmit="return false;">
+    <div class="col-md-3">
+        <label for="reportType" class="form-label">Nro. NIC/RUC</label>
+        <input id="nicruc"class="form-control me-2" type="search" placeholder="NIC/RUC" aria-label="Buscar">
+    </div>
+    <div class="col-md-3">
+        <label for="status" class="form-label">Estado</label>
+        <select id="status" class="form-select" aria-label="Seleccione">
+            <option value="" disabled selected></option>
+            <option value="pendiente">Pendiente</option>
+            <option value="revisando">Revisando</option>
+            <option value="aprobado">Aprobado</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="element" class="form-label">Atención</label>
+        <select id="element" class="form-select">
+            <option value="" disabled selected></option>
+            <option value="CAJA DE AHORRO">Caja de Ahorros</option>
+            <option value="AM">Ampyme</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="buscaform" class="form-label">No. Formulario</label>
+        <input id="buscaform" class="form-control me-2" type="search" placeholder="Search" aria-label="Buscar">
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-outline-success" onclick="buscarFormulario()">
+            Buscar
+        </button>
+    </div>
+</form>
+
+<hr>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr class="colored-row">
+            <th class="nombre">Nombre</th>
+            <th class="nic-ruc">NIC/RUC</th>
+            <th class="telefono">Teléfono</th>
+            <th class="formulario">Formulario</th>
+            <th class="nombre-comercial ">Nombre comercial</th>
+            <th class="correo">Correo</th>
+            <th class="inversion">Inversión</th>
+            <th class="atencion">Atención</th>
+            <th class="acciones">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is IEnumerable<ElChenVuelveDashb.Models.ProcessInstance> formularios)
+        {
+            foreach (var item in formularios)
+            {
+                <tr>
+                    <td class="nombre">
+                        <div class="d-flex align-items-center">
+                            <img src="~/img/contacto.png" alt="" style="width: 30px; height: 30px" class="rounded-circle" />
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">@Html.DisplayFor(m => item.Nombre), @Html.DisplayFor(m => item.Apellido)</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="nic-ruc">@Html.DisplayFor(m => item.Cedula)</td>
+                    <td class="telefono">@Html.DisplayFor(m => item.Celular)</td>
+                    <td class="formulario">@Html.DisplayFor(m => item.Id)</td>
+                    <td class="nombre-comercial">@Html.DisplayFor(m => item.NombreEmpresa)</td>
+                    <td class="correo">@Html.DisplayFor(m => item.Email)</td>
+                    <td class="inversion">@Html.DisplayFor(m => item.MontoInversion)</td>
+                    <td class="atencion">@Html.DisplayFor(m => item.IndicaSolicitud)</td>
+                    <td class="acciones">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='../Formularios/Edit?id=@item.Id'">✎</button>
+                    </td>
+                </tr>
+            }
+        }
+        else if (Model is ElChenVuelveDashb.Models.ProcessInstance formulario)
+        {   
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="~/img/contacto.png" alt="" style="width: 30px; height: 30px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">@Html.DisplayFor(m => formulario.Nombre), @Html.DisplayFor(m => formulario.Apellido)</p>
+                        </div>
+                    </div>
+                </td>
+                <td>@Html.DisplayFor(m => formulario.Cedula)</td>
+                <td>@Html.DisplayFor(m => formulario.Celular)</td>
+                <td>@Html.DisplayFor(m => formulario.Id)</td>
+                <td>@Html.DisplayFor(m => formulario.NombreEmpresa)</td>
+                <td>@Html.DisplayFor(m => formulario.Email)</td>
+                <td>@Html.DisplayFor(m => formulario.MontoInversion)</td>
+                <td>@Html.DisplayFor(m => formulario.IndicaSolicitud)</td>
+                <td>
+                    <button type="button" class="btn btn-primary"  onclick="window.location.href='../Formularios/Edit?id=@formulario.Id'">  ✎</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- Paginación -->
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                <a class="page-link" href="../Formularios/Index?page=@i">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+</div>

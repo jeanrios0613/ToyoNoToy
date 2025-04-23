@@ -1,0 +1,298 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\views\\formularios\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\views\\formularios\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\models\\formulario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\models\\formulario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\models\\toyonotoycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\models\\toyonotoycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\migrations\\20250319152603_toynotoycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\migrations\\20250319152603_toynotoycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelve\\elchenvuelve\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02079698-7401-48F5-B2AA-74BC22500E9D}|ElChenVuelve\\ElChenVuelve.csproj|solutionrelative:elchenvuelve\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 465,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 14,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "ElChenVuelve\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "ElChenVuelve\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-25T17:02:45.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ToyoNoToyContext.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Models\\ToyoNoToyContext.cs",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Models\\ToyoNoToyContext.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Models\\ToyoNoToyContext.cs",
+              "RelativeToolTip": "ElChenVuelve\\Models\\ToyoNoToyContext.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAwDMAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T20:55:42.837Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Formulario.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Models\\Formulario.cs",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Models\\Formulario.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Models\\Formulario.cs",
+              "RelativeToolTip": "ElChenVuelve\\Models\\Formulario.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T18:33:09.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "ElChenVuelve\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-20T16:00:24.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "ElChenVuelve\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-20T16:00:22.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormulariosController.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Controllers\\FormulariosController.cs",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Controllers\\FormulariosController.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Controllers\\FormulariosController.cs",
+              "RelativeToolTip": "ElChenVuelve\\Controllers\\FormulariosController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T18:18:35.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "ElChenVuelve\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\appsettings.Development.json",
+              "RelativeToolTip": "ElChenVuelve\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-19T13:44:11.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Program.cs",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Program.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Program.cs",
+              "RelativeToolTip": "ElChenVuelve\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T13:51:13.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\appsettings.json",
+              "RelativeDocumentMoniker": "ElChenVuelve\\appsettings.json",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\appsettings.json",
+              "RelativeToolTip": "ElChenVuelve\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-23T16:01:53.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20250319152603_ToyNoToyContext.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Migrations\\20250319152603_ToyNoToyContext.cs",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Migrations\\20250319152603_ToyNoToyContext.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Migrations\\20250319152603_ToyNoToyContext.cs",
+              "RelativeToolTip": "ElChenVuelve\\Migrations\\20250319152603_ToyNoToyContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T15:26:03.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ElChenVuelve\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-19T16:11:23.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\Formularios\\Create.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Views\\Formularios\\Create.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Views\\Formularios\\Create.cshtml",
+              "RelativeToolTip": "ElChenVuelve\\Views\\Formularios\\Create.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAHcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-13T18:27:08.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Userprofile.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Models\\Userprofile.cs",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Models\\Userprofile.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Models\\Userprofile.cs",
+              "RelativeToolTip": "ElChenVuelve\\Models\\Userprofile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T14:02:07.193Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "ElChenVuelve\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "ElChenVuelve\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-23T15:19:00.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "ElChenVuelve\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelve\\ElChenVuelve\\Properties\\launchSettings.json",
+              "RelativeToolTip": "ElChenVuelve\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-14T21:20:40.64Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 112,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

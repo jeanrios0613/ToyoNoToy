@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ElChenVuelveDashb.ArchivoSubido>
+
+<div class="container mt-5">
+    <h2>Cargar Archivos</h2>
+
+    <!-- Formulario para cargar archivo -->
+    <form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
+        <!-- Enviar el usuarioId como un campo oculto -->
+        <input type="hidden" name="usuarioId" value="@ViewBag.UsuarioId" />
+
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input type="text" class="form-control" name="descripcion" required />
+        </div>
+
+        <div class="form-group">
+            <label for="fileInput">Adjuntar archivo (máx. 5 MB):</label>
+            <input type="file" class="form-control" id="fileInput" name="archivo" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Cargar Archivo</button>
+    </form>
+
+    <!-- Tabla de archivos cargados -->
+    <h3 class="mt-5">Archivos Cargados</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Ruta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var archivo in Model)
+            {
+                <tr>
+                    <td>@archivo.Id</td>
+                    <td>@archivo.Descripcion</td>
+                    <td><a href="@Url.Content(archivo.RutaArchivo)" target="_blank">Descargar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

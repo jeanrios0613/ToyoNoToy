@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>ElChenChenVuelve</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body class="body-from">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="~/img/logo.png" alt="Logo" class="img-fluid" width="100px">
+        </a>
+        <div id="mostrarNombreUsuario"></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../Formularios/Index">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Formularios/Reporte">Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Usuarios/Index">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a> 
+                </li>
+            </ul>
+        </div>
+
+        <div class="header d-flex justify-content-between align-items-center">
+            <div>
+                <label class="texto-blanco">Hola, @ViewData["nombreUsuario"]</label>
+            </div>
+            <div>
+                @Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home", null, new { @class = "btn btn-sm btn-primary" })
+            </div>
+        </div>
+    </nav>
+
+    <div class="background-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+   
+    <script>
+        $(document).ready(function () {
+            $('#uploadButton').click(function () {
+                var formData = new FormData();
+                var fileInput = $('#archivo')[0];
+                var file = fileInput.files[0];
+                var descripcion = $('#descripcion').val();
+
+                formData.append('archivo', file);
+                formData.append('descripcion', descripcion);
+
+                $.ajax({
+                    url: '@Url.Action("Upload", "Archivos")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.success) {
+                            $('#uploadResult').html('<div class="alert alert-success">' + response.message + '</div>');
+                        } else {
+                            $('#uploadResult').html('<div class="alert alert-danger">' + response.message + '</div>');
+                        }
+                    },
+                    error: function () {
+                        $('#uploadResult').html('<div class="alert alert-danger">Error en la carga del archivo.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+

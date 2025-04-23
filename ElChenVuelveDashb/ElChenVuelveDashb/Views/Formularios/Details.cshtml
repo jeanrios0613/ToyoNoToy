@@ -1,0 +1,17 @@
+﻿@model ElChenVuelveDashb.Formulario
+
+@{
+    Layout = "../Home/index";
+}
+
+
+<div>
+    <h4>Descargar Reporte en Excel</h4>
+    <hr />
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a> |
+    <a asp-action="DescargarReporte" class="btn btn-primary">Descargar Reporte en Excel</a>
+</div>

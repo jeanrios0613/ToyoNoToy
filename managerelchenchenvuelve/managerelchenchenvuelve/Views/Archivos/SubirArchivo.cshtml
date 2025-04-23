@@ -1,0 +1,77 @@
+﻿@model IEnumerable<managerelchenchenvuelve.Models.DocumentReference>
+
+ 
+ <div class="container__fijo">
+   <div class="container">
+    <div class="upload-box">
+    <h2>Cargar Archivos</h2>
+
+        <!-- Formulario para cargar archivo -->
+        <form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
+            <!-- Enviar el usuarioId como un campo oculto -->
+            <label class="custom-file-label">
+                Seleccionar archivo
+                <input type="file" name="archivo" required>
+            </label>
+
+            <div class="file-size-info">
+                Tamaño máximo permitido: <strong>128 MB</strong>.
+            </div>
+
+            <button type="submit" class="submit-btn">Subir</button>
+        </form>
+   
+
+    <!-- Tabla de archivos cargados -->
+    <h3 class="mt-5">Archivos Cargados</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Ruta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var archivo in Model)
+            {
+                <tr>
+                    <td>@archivo.RequiredName</td>
+                    <td>@archivo.DocumentTitle</td>
+                    <td><a href="@Url.Content(archivo.StageName)" target="_blank">Descargar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="comentarios-box">
+        <h3>Comentarios</h3>
+
+        <div class="comentario">
+            <img src="https://via.placeholder.com/40" alt="Fabiola">
+            <div class="comentario-info">
+                <p class="autor">Fabiola G. <span class="fecha">Dic 23, 2014</span></p>
+                <p class="texto">Inicio de la construcción</p>
+            </div>
+        </div>
+
+        <div class="comentario">
+            <img src="https://via.placeholder.com/40" alt="Barbara">
+            <div class="comentario-info">
+                <p class="autor">Barbara A. <span class="fecha">Ago 11, 2016</span></p>
+                <p class="texto">Favor confirmar con el cliente.</p>
+            </div>
+        </div>
+
+        <div class="nuevo-comentario">
+            <img src="https://via.placeholder.com/40" alt="Tú">
+            <textarea rows="3" placeholder="Agregar comentario" disabled></textarea>
+        </div>
+        <button class="btn-publicar" disabled>PUBLICAR</button>
+     </div>
+    </div>
+</div>
+
+ 
