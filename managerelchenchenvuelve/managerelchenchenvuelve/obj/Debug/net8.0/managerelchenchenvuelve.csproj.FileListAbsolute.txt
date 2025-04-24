@@ -549,3 +549,11 @@ C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenv
 C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\obj\Debug\net8.0\managerelchenchenvuelve.pdb
 C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\obj\Debug\net8.0\managerelchenchenvuelve.genruntimeconfig.cache
 C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\obj\Debug\net8.0\ref\managerelchenchenvuelve.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\RBush.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\System.IO.Packaging.dll

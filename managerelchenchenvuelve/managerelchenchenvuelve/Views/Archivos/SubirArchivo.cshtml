@@ -3,87 +3,92 @@
  
  <div class="container__fijo">
    <div class="container">
-    <div class="upload-box">
-    <h2>Cargar Archivos</h2> 
-        <!-- Formulario para cargar archivo -->
-        <form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
+        <div class="d-flex justify-content-between mb-3">
+            <h4>Solicitud Nro.: @ViewBag.Id</h4>
+        </div>
+       
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card-custom">
+           <div class="upload-box">
+
+                    <label class="lettertitle" >Cargar Archivos</label>
+                        <!-- Formulario para cargar archivo -->
+                    <form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
                 
-                <div class="row mb-3">
-                    <div class="col-md-6 mb-3"> 
-                        <textarea for="descripcion" class="form-control" id="descripcion">Comentario...</textarea>
-                    </div>
-                    <div class="col-md-6 mb-3"> 
-                        <label class="custom-file-label">
-                            Seleccionar archivo
-                            <input for="archivo" type="file" class="form-control" id="fileInput" name="archivo" required />
-                        </label>
-                        
-                    </div>
-                </div>
-
-
-
-
-                <!--input type="hidden" name="usuarioId" value="@ViewBag.Id" /-->
-                <!--input type="text" class="form-control" style="width:100px" name="descripcion" required /-->
-            <div class="file-size-info">
-                    Adjuntar archivo <strong>(máx. 5 MB):</strong>
-            </div>
-
-            <button type="submit" class="submit-btn">Subir</button>
-        </form>
+                           
+                                    <label class="custom-file-label">
+                                        Seleccionar archivo
+                                        <input for="archivo" type="file" class="form-control" id="fileInput" name="archivo" required />
+                                      </label>
+                                     <textarea for="descripcion" class="form-control" id="descripcion">Comentario...</textarea>                           
    
+                        <div class="file-size-info">
+                                Adjuntar archivo <strong>(máx. 5 MB):</strong>
+                        </div>
 
-    <!-- Tabla de archivos cargados -->
-    <h3 class="mt-5">Archivos Cargados</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Descripción</th>
-                <th>Ruta</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var archivo in Model)
-            {
-                <tr>
-                    <td>@archivo.RequiredName</td>
-                    <td>@archivo.DocumentTitle</td>
-                    <td><a href="@Url.Content(archivo.StageName)" target="_blank">Descargar</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                        <button type="submit" class="submit-btn">Subir</button>
+                    </form>
+   
+                </br>
+                <!-- Tabla de archivos cargados -->
+                <label class="lettertitle" >Archivos Cargados</label> 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Ruta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var archivo in Model)
+                        {
+                            <tr>
+                                <td>@archivo.RequiredName</td>
+                                <td>@archivo.DocumentTitle</td>
+                                <td><a href="@Url.Content(archivo.StageName)" target="_blank">Descargar</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+              </div>
+          </div>
+       </div>
 
+
+            <!-- Tabla de comentarios -->
+      <div class="col-md-6">
+         <div class="card-custom">
+           <div class="comentarios-box">
+            <h3>Comentarios</h3>
+
+            <div class="comentario"> 
+                <div class="comentario-info">
+                    <p class="autor">Fabiola G. <span class="fecha">Dic 23, 2014</span></p>
+                    <p class="texto">Inicio de la construcción</p>
+                </div>
+            </div>
+
+            <div class="comentario"> 
+                <div class="comentario-info">
+                    <p class="autor">Barbara A. <span class="fecha">Ago 11, 2016</span></p>
+                    <p class="texto">Favor confirmar con el cliente.</p>
+                </div>
+            </div>
+
+            <div class="nuevo-comentario"> 
+                <textarea rows="3" placeholder="Agregar comentario"></textarea>
+            </div>
+            <button class="btn-publicar">PUBLICAR</button>
+       </div>
+
+        </div>
     </div>
 
-    <div class="comentarios-box">
-        <h3>Comentarios</h3>
 
-        <div class="comentario">
-            <img src="https://via.placeholder.com/40" alt="Fabiola">
-            <div class="comentario-info">
-                <p class="autor">Fabiola G. <span class="fecha">Dic 23, 2014</span></p>
-                <p class="texto">Inicio de la construcción</p>
-            </div>
-        </div>
-
-        <div class="comentario">
-            <img src="https://via.placeholder.com/40" alt="Barbara">
-            <div class="comentario-info">
-                <p class="autor">Barbara A. <span class="fecha">Ago 11, 2016</span></p>
-                <p class="texto">Favor confirmar con el cliente.</p>
-            </div>
-        </div>
-
-        <div class="nuevo-comentario">
-            <img src="https://via.placeholder.com/40" alt="Tú">
-            <textarea rows="3" placeholder="Agregar comentario" disabled></textarea>
-        </div>
-        <button class="btn-publicar" disabled>PUBLICAR</button>
      </div>
-    </div>
+  </div>
 </div>
 
  

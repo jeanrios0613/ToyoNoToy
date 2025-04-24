@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[9.1.0, )"
             },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.105.0-rc, )"
+            },
             "FluentAssertions": {
               "target": "Package",
               "version": "[8.2.0, )"

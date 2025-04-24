@@ -113,6 +113,8 @@ namespace managerelchenchenvuelve.Controllers
             // Pasar los datos del formulario y los archivos a la vista
             //ViewBag.Archivos = archivos;
 
+            ViewBag.Codigo = formulario.CodigoDeSolicitud;
+
             return View(formulario);
         }
 

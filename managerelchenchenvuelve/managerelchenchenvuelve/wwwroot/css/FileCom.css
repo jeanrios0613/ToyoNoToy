@@ -1,9 +1,13 @@
-﻿ 
- 
+﻿
 
-h2 {
+
+.lettertitle {
     margin-top: 0;
     color: #333;
+    opacity: 5;
+    font-size: 24px; 
+    font-weight: bold; 
+    font-family: var(--pl-ff-montserratmedium);
 }
 
 /* Upload Section */

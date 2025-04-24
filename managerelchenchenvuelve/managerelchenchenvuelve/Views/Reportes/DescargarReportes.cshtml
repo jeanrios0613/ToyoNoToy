@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "solicitud";
+}
+
+<script>
+    function GenereReporte() {
+        var startDate = document.getElementById('startDate').value;
+        var endDate   = document.getElementById('endDate').value;
+        var IndicaSolicitud   = document.getElementById('IndicaSolicitud').value;
+        if (startDate || endDate || IndicaSolicitud ) {
+            window.location.href = '../Reportes/Descargar_Reportes?IndicaSolicitud=' + IndicaSolicitud + '&Fecin=' + startDate + '&Fecfin=' + endDate;
+        } else {
+            window.location.href = '../Reportes/Descargar_Reportes';
+        }
+    }
+</script>
+
+
+<div class="card">
+    <div class="head ">
+        <h5>Generar Reporte</h5>
+    </div>
+    <div class="card-footer text-right">
+        <a asp-action="Descargar_Reportes" asp-controller="ConsultaTodo" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+    <hr>
+
+    <div class="form">
+        <form class="row g-3" onsubmit="return false;">
+
+
+            <div class="col-md-3">
+                <label for="status" class="form-label">Estado</label>
+                <select id="status" class="form-select" aria-label="Seleccione">
+                    <option value="" disabled selected>Seleccione Estado</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="revisando">Revisando</option>
+                    <option value="aprobado">Aprobado</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="IndicaSolicitud" class="form-label">Atención</label>
+                <select id="IndicaSolicitud" class="form-select">
+                    <option value="" disabled selected>Seleccione Atención</option>
+                    <option value="CAJA DE AHORROS">Caja de Ahorros</option>
+                    <option value="Ampyme">AMPYME</option>
+                </select>
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="startDate" class="form-label">Fecha Inicio</label>
+                <input id="startDate" class="form-control" type="date" aria-label="Fecha Inicio">
+            </div>
+
+            <div class="col-md-3">
+                <label for="endDate" class="form-label">Fecha Fin</label>
+                <input id="endDate" class="form-control" type="date" aria-label="Fecha Fin">
+            </div>
+
+            <div class="col-md-3">
+                <button class="btn btn-outline-success" onclick="GenereReporte()">
+                    Generar Reporte
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -71,8 +71,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-03-25T17:03:21.177Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -108,7 +107,7 @@
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
               "RelativeToolTip": "elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowDIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T18:38:13.581Z",
               "EditorCaption": ""
@@ -195,8 +194,7 @@
               "RelativeToolTip": "elchenchenvuelvecy\\Models\\Contact.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAIwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T15:10:21.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T15:10:21.431Z"
             },
             {
               "$type": "Document",

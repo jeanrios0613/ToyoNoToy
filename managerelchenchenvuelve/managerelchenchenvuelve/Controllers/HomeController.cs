@@ -10,10 +10,7 @@ namespace managerelchenchenvuelve.Controllers
 {
     public class HomeController: Controller
     {
-       
-
-        // Constructor con inyección de dependencias para IConfiguration
-       
+        
         public IActionResult Index()
         {
             return View();
