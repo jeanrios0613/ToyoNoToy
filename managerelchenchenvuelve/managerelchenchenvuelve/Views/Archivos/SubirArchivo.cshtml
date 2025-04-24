@@ -4,18 +4,30 @@
  <div class="container__fijo">
    <div class="container">
     <div class="upload-box">
-    <h2>Cargar Archivos</h2>
-
+    <h2>Cargar Archivos</h2> 
         <!-- Formulario para cargar archivo -->
         <form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
-            <!-- Enviar el usuarioId como un campo oculto -->
-            <label class="custom-file-label">
-                Seleccionar archivo
-                <input type="file" name="archivo" required>
-            </label>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3"> 
+                        <textarea for="descripcion" class="form-control" id="descripcion">Comentario...</textarea>
+                    </div>
+                    <div class="col-md-6 mb-3"> 
+                        <label class="custom-file-label">
+                            Seleccionar archivo
+                            <input for="archivo" type="file" class="form-control" id="fileInput" name="archivo" required />
+                        </label>
+                        
+                    </div>
+                </div>
 
+
+
+
+                <!--input type="hidden" name="usuarioId" value="@ViewBag.Id" /-->
+                <!--input type="text" class="form-control" style="width:100px" name="descripcion" required /-->
             <div class="file-size-info">
-                Tamaño máximo permitido: <strong>128 MB</strong>.
+                    Adjuntar archivo <strong>(máx. 5 MB):</strong>
             </div>
 
             <button type="submit" class="submit-btn">Subir</button>

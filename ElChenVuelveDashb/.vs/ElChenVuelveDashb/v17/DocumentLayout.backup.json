@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\views\\archivos\\subirarchivo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\archivos\\subirarchivo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\controllers\\archivoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\controllers\\archivoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\views\\formularios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\views\\formularios\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\controllers\\archivoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\controllers\\archivoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\views\\archivos\\subirarchivo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\archivos\\subirarchivo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\elchenvuelvedashb\\elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -84,24 +84,24 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "SubirArchivo.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
               "RelativeToolTip": "ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-22T21:34:16.509Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ArchivosController.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Controllers\\ArchivosController.cs",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Controllers\\ArchivosController.cs",
@@ -114,15 +114,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
               "RelativeToolTip": "ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-16T20:22:36.561Z"
+              "WhenOpened": "2025-04-16T20:22:36.561Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -138,13 +139,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
               "RelativeToolTip": "ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFEAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-10T15:19:26.922Z",
               "EditorCaption": ""

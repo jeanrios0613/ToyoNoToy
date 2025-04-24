@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jeanr\\source\\repos\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj": {}
+    "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jeanr\\source\\repos\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj": {
+    "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jeanr\\source\\repos\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj",
+        "projectUniqueName": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj",
         "projectName": "elchenchenvuelvecy",
-        "projectPath": "C:\\Users\\jeanr\\source\\repos\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj",
+        "projectPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\elchenchenvuelvecy.csproj",
         "packagesPath": "C:\\Users\\jeanr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jeanr\\source\\repos\\elchenchenvuelvecy\\elchenchenvuelvecy\\obj\\",
+        "outputPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

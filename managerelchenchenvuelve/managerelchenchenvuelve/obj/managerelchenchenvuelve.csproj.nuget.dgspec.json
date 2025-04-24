@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jeanr\\source\\repos\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj": {}
+    "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jeanr\\source\\repos\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj": {
+    "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jeanr\\source\\repos\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj",
+        "projectUniqueName": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj",
         "projectName": "managerelchenchenvuelve",
-        "projectPath": "C:\\Users\\jeanr\\source\\repos\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj",
+        "projectPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj",
         "packagesPath": "C:\\Users\\jeanr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jeanr\\source\\repos\\managerelchenchenvuelve\\managerelchenchenvuelve\\obj\\",
+        "outputPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

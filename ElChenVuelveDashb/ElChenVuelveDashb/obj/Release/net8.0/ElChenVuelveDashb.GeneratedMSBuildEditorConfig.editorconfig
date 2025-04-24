@@ -17,99 +17,99 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ElChenVuelveDashb
 build_property.RootNamespace = ElChenVuelveDashb
-build_property.ProjectDir = C:\Users\jeanr\source\repos\ElChenVuelveDashb\ElChenVuelveDashb\
+build_property.ProjectDir = C:\Users\jeanr\source\repos\ToyoNoToy\ElChenVuelveDashb\ElChenVuelveDashb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\jeanr\source\repos\ElChenVuelveDashb\ElChenVuelveDashb
+build_property.MSBuildProjectDirectory = C:\Users\jeanr\source\repos\ToyoNoToy\ElChenVuelveDashb\ElChenVuelveDashb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Archivos/SubirArchivo.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Archivos/SubirArchivo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJjaGl2b3NcU3ViaXJBcmNoaXZvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Create.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Delete.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Details.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Edit.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Index.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Reporte.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Formularios/Reporte.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXVsYXJpb3NcUmVwb3J0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Home/Index.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Home/Privacy.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Inicio/IniciarSesion.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Inicio/IniciarSesion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXEluaWNpYXJTZXNpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Inicio/Registrarse.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Inicio/Registrarse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXFJlZ2lzdHJhcnNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/Error.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/View.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/View.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Create.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Delete.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Details.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Edit.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Index.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/_ViewImports.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/_ViewStart.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/_Layout.cshtml]
+[C:/Users/jeanr/source/repos/ToyoNoToy/ElChenVuelveDashb/ElChenVuelveDashb/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-w1s6x9rdqn

@@ -68,6 +68,7 @@ public partial class ConsultaSoloAmpymeCompleto
     public string? UsuarioAsignado { get; set; }
 
     public Guid Id { get; set; }
+ 
 
     public string CompletaActividad { get; set; } = null!;
 

@@ -3,12 +3,23 @@
 @{
     ViewData["Title"] = "solicitud";
 }
+
+<script>
+    function irArchivos() {
+        var codigo = document.getElementById('CodigoSolicitud').value; 
+        var url = '@Url.Action("SubirArchivo", "Archivos")' + '?ProcessId=' + codigo;
+        location.href = url;
+    }
+</script>
+
+
+
 <div class="container__fijo">
    <div class="container">
-  
+
     <div class="d-flex justify-content-between mb-3">
             <h4>Solicitud Nro.: @Html.DisplayFor(model => model.CodigoDeSolicitud)</h4>
-            <button class="btn btn-outline-primary" onclick=">Agregar Información</button>
+            <button class="btn btn-outline-primary" onclick="irArchivos()">Agregar Información</button>
     </div>
 
     <div class="row">
@@ -19,7 +30,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6 mb-3">
                             <label class="label-muted">Código De Solicitud Chen Chen</label>
-                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.CodigoDeSolicitud)</div>
+                             <div class="info-box" style="height: 40px"><spam>@Html.DisplayFor(model => model.CodigoDeSolicitud)</spam></div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="label-muted">Fecha De Creación</label>

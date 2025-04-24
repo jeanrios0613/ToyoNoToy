@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cqpbo9tuUh4=",
+  "dgSpecHash": "Rs8eWVlluSI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jeanr\\source\\repos\\ElChenVuelveDashb\\ElChenVuelveDashb\\ElChenVuelveDashb.csproj",
+  "projectFilePath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\ElChenVuelveDashb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jeanr\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\jeanr\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
