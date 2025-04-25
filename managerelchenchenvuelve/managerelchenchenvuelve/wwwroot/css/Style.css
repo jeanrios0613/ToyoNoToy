@@ -166,13 +166,11 @@ table {
 
 .pagination {
     display: flex;
-    justify-content: center;
-    padding: 16px 0;
+    justify-content: center;  
 }
 
-    .pagination .page-link {
-        border-radius: 10px;
-        padding: 6px 12px;
+    .pagination .page-link { 
+        padding: 8px 12px;
         color: #333;
         border: none;
         background-color: transparent;
@@ -240,7 +238,7 @@ table {
     color: #0B162E;
     font-family: var(--pl-ff-montserratmedium);
     font-weight: 600;
-    font-size: var(--pl-big-size-2);
+    font-size: 20px;
     line-height: 22px;
 }
 
@@ -257,7 +255,7 @@ flex-grow: 1;
 overflow-x: auto;
 overflow-y: auto;
 width: 100%;
-max-height: calc(100vh - 200px); /* Ajusta según tu layout */
+max-height: calc(95vh - 200px); /* Ajusta según tu layout */
 }
 
     .scrollable-table-container table thead th {

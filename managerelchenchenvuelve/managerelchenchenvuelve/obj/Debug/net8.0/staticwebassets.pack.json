@@ -193,6 +193,10 @@
       "PackagePath": "staticwebassets\\css\\StyleFile.css"
     },
     {
+      "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\css\\StyleReport.css",
+      "PackagePath": "staticwebassets\\css\\StyleReport.css"
+    },
+    {
       "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -203,6 +207,26 @@
     {
       "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\contacto.png",
       "PackagePath": "staticwebassets\\img\\contacto.png"
+    },
+    {
+      "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\database-down.svg",
+      "PackagePath": "staticwebassets\\img\\database-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\descargar.png",
+      "PackagePath": "staticwebassets\\img\\descargar.png"
+    },
+    {
+      "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\download.svg",
+      "PackagePath": "staticwebassets\\img\\download.svg"
+    },
+    {
+      "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\file-earmark-person.svg",
+      "PackagePath": "staticwebassets\\img\\file-earmark-person.svg"
+    },
+    {
+      "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\file-person-fill.svg",
+      "PackagePath": "staticwebassets\\img\\file-person-fill.svg"
     },
     {
       "Id": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\img\\house.svg",

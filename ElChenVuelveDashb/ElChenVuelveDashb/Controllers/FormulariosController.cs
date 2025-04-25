@@ -27,12 +27,12 @@ namespace ElChenVuelveDashb.Controllers
             return View();
         }
 
-        public IActionResult DescargarReporte(DateTime? Fecin, DateTime? Fecfin  )
+        public IActionResult DescargarReporte()//DateTime? Fecin, DateTime? Fecfin  )
         {
             
-            var formularios = _context.ProcessInstances
-                                      .Where(f => !Fecin.HasValue || f.Created >= Fecin)
-                                      .Where(f => !Fecfin.HasValue || f.Created <= Fecfin) 
+            var formularios = _context.ConsultaTodo
+                                      //.Where(f => !Fecin.HasValue || f.Created >= Fecin)
+                                      //.Where(f => !Fecfin.HasValue || f.Created <= Fecfin) 
                                       .ToList();
 
             using (var workbook = new XLWorkbook())
@@ -40,54 +40,80 @@ namespace ElChenVuelveDashb.Controllers
                 var worksheet = workbook.Worksheets.Add("Reporte");
 
                 // Agregar encabezados
+                worksheet.Cell(1, 1).Value = "Codigodesolicitud";
+                worksheet.Cell(1, 1).Value = "FechadeCreacion";
+                worksheet.Cell(1, 1).Value = "FechaActualizacion";
+                worksheet.Cell(1, 1).Value = "Gestor";
+                worksheet.Cell(1, 1).Value = "EtapadelNegocio";
+                worksheet.Cell(1, 1).Value = "CorreoElectronico";
                 worksheet.Cell(1, 1).Value = "Nombre";
-                worksheet.Cell(1, 2).Value = "Apellido";
-                worksheet.Cell(1, 3).Value = "Email";
-                worksheet.Cell(1, 4).Value = "Cedula";
-                worksheet.Cell(1, 5).Value = "Celular";
-                worksheet.Cell(1, 6).Value = "Redes Sociales";
-                worksheet.Cell(1, 7).Value = "Nombre Empresa";
-                worksheet.Cell(1, 8).Value = "Actividad Economica";
-                worksheet.Cell(1, 9).Value = "Descripcion Negocio";
-                worksheet.Cell(1, 10).Value = "Monto Inversion";
-                worksheet.Cell(1, 11).Value = "Descripcion Inversion";
-                worksheet.Cell(1, 12).Value = "Razon Cambio";
-                worksheet.Cell(1, 13).Value = "Indica Solicitud";
-                worksheet.Cell(1, 14).Value = "Fecha Registro";  // Ajustar la columna que faltaba
-                worksheet.Cell(1, 15).Value = "Usuario Analista";
-                worksheet.Cell(1, 16).Value = "Fecha Atencion";
-                worksheet.Cell(1, 17).Value = "Usuario Supervisor";
-                worksheet.Cell(1, 18).Value = "Fecha Aprobacion";
-                worksheet.Cell(1, 19).Value = "Localidad";
+                worksheet.Cell(1, 1).Value = "Apellido";
+                worksheet.Cell(1, 1).Value = "Numeroidentificacion";
+                worksheet.Cell(1, 1).Value = "Tipoidentificacion";
+                worksheet.Cell(1, 1).Value = "Telefono";
+                worksheet.Cell(1, 1).Value = "NombreNegocio";
+                worksheet.Cell(1, 1).Value = "Descripcionnegocio";
+                worksheet.Cell(1, 1).Value = "Actividadeconomica";
+                worksheet.Cell(1, 1).Value = "Instagram";
+                worksheet.Cell(1, 1).Value = "RUC";
+                worksheet.Cell(1, 1).Value = "WebSite";
+                worksheet.Cell(1, 1).Value = "Provincia";
+                worksheet.Cell(1, 1).Value = "Distrito";
+                worksheet.Cell(1, 1).Value = "corregimiento";
+                worksheet.Cell(1, 1).Value = "Proyeccionventasmensuales";
+                worksheet.Cell(1, 1).Value = "Ventasmensuales";
+                worksheet.Cell(1, 1).Value = "FechaInicioOperaciones";
+                worksheet.Cell(1, 1).Value = "CuantoChenchennecesitas";
+                worksheet.Cell(1, 1).Value = "Enqueloinvertiras";
+                worksheet.Cell(1, 1).Value = "VerificacionCliente";
+                worksheet.Cell(1, 1).Value = "GestionRealizada";
+                worksheet.Cell(1, 1).Value = "Tipoatencion";
+                worksheet.Cell(1, 1).Value = "Porquenocontacto";
+                worksheet.Cell(1, 1).Value = "Etapa";
+                worksheet.Cell(1, 1).Value = "UsuarioAsignado"; 
+
 
                 // Agregar datos
-                /*for (int i = 0; i < formularios.Count; i++)
+                for (int i = 0; i < formularios.Count; i++)
                 {
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Codigodesolicitud;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].FechadeCreacion;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].FechaActualizacion;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Gestor;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].EtapadelNegocio;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].CorreoElectronico;
                     worksheet.Cell(i + 2, 1).Value = formularios[i].Nombre;
-                    worksheet.Cell(i + 2, 2).Value = formularios[i].Apellido;
-                    worksheet.Cell(i + 2, 3).Value = formularios[i].Email;
-                    worksheet.Cell(i + 2, 4).Value = formularios[i].Cedula;
-                    worksheet.Cell(i + 2, 5).Value = formularios[i].Celular;
-                    worksheet.Cell(i + 2, 6).Value = formularios[i].RedesSociales;
-                    worksheet.Cell(i + 2, 7).Value = formularios[i].NombreEmpresa;
-                    worksheet.Cell(i + 2, 8).Value = formularios[i].ActividadEconomica;
-                    worksheet.Cell(i + 2, 9).Value = formularios[i].DescripcionNegocio;
-                    worksheet.Cell(i + 2, 10).Value = formularios[i].MontoInversion;
-                    worksheet.Cell(i + 2, 11).Value = formularios[i].DescripcionInversion;
-                    worksheet.Cell(i + 2, 12).Value = formularios[i].RazonCambio;
-                    worksheet.Cell(i + 2, 13).Value = formularios[i].IndicaSolicitud;
-                    worksheet.Cell(i + 2, 14).Value = formularios[i].FechaRegistro;  // Columna corregida
-                    worksheet.Cell(i + 2, 15).Value = formularios[i].UsuarioAnalista;
-                    worksheet.Cell(i + 2, 16).Value = formularios[i].FechaAtencion;
-                    worksheet.Cell(i + 2, 17).Value = formularios[i].UsuarioSupervisor;
-                    worksheet.Cell(i + 2, 18).Value = formularios[i].FechaAprobacion;
-                    worksheet.Cell(i + 2, 19).Value = formularios[i].Localidad;
-                }*/
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Apellido;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Numeroidentificacion;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Tipoidentificacion;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Telefono;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].NombreNegocio;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Descripcionnegocio;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Actividadeconomica;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Instagram;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].RUC;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].WebSite;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Provincia;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Distrito;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].corregimiento;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Proyeccionventasmensuales;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Ventasmensuales;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].FechaInicioOperaciones;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].CuantoChenchennecesitas;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Enqueloinvertiras;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].VerificacionCliente;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].GestionRealizada;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Tipoatencion;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Porquenocontacto;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].Etapa;
+                    worksheet.Cell(i + 2, 1).Value = formularios[i].UsuarioAsignado; 
+
+                }
 
                 using (var stream = new MemoryStream())
                 {
                     workbook.SaveAs(stream);
-                    stream.Position = 0; // Asegurarse de reiniciar la posición del stream
+7                    stream.Position = 0; // Asegurarse de reiniciar la posición del stream
                     var fileName = "Reporte.xlsx";
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
                 }
@@ -151,7 +177,7 @@ namespace ElChenVuelveDashb.Controllers
         // POST: Formularios
         [HttpPost("{Id:int}")]
         [ValidateAntiForgeryToken]
-       /* public ActionResult Index(int id, [Bind("Id,Nombre,Apellido,Email,Cedula,Celular,RedesSociales,NombreEmpresa,ActividadEconomica,DescripcionNegocio,MontoInversion,DescripcionInversion,RazonCambio,IndicaSolicitud,DocumentacionAdjunta,FechaRegistro,UsuarioAnalista,FechaAtencion,UsuarioSupervisor,FechaAprobacion,Localidad")] Formulario formulario)
+        public ActionResult Index(int id, [Bind("Id,Nombre,Apellido,Email,Cedula,Celular,RedesSociales,NombreEmpresa,ActividadEconomica,DescripcionNegocio,MontoInversion,DescripcionInversion,RazonCambio,IndicaSolicitud,DocumentacionAdjunta,FechaRegistro,UsuarioAnalista,FechaAtencion,UsuarioSupervisor,FechaAprobacion,Localidad")] Formulario formulario)
         {
             if (!ModelState.IsValid)
             {
@@ -195,7 +221,7 @@ namespace ElChenVuelveDashb.Controllers
             // Redirige a la vista con el formulario actualizado
             return RedirectToAction(nameof(Index), new { id = formulario.Id });
         }
-        */
+        
 
 
 

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Reporte";
+}
+ 
+
+<div class="container__fijo">
+    <div class="container"> 
+                <h2 class="mb-4">Lista de Reportes</h2>
+
+                <div class="card report-custom p-4 mb-4">
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-4">
+                            <label class="form-label">Tipo de reporte</label>
+                            <select class="form-select">
+                                <option>Tabla de datos</option>
+                                <option>Gráfico</option>
+                            </select>
+                        </div>
+                        <div class="col-md-8 text-end">
+                            <button class="btn btn-success me-2">Mis reportes</button>
+                            <button class="btn btn-outline-secondary">Ver tutorial</button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Filtros -->
+                    <h5>Filtros</h5>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha de creación</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="startDate">
+                                <span class="input-group-text">a</span>
+                                <input type="date" class="form-control" id="endDate">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Sistema</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownSystems" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccionar sistemas
+                                </button>
+                                <ul class="dropdown-menu dropdown-systems p-2" aria-labelledby="dropdownSystems">
+                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="qom"><label class="form-check-label" for="qom">QOM</label></div></li>
+                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="isms"><label class="form-check-label" for="isms">ISMS</label></div></li>
+                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="aml"><label class="form-check-label" for="aml">AML</label></div></li>
+                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="compliance"><label class="form-check-label" for="compliance">Compliance</label></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" onclick="downloadReport()">Descargar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+ 

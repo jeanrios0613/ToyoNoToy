@@ -1,16 +1,4 @@
-﻿
-
-
-.lettertitle {
-    margin-top: 0;
-    color: #333;
-    opacity: 5; 
-    font-size: 24px; 
-    font-weight: bold; 
-    font-family: var(--pl-ff-montserratmedium);
-}
-
-/* Upload Section */
+﻿/* Upload Section */
 .upload-box {
     border: 2px dashed #ccc;
     padding: 30px;
@@ -124,4 +112,15 @@
     border-radius: 4px;
     padding: 8px 20px;
     cursor: not-allowed;
+}
+
+ 
+.report-custom {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-systems {
+    max-height: 200px;
+    overflow-y: auto;
 }

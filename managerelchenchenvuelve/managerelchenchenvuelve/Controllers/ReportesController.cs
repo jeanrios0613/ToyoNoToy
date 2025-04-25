@@ -15,7 +15,10 @@ namespace managerelchenchenvuelve.Controllers
         {
             _context = context;
         }
-
+        public ActionResult Reporte()
+        {
+            return View();
+        }
         public IActionResult Descargar_Reportes()//string? Fecin, string? Fecfin)
         {
 
