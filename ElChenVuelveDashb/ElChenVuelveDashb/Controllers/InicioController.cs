@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ElChenVuelveDashb.Models;
+using ElChenVuelveDashb.Models.intera;
 using ElChenVuelveDashb.Recursos;
 using ElChenVuelveDashb.Servicios.Contrato;
 using System.Security.Claims;
@@ -25,7 +25,7 @@ namespace ElChenVuelveDashb.Controllers
         public async Task<IActionResult> Registrarse()
         {
             
-            var roles = await _context.Userprofiles.ToListAsync();
+            var roles = await _context.Roles.ToListAsync();
             ViewBag.Userprofiles = new SelectList(roles, "Id", "Perfil");
 
             return View();

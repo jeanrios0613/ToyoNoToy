@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElChenVuelveDashb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26934293397cf759799febaca7cda76725c77bfb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8417fabf830b633bed3a320d97967f4fbae228e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElChenVuelveDashb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElChenVuelveDashb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

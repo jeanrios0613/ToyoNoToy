@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dlXbiYn3pcjKjZCHJBDhQY4nzaYbAqV8SmxUnEd0Ge8=",
+  "Hash": "W8sMOZN4H6rEuZdi3/xopi73Y1Nfa6gTktRLBXE8Z7I=",
   "Source": "managerelchenchenvuelve",
   "BasePath": "_content/managerelchenchenvuelve",
   "Mode": "Default",
@@ -2903,6 +2903,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\FileCom.css"
+    },
+    {
+      "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\css\\Login.css",
+      "SourceId": "managerelchenchenvuelve",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\",
+      "BasePath": "_content/managerelchenchenvuelve",
+      "RelativePath": "css/Login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Login.css"
     },
     {
       "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\css\\Style.css",

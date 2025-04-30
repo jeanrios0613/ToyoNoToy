@@ -1,5 +1,8 @@
 ﻿@model object
+
 @{
+    Layout = "_Layout";
+ 
     ViewData["Title"] = "dashboard";
     int totalPages = ViewBag.TotalPages;
     int currentPage = ViewBag.CurrentPage;
@@ -8,7 +11,7 @@
     int endPage = Math.Min(totalPages - 1, currentPage + delta);
 }
  
-</br>
+</br> 
 <div class="container">
     <div class="card-custom">
         <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -137,7 +140,7 @@
         </div>
     
         <!-- Paginación -->
-        <nav>
+        <nav  style="height:40px">
             <ul class="pagination">
                 <!-- Primera página -->
                 <li class="page-item @(currentPage == 1 ? "active" : "")">
@@ -169,6 +172,8 @@
                 }
             </ul>
         </nav>
+
     </div>
+
 
 </div>

@@ -1,57 +1,53 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using managerelchenchenvuelve.Models;
+using managerelchenchenvuelve.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 public class ArchivosController : Controller
 {
-    private readonly ToyoNoToyContext _context;
+    private readonly ToyoNoToyContext   _context;
+    private readonly DatabaseConnection _db;
     private readonly string rutaServidor = "../Reportes";
-    private readonly string _connectionString = "server=TSIAPP724; database=PoluxDb; integrated security=true;TrustServerCertificate=True;";
 
-
-
-    public ArchivosController(ToyoNoToyContext context)
+    public ArchivosController(ToyoNoToyContext context, DatabaseConnection db)
     {
-        _context = context; 
+        _context = context;
+        _db      = db;
     }
 
     // GET: Archivos/Usuario/{Id}
     public async Task<IActionResult> VerArchivos(string Id)
     {
-       
+        var archivos = await _context.DocumentReferences
+                                     .Where(a => a.RequiredName == Id)
+                                     .ToListAsync();
 
-        // Obtener todos los archivos del usuario específico
-        var archivos = await _context.DocumentReferences.Where(a => a.RequiredName == Id).ToListAsync();
         return View(archivos);
     }
 
     // GET: Archivos/SubirArchivo
     public IActionResult SubirArchivo(string? ProcessId)
-    {
-        List<DatosCliente> Datos = new List<DatosCliente>();
+    {   List<DatosCliente> Datos = new List<DatosCliente>();
 
-        using (SqlConnection conn = new SqlConnection(_connectionString))
+        string query = "SELECT * FROM [Consulta_solo_ampyme_completo] WHERE [Codigo De Solicitud] = @ProcessId";
+        SqlParameter param = new SqlParameter("@ProcessId", ProcessId ?? (object)DBNull.Value);
+
+        DataTable result = _db.ExecuteQuery(query, param);
+
+        foreach (DataRow row in result.Rows)
         {
-            string query = "SELECT * FROM [Consulta_solo_ampyme_completo] WHERE [Codigo De Solicitud] = @ProcessId";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@ProcessId", ProcessId);
-
-            conn.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            Datos.Add(new DatosCliente
             {
-                Datos.Add(new DatosCliente
-                {
-                    reference = reader["Id"].ToString(),
-                    name = reader["Nombre"].ToString()
-                });
-            }
-            reader.Close();
+                reference = row["Id"].ToString(),
+                name = row["Nombre"].ToString()
+            });
         }
 
         var archivos = _context.DocumentReferences
@@ -68,11 +64,6 @@ public class ArchivosController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> SubirArchivo(IFormFile archivo, string Id, string descripcion)
     {
-       
-
-
-
-
         if (archivo != null && archivo.Length > 0 && archivo.Length <= 5 * 1024 * 1024)
         {
             string rutaDocumento = Path.Combine(rutaServidor, archivo.FileName);
@@ -81,7 +72,7 @@ public class ArchivosController : Controller
             {
                 await archivo.CopyToAsync(stream);
             }
-            
+
             var nuevoArchivo = new DocumentReference
             {
                 Id = Guid.NewGuid(),
@@ -95,8 +86,7 @@ public class ArchivosController : Controller
             _context.DocumentReferences.Add(nuevoArchivo);
             await _context.SaveChangesAsync();
 
-            // Redirigir al usuario para que vea los archivos subidos
-            return RedirectToAction(nameof(SubirArchivo), new { Id = Id });
+            return RedirectToAction(nameof(SubirArchivo), new { ProcessId = Id });
         }
 
         ModelState.AddModelError("", "El archivo debe ser menor a 5 MB.");

@@ -165,8 +165,9 @@ table {
 }
 
 .pagination {
-    display: flex;
+    display: flex; 
     justify-content: center;  
+    padding:0.5rem; 
 }
 
     .pagination .page-link { 
