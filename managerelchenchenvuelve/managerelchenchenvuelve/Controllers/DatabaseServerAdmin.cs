@@ -1,23 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data; 
 
 namespace managerelchenchenvuelve.Controllers
 {
-    public class DatabaseServerAdmin : Controller
+    public class DatabaseServerAdmin(IConfiguration configuration) : Controller
     {
-        private readonly string _connectionString;
-
-        public DatabaseServerAdmin(IConfiguration configuration)
-        {
-            _connectionString = configuration.GetConnectionString("conexionDb");
-        }
-
+        private readonly string _connectionString = configuration.GetConnectionString("conexionDb");
+        [AllowAnonymous]
         public DataTable ExecuteQuery(string query, params SqlParameter[] parameters)
         {
             DataTable result = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
+
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 if (parameters != null)
@@ -28,10 +25,11 @@ namespace managerelchenchenvuelve.Controllers
                     adapter.Fill(result);
                 }
             }
-            Console.WriteLine("SQlquey:....." + result);
+            Console.WriteLine("conexion: " + _connectionString); 
+            Console.WriteLine("SQlquery:....." + result);
             return result;
         }
-
+        [AllowAnonymous]
         public int ExecuteNonQuery(string query, params SqlParameter[] parameters)
         {
             int rowsAffected;
@@ -49,7 +47,7 @@ namespace managerelchenchenvuelve.Controllers
             Console.WriteLine("SQlquey:....." + rowsAffected);
             return rowsAffected;
         }
-
+        [AllowAnonymous]
         public object ExecuteScalar(string query, params SqlParameter[] parameters)
         {
             object result;

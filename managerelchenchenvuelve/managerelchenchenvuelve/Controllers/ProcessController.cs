@@ -4,63 +4,72 @@ using BootstrapBlazor.Components;
 using managerelchenchenvuelve.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace managerelchenchenvuelve.Controllers
 {
+   //[Authorize]
     public class ProcessController : Controller
-    { private readonly ToyoNoToyContext _context;
+    {
+        private readonly ToyoNoToyContext _context;
+        private readonly ILogger<ProcessController> _logger;
 
-        public ProcessController(ToyoNoToyContext context)
+        public ProcessController(ToyoNoToyContext context, ILogger<ProcessController> logger)
         {
             _context = context;   
+            _logger = logger;
+
         }
 
         // GET: ProcessController
-        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10 )
-        { 
-            ClaimsPrincipal claimuser = HttpContext.User;
-            string? nombreUsuario = null; 
-
-            if (claimuser.Identity.IsAuthenticated)
+        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10)
+        {
+            try
             {
-                nombreUsuario = claimuser.Claims.Where(c => c.Type == ClaimTypes.Name)
-                                                .Select(c => c.Value).SingleOrDefault();
+                _logger.LogInformation("Accediendo a Process/Index");
 
-            }
+                var username = HttpContext.Session.GetString("UserName"); // Obtener el nombre de usuario de la sesión
+                _logger.LogInformation("Usuario en sesión: {Username}", username);
 
-            ViewData["nombreUsuario"] = nombreUsuario;
-
-             
-            if (id == null )
-            { 
-                var formularios = _context.ConsultaSoloAmpymeCompletos 
-                                //.OrderBy(f => f.FechaDeActualizacion)  Ordenar por Id
-                                .Skip((page - 1) * pageSize)  
-                                .Take(pageSize)  
-                                .ToList();
-
-                var totalCount = _context.ConsultaSoloAmpymeCompletos.Count();  
-                ViewBag.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-                ViewBag.CurrentPage = page;
-
-                return View(formularios);  
-            }
-            else
-            {
-                 
-                var formulario = _context.ConsultaSoloAmpymeCompletos 
-                    .Where(f => id == null || f.CodigoDeSolicitud == id)  
-                    .FirstOrDefault();  
-
-
-
-
-                if (formulario == null)
+                if (string.IsNullOrEmpty(username))
                 {
-                    return NotFound();  
+                    _logger.LogWarning("No se encontró usuario en la sesión");
+                    return RedirectToAction("Login", "Account");
                 }
 
-                return View(formulario); 
+                ViewData["nombreUsuario"] = username;
+                
+
+                if (id == null)
+                {
+                    _logger.LogInformation("Obteniendo lista de formularios");
+
+                    var formularios = _context.ConsultaSoloAmpymeCompletos 
+                        .Skip((page - 1) * pageSize)  
+                        .Take(pageSize)  
+                        .ToList();
+
+                    var totalCount = _context.ConsultaSoloAmpymeCompletos.Count();  
+                    ViewBag.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+                    ViewBag.CurrentPage = page;
+
+                    return View(formularios);  
+                }
+                else
+                {
+                    _logger.LogInformation("Obteniendo formulario específico: {Id}", id);
+                    var formulario = _context.ConsultaSoloAmpymeCompletos 
+                        .Where(f => id == null || f.CodigoDeSolicitud == id)  
+                        .FirstOrDefault();  
+
+                    return View(formulario);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en Process/Index");
+                return RedirectToAction("Login", "Account");
             }
         }
 
@@ -93,7 +102,7 @@ namespace managerelchenchenvuelve.Controllers
 
         // GET: ProcessController/solicitud
         public ActionResult solicitud(string? id)
-        {
+        {    
             if (id == null)
             {
                 return NotFound();

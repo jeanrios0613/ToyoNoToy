@@ -9,12 +9,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+
+
 
 public class ArchivosController : Controller
-{
+{ 
+    
     private readonly ToyoNoToyContext   _context;
     private readonly DatabaseConnection _db;
-    private readonly string rutaServidor = "../Reportes";
+    private readonly string rutaServidor = "../Reportes"; 
 
     public ArchivosController(ToyoNoToyContext context, DatabaseConnection db)
     {

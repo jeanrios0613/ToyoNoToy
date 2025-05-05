@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ElChenVuelveDashb.Models.intera;
+﻿using Microsoft.AspNetCore.Mvc; 
 using ElChenVuelveDashb.Recursos;
 using ElChenVuelveDashb.Servicios.Contrato;
 using System.Security.Claims;
@@ -62,7 +61,7 @@ namespace ElChenVuelveDashb.Controllers
                 return View();
             }
 
-                        List<Claim> claims = new List<Claim>
+            List<Claim> claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, usuario_encontrado.Nombre)
                 };
