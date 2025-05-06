@@ -1,5 +1,4 @@
-﻿
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 html, body {
     margin: 0;
@@ -369,4 +368,28 @@ max-height: calc(95vh - 200px); /* Ajusta según tu layout */
     text-align: center;
     text-decoration: none;
     display: inline-block; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-top: 0;
+    border-radius: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.nav-item {
+    position: relative;
 }

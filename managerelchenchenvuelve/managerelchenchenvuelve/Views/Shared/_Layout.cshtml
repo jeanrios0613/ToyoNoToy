@@ -20,7 +20,19 @@
             </header>
             <ul class="nav flex-column">
                 <li class="nav-item"> 
-                    <a class="nav-link" href="../Process/Index"><i class="zmdi zmdi-view-dashboard"></i> Solicitudes</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#solicitudesSubmenu" role="button" aria-expanded="false">
+                        <i class="zmdi zmdi-view-dashboard"></i> Solicitudes
+                    </a>
+                    <div class="collapse" id="solicitudesSubmenu">
+                        <ul class="nav flex-column ps-3">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Process/Index">Pendientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../Process/Create">Competadas</a>
+                            </li> 
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../Reportes/Reporte"><i class="zmdi zmdi-link"></i> Reportes</a>
