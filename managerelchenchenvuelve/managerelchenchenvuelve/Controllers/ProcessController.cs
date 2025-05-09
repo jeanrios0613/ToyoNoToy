@@ -6,30 +6,38 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using managerelchenchenvuelve.Services;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace managerelchenchenvuelve.Controllers
 {
-   //[Authorize]
+    //[Authorize]
     public class ProcessController : Controller
     {
+        private readonly DatabaseConnection _db;
         private readonly ToyoNoToyContext _context;
         private readonly ILogger<ProcessController> _logger;
 
-        public ProcessController(ToyoNoToyContext context, ILogger<ProcessController> logger)
+        public ProcessController(ToyoNoToyContext context, DatabaseConnection db, ILogger<ProcessController> logger)
         {
-            _context = context;   
+            _context = context;
             _logger = logger;
-
+            _db = db;
         }
 
         // GET: ProcessController
-        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10)
+        public ActionResult Index(string? id = null, string? tarea = "P", int page = 1, int pageSize = 10)
         {
+            var username = HttpContext.Session.GetString("UserName");
+            string? PARAM;
             try
             {
                 _logger.LogInformation("Accediendo a Process/Index");
 
-                var username = HttpContext.Session.GetString("UserName"); // Obtener el nombre de usuario de la sesión
+                // Obtener el nombre de usuario de la sesión
                 _logger.LogInformation("Usuario en sesión: {Username}", username);
 
                 if (string.IsNullOrEmpty(username))
@@ -38,30 +46,102 @@ namespace managerelchenchenvuelve.Controllers
                     return RedirectToAction("Login", "Account");
                 }
 
+
+
+
                 ViewData["nombreUsuario"] = username;
-                
+
+                List<DatosReca> Datos = new List<DatosReca>();
+
+                string query = @"SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                                    FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
+                                    CASE 
+                                    WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                        THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
+                                    WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                        THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
+                                    ELSE 
+                                        'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
+                                        END AS TiempoTranscurrido,
+ 
+ 
+                                    RI.* 
+
+                               FROM  [dbo].[Request_info] as RI 
+                               WHERE GESTOR = 'Gestión directa de Ampyme'  
+                               AND usuario_asignado = COALESCE(@USERNAME,usuario_asignado)  ";
+
+
+
+                if (tarea == "C")
+                {
+                    query += "AND ETAPA = 'Completada'";
+
+                }
+                else if (tarea == "P")
+                {
+
+                    query += "AND ETAPA != 'Completada'";
+                };
+
+                query += " ORDER BY fecha_de_creacion desc " +
+                         " OFFSET @Offset ROWS " +
+                         " FETCH NEXT @PageSize ROWS ONLY";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@USERNAME",username),
+                    new SqlParameter("@Offset", (page - 1) * pageSize),
+                    new SqlParameter("@PageSize", pageSize)
+                };
+
+                DataTable result = _db.ExecuteQuery(query, parameters);
+
+                // Get total count for pagination
+                string countQuery = @"SELECT COUNT(*) FROM [dbo].[Request_info] 
+                                    WHERE GESTOR = 'Gestión directa de Ampyme' 
+                                    AND ETAPA != 'Completada' 
+                                    AND usuario_asignado = COALESCE(@USERNAME,usuario_asignado)";
+
+                SqlParameter[] parameters1 = new SqlParameter[]
+               {
+                    new SqlParameter("@USERNAME",username)
+               };
+
+                DataTable countResult = _db.ExecuteQuery(countQuery, parameters1);
+
+                int totalCount = Convert.ToInt32(countResult.Rows[0][0]);
+
 
                 if (id == null)
                 {
-                    _logger.LogInformation("Obteniendo lista de formularios");
+                    foreach (DataRow row in result.Rows)
+                    {
+                        Datos.Add(new DatosReca
+                        {
+                            Etapa = row["Etapa"].ToString(),
+                            CompletaActividad = row["CompletaActividad"].ToString(),
+                            FechaFormateada = row["FechaFormateada"].ToString(),
+                            TiempoTranscurrido = row["TiempoTranscurrido"].ToString(),
+                            UserName = row["usuario_asignado"].ToString(),
+                            CodigoDeSolicitud = row["codigo_de_solicitud"].ToString()
+                        });
+                    }
 
-                    var formularios = _context.ConsultaSoloAmpymeCompletos 
-                        .Skip((page - 1) * pageSize)  
-                        .Take(pageSize)  
-                        .ToList();
-
-                    var totalCount = _context.ConsultaSoloAmpymeCompletos.Count();  
                     ViewBag.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
                     ViewBag.CurrentPage = page;
+                    ViewBag.DatosReca = Datos;
 
-                    return View(formularios);  
+
+                    _logger.LogInformation("Obteniendo lista de formularios");
+                    return View(Datos);
                 }
                 else
                 {
                     _logger.LogInformation("Obteniendo formulario específico: {Id}", id);
-                    var formulario = _context.ConsultaSoloAmpymeCompletos 
-                        .Where(f => id == null || f.CodigoDeSolicitud == id)  
-                        .FirstOrDefault();  
+                    var formulario = _context.ConsultaSoloAmpymeCompletos
+                        .Where(f => id == null || f.CodigoDeSolicitud == id)
+                        .FirstOrDefault();
 
                     return View(formulario);
                 }
@@ -98,33 +178,6 @@ namespace managerelchenchenvuelve.Controllers
             {
                 return View();
             }
-        }
-
-        // GET: ProcessController/solicitud
-        public ActionResult solicitud(string? id)
-        {    
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-			var formulario = _context.ConsultaSoloAmpymeCompletos
-					.Where(f => f.CodigoDeSolicitud == id)
-					.FirstOrDefault();
-			if (formulario == null)
-            {
-                return NotFound();
-            }
-
-            // Obtener los archivos asociados al formulario
-            //var archivos = await _context.DocumentReferences.Where(a => a.DocumentHandle == id).ToListAsync();
-
-            // Pasar los datos del formulario y los archivos a la vista
-            //ViewBag.Archivos = archivos;
-
-            ViewBag.Codigo = formulario.CodigoDeSolicitud;
-
-            return View(formulario);
         }
 
         // GET: ProcessController/Edit/5

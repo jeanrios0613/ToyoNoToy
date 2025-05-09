@@ -566,4 +566,3 @@ C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenv
 C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
 C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

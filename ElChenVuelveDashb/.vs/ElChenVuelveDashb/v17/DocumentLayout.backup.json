@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\formularios\\reporte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\reporte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\formularios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\archivos\\subirarchivo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\archivos\\subirarchivo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\formularios\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +18,32 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-25T20:51:05.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SubirArchivo.cshtml",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
-              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
-              "RelativeToolTip": "ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-25T20:50:43.342Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Reporte.cshtml",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Reporte.cshtml",
-              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Reporte.cshtml",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Reporte.cshtml",
-              "RelativeToolTip": "ElChenVuelveDashb\\Views\\Formularios\\Reporte.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAABcAAAA9AAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "RelativeToolTip": "ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAGYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-24T17:00:32.577Z",
+              "WhenOpened": "2025-05-08T15:46:24.021Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormulariosController.cs",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Controllers\\FormulariosController.cs",
-              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Controllers\\FormulariosController.cs",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Controllers\\FormulariosController.cs",
-              "RelativeToolTip": "ElChenVuelveDashb\\Controllers\\FormulariosController.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAIwBkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T15:19:20.208Z",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
+              "RelativeToolTip": "ElChenVuelveDashb\\Views\\Formularios\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-08T15:27:04.771Z",
               "EditorCaption": ""
             }
           ]

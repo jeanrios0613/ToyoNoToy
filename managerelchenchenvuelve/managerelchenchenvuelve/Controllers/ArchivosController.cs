@@ -18,13 +18,17 @@ public class ArchivosController : Controller
     
     private readonly ToyoNoToyContext   _context;
     private readonly DatabaseConnection _db;
-    private readonly string rutaServidor = "../Reportes"; 
+    private readonly string rutaServidor = "../Reportes";
 
+
+   
     public ArchivosController(ToyoNoToyContext context, DatabaseConnection db)
     {
         _context = context;
         _db      = db;
     }
+
+
 
     // GET: Archivos/Usuario/{Id}
     public async Task<IActionResult> VerArchivos(string Id)
@@ -36,6 +40,8 @@ public class ArchivosController : Controller
         return View(archivos);
     }
 
+
+    
     // GET: Archivos/SubirArchivo
     public IActionResult SubirArchivo(string? ProcessId)
     {   List<DatosCliente> Datos = new List<DatosCliente>();

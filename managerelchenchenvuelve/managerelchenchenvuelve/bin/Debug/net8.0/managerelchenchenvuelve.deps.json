@@ -11,7 +11,6 @@
           "BootstrapBlazor.BootstrapIcon.Extensions": "9.1.0",
           "ClosedXML": "0.105.0-rc",
           "FluentAssertions": "8.2.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.15",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
           "Microsoft.Data.SqlClient": "6.0.2",
           "Microsoft.EntityFrameworkCore": "8.0.0",
@@ -685,17 +684,6 @@
         "resources": {
           "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
             "locale": "zh-Hant"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.15": {
-        "dependencies": {
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.5.0"
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "assemblyVersion": "8.0.15.0",
-            "fileVersion": "8.0.1525.16505"
           }
         }
       },
@@ -2646,13 +2634,6 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.15": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-41DQAWCOIDS9ZzW6hWCShRiVrBLvz2QqR+i0VhMa4JHuQLNW2axfiWgEbB8jYt8try1ez2Q+z1PfF3vbl+B9gA==",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.15",
-      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.8.0.15.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/8.0.11": {
       "type": "package",

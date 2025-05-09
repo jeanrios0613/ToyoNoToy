@@ -31,4 +31,23 @@ document.getElementById("closeModal").addEventListener("click", function () {
     $("#confirmationModal").modal("hide");
 });
  
+
+ 
+
+function showApprovalModal() {
+    $('#approvalModal').modal('show');
+}
+
+function showConfirmationModal() {
+    $('#confirmationModal').modal('show');
+}
+
+function showCancelModal() {
+    $('#confirmationModal').modal('show');
+}
+
+function submitForm() {
+    $('#approvalModal').modal('hide');
+    $('#solicitudForm').submit();
+}
  

@@ -1,8 +1,7 @@
 using managerelchenchenvuelve.Models;
 using managerelchenchenvuelve.Services;
 using managerelchenchenvuelve.Filters;
-using managerelchenchenvuelve.Controllers;
-using managerelchenchenvuelve.Models.Interface;
+using managerelchenchenvuelve.Controllers; 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -23,9 +22,8 @@ builder.Services.AddControllersWithViews(/*options =>
 }*/);
 
 
-builder.Services.AddTransient<DatabaseConnection>();
-builder.Services.AddTransient<DatabaseServerAdmin>();
- 
+
+builder.Services.AddTransient<DatabaseConnection>(); 
 
 builder.Services.AddSession(options =>
 {
@@ -48,20 +46,9 @@ builder.Services.AddDbContext<ToyoNoToyContext>(options =>
 });
 
 
-builder.Services.AddDbContext<IdentityServerContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("conexionDb"),
-        sqlOptions =>
-        {
-            sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(30), null);
-        });
-    options.EnableDetailedErrors();
-    options.EnableSensitiveDataLogging();
-});
-
-
+ 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<IdentityServerContext>()
+    .AddEntityFrameworkStores<ToyoNoToyContext>()
     .AddDefaultTokenProviders();
 
 

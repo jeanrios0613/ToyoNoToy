@@ -3,23 +3,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
-using managerelchenchenvuelve.Models.Interface;
+using Microsoft.Extensions.Logging; 
 using managerelchenchenvuelve.Services;
 using managerelchenchenvuelve.Recursos;
 using System.Data;
 using System.Security.Claims;
 using Microsoft.Data.SqlClient;
+using managerelchenchenvuelve.Models;
 
 namespace managerelchenchenvuelve.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IdentityServerContext _context;
-        private readonly DatabaseServerAdmin _db;
+        private readonly ToyoNoToyContext _context;
+        private readonly DatabaseConnection _db;
         private readonly ILogger<AccountController> _logger;
 
-        public AccountController(IdentityServerContext context, DatabaseServerAdmin db, ILogger<AccountController> logger)
+        public AccountController(ToyoNoToyContext context, DatabaseConnection db, ILogger<AccountController> logger)
         {
             _context = context;
             _db = db;

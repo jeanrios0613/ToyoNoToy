@@ -46,12 +46,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvY2Vzc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Process/solicitud.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvY2Vzc1xzb2xpY2l0dWQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Reportes/Reporte.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0ZXNcUmVwb3J0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Requests/Solicitud.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdHNcU29saWNpdHVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Shared/Error.cshtml]

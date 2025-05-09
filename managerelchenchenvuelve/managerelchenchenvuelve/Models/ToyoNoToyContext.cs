@@ -15,6 +15,7 @@ public partial class ToyoNoToyContext : DbContext
     {
     }
 
+    public DbSet<RequestClass> RequestClasses { get; set; }
     public virtual DbSet<ActionLog> ActionLogs { get; set; }
 
     public virtual DbSet<ActivityInstance> ActivityInstances { get; set; }
