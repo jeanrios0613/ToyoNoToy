@@ -15,6 +15,7 @@ public partial class ToyoNoToyContext : DbContext
     {
     }
 
+    public DbSet<Comments> Comments { get; set; }
     public DbSet<RequestClass> RequestClasses { get; set; }
     public virtual DbSet<ActionLog> ActionLogs { get; set; }
 
@@ -24,7 +25,7 @@ public partial class ToyoNoToyContext : DbContext
 
     public virtual DbSet<ActivityStateDefaultTray> ActivityStateDefaultTrays { get; set; }
 
-    public virtual DbSet<Comment> Comments { get; set; }
+
 
     public virtual DbSet<ConsultaSoloAmpymeCompleto> ConsultaSoloAmpymeCompletos { get; set; }
 
@@ -107,14 +108,7 @@ public partial class ToyoNoToyContext : DbContext
             entity.HasOne(d => d.Tray).WithMany(p => p.ActivityStateDefaultTrays).HasForeignKey(d => d.TrayId);
         });
 
-        modelBuilder.Entity<Comment>(entity =>
-        {
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Message).HasMaxLength(512);
-            entity.Property(e => e.StageName).HasDefaultValue("");
-
-            entity.HasOne(d => d.ProcessInstance).WithMany(p => p.Comments).HasForeignKey(d => d.ProcessInstanceId);
-        });
+       
 
         modelBuilder.Entity<ConsultaSoloAmpymeCompleto>(entity =>
         {

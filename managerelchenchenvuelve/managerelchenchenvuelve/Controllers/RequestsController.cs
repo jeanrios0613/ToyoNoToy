@@ -162,7 +162,7 @@ namespace managerelchenchenvuelve.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddComment(string requestCode, string commentText)
+        public ActionResult AddComment(string requestCode, string commentText, string gestor)
         {
             try
             {
@@ -178,15 +178,17 @@ namespace managerelchenchenvuelve.Controllers
 
                 // Insert the comment into the database
                 string insertQuery = @"INSERT INTO [ToyNoToy].[dbo].[Comments] 
-                                     (RequestCode, CommentText, CreatedBy, CreatedAt) 
-                                     VALUES (@requestCode, @commentText, @createdBy, @createdAt)";
+                                     (id, [ProcessInstanceId], [Message], [CreatedBy],[CreatedAt],[StageName]) 
+                                     VALUES (@id,@ProcessInstanceId, @Message, @createdBy, @createdAt ,@StageName)";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-                    new SqlParameter("@requestCode", requestCode),
-                    new SqlParameter("@commentText", commentText),
-                    new SqlParameter("@createdBy", username),
-                    new SqlParameter("@createdAt", DateTime.Now)
+                    new SqlParameter("@id", Guid.NewGuid()),
+                    new SqlParameter("@ProcessInstanceId", requestCode),
+                    new SqlParameter("@Message", commentText),
+                    new SqlParameter("@CreatedBy", username),
+                    new SqlParameter("@createdAt", DateTime.Now),
+                    new SqlParameter("@StageName", gestor)
                 };
 
                 int affected = _db.ExecuteNonQuery(insertQuery, parameters);

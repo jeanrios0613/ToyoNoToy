@@ -322,13 +322,15 @@
                 function submitComment() {
                     var commentText = $('#comentarioCambio').val();
                     var requestCode = '@Model.Code';
+                    var gestor = '@Model.Gestor';
 
                     $.ajax({
                         url: '@Url.Action("AddComment", "Requests")',
                         type: 'POST',
                         data: {
                             requestCode: requestCode,
-                            commentText: commentText
+                            commentText: commentText,
+                            gestor: gestor
                         },
                         headers: {
                             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()

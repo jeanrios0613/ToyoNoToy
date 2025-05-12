@@ -31,9 +31,7 @@ public partial class ProcessInstance
 
     public virtual ICollection<ActionLog> ActionLogs { get; set; } = new List<ActionLog>();
 
-    public virtual ICollection<ActivityInstance> ActivityInstances { get; set; } = new List<ActivityInstance>();
-
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<ActivityInstance> ActivityInstances { get; set; } = new List<ActivityInstance>(); 
 
     public virtual ProcessDefinition Definition { get; set; } = null!;
 
