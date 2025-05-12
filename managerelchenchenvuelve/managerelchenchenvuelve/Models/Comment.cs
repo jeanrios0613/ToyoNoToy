@@ -3,21 +3,11 @@ using System.Collections.Generic;
 
 namespace managerelchenchenvuelve.Models;
 
-public partial class Comment
+public class Comment
 {
-    public Guid Id { get; set; }
-
-    public Guid ProcessInstanceId { get; set; }
-
-    public string Message { get; set; } = null!;
-
-    public Guid CreatedBy { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-
-    public int CommentType { get; set; }
-
-    public string StageName { get; set; } = null!;
-
-    public virtual ProcessInstance ProcessInstance { get; set; } = null!;
+    public int Id { get; set; }
+    public string RequestCode { get; set; }
+    public string CommentText { get; set; }
+    public string CreatedBy { get; set; }
+    public DateTime CreatedAt { get; set; }
 }

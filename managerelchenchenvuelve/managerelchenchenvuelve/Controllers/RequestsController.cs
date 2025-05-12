@@ -14,8 +14,6 @@ using Microsoft.EntityFrameworkCore;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-
-
 namespace managerelchenchenvuelve.Controllers
 {
     public class RequestsController : Controller
@@ -42,7 +40,7 @@ namespace managerelchenchenvuelve.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            string query = @"SELECT * FROM [PoluxDb].[dbo].[VIEW_DATA_AMPYME] WHERE CODE = @Codigo";
+            string query = @"SELECT * FROM [ToyNoToy].[dbo].[Request_Info] WHERE Codigo_de_solicitud = @Codigo";
 
             SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -57,50 +55,38 @@ namespace managerelchenchenvuelve.Controllers
             {
                 DataRow row = dt.Rows[0];
                 info = new RequestClass
-                {   id = row["id"].ToString(),
-                    Code = row["Code"].ToString(),
-                    CreationDate = DateTime.Parse(row["CreationDate"].ToString()),
-                    TipoSolicitud = int.Parse(row["TipoSolicitud"].ToString()),
+                {    
+                    Code = row["Codigo_de_solicitud"].ToString(),
+                    CreationDate = DateTime.Parse(row["Fecha_de_Creacion"].ToString()), 
                     Gestor = row["Gestor"].ToString(),
                     Etapa_del_Negocio = row["Etapa_del_Negocio"].ToString(),
                     Etapa = row["Etapa"].ToString(),
-                    Email = row["Email"].ToString(),
-                    FullName = row["FullName"].ToString(),
-                    IdentificationNumber = row["IdentificationNumber"].ToString(),
-                    IdentificationType = row["IdentificationType"].ToString(),
-                    Phone = row["Phone"].ToString(),
-                    BusinessName = row["BusinessName"].ToString(),
-                    BusinessDescription = row["BusinessDescription"].ToString(),
-                    BusinessTime = row["BusinessTime"].ToString(),
-                    EconomicActivity = row["EconomicActivity"].ToString(),
+                    Email = row["Correo_Electronico"].ToString(),
+                    Nombre = row["Nombre"].ToString(),
+                    Apellido = row["Apellido"].ToString(),
+                    IdentificationNumber = row["Numero_identificacion"].ToString(),
+                    IdentificationType = row["Tipo_identificacion"].ToString(),
+                    Phone = row["Telefono"].ToString(),
+                    BusinessName = row["Nombre_Negocio"].ToString(),
+                    BusinessDescription = row["Descripcion_negocio"].ToString(), 
+                    EconomicActivity = row["Actividad_economica"].ToString(),
                     Instagram = row["Instagram"].ToString(),
                     Ruc = row["Ruc"].ToString(),
-                    WebSite = row["WebSite"].ToString(),
-                    Corregimiento = row["Corregimiento"].ToString(),
-                    District = row["District"].ToString(),
-                    Province = row["Province"].ToString(),
-                    MonthlySales = string.IsNullOrEmpty(row["MonthlySales"].ToString()) ? (decimal?)null : decimal.Parse(row["MonthlySales"].ToString()),
-                    ProyectedSales = string.IsNullOrEmpty(row["ProyectedSales"].ToString()) ? (decimal?)null : decimal.Parse(row["ProyectedSales"].ToString()),
-                    QuantityToInvert = string.IsNullOrEmpty(row["QuantityToInvert"].ToString()) ? (decimal?)null : decimal.Parse(row["QuantityToInvert"].ToString()),
-                    ReasonForMoney = row["ReasonForMoney"].ToString(),
-                    VerifyClient = row["VerifyClient"].ToString(),
-                    ManagementExecuted = row["ManagementExecuted"].ToString(),
-                    TipoAtencion = row["TipoAtencion"].ToString(),
-                    ContactReason = row["ContactReason"].ToString(),
-                    Codigo = row["Codigo"].ToString(),
-                    Datos = row["Datos"].ToString(),
-                    DataObject = row["DataObject"].ToString(),
-                    Username = row["USERNAME"].ToString(),
-                    Completed = string.IsNullOrEmpty(row["Completed"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["Completed"].ToString()),
-                    Created = string.IsNullOrEmpty(row["Created"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["Created"].ToString()),
-                    Updated = string.IsNullOrEmpty(row["Updated"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["Updated"].ToString()),
-                    ActivityCreated = string.IsNullOrEmpty(row["ActivityCreated"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["ActivityCreated"].ToString()),
-                    Estado = int.Parse(row["ESTADO"].ToString()),
-                    InstanceDefinition = string.IsNullOrEmpty(row["InstanceDefinition"].ToString()) ? (Guid?)null : Guid.Parse(row["InstanceDefinition"].ToString()),
-                    FechaFormateada = row["FechaFormateada"].ToString(),
-                    CompletaActividad = row["CompletaActividad"].ToString(),
-                    TiempoTranscurrido = row["TiempoTranscurrido"].ToString(),
-                    OperationsStartDate = string.IsNullOrEmpty(row["OperationsStartDate"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["OperationsStartDate"].ToString()),
+                    WebSite = row["Web_Site"].ToString(),
+                    Corregimiento = row["corregimiento"].ToString(),
+                    District = row["Distrito"].ToString(),
+                    Province = row["Provincia"].ToString(),
+                    MonthlySales = string.IsNullOrEmpty(row["Ventas_mensuales"].ToString()) ? (decimal?)null : decimal.Parse(row["Ventas_mensuales"].ToString()),
+                    ProyectedSales = string.IsNullOrEmpty(row["Proyeccion_ventas_mensuales"].ToString()) ? (decimal?)null : decimal.Parse(row["Proyeccion_ventas_mensuales"].ToString()),
+                    QuantityToInvert = string.IsNullOrEmpty(row["Cuanto_Chenchen_necesitas"].ToString()) ? (decimal?)null : decimal.Parse(row["Cuanto_Chenchen_necesitas"].ToString()),
+                    OperationsStartDate = DateTime.Parse(row["Fecha_Inicio_Operaciones"].ToString()), 
+                    ReasonForMoney = row["En_que_lo_invertiras"].ToString(),
+                    VerifyClient = row["Verificacion_Cliente"].ToString(),
+                    GestionRealizada = row["Gestion_Realizada"].ToString(),
+                    TipoAtencion = row["Tipo_atencion"].ToString(),
+                    ContactReason = row["Porque_no_contacto"].ToString(),
+                    Usuario_Asignado = row["Usuario_Asignado"].ToString(),
+                   
                 };
             }
 
@@ -113,17 +99,15 @@ namespace managerelchenchenvuelve.Controllers
             return View(info);
         }
 
-        // POST: RequestsController/solicitud
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> solicitud(ProcessFormData formData)
+        public ActionResult solicitud(RequestClass formData)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(formData);
-                }
+                _logger.LogInformation("Iniciando procesamiento de solicitud. Datos recibidos: {@formData}", formData);
+
+              
 
                 // Get the current user from session,Validation Session
                 var username = HttpContext.Session.GetString("UserName");
@@ -133,30 +117,40 @@ namespace managerelchenchenvuelve.Controllers
                     return RedirectToAction("Login", "Account");
                 }
 
-                // Get the existing process instance
-                var processInstances = await _context.RequestClasses
-                    .FirstOrDefaultAsync(p => p.Code == formData.CodigoDeSolicitud);
-
-                
-                await _context.SaveChangesAsync();
-
                 // Update the process status in the database
-                string updateQuery = @"
-                    UPDATE [PoluxDb].[dbo].[VIEW_DATA_AMPYME]
-                    SET ETAPA = @Etapa,
-                        GESTOR = @Gestor
-                    WHERE [Code] = @CodigoDeSolicitud";
+                string updateQuery = @"update ToyNoToy.dbo.Request_Info
+                                 set    Verificacion_Cliente = @verifica
+                                       ,Gestion_Realizada    = @gestion
+                                       ,Tipo_atencion        = @tipo
+                                       ,Porque_no_contacto   = @contacto
+                                 WHERE Codigo_de_solicitud   = @CodigoDeSolicitud";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-                    new SqlParameter("@Etapa", "Completada"),
-                    new SqlParameter("@Gestor", username),
-                    new SqlParameter("@CodigoDeSolicitud", formData.CodigoDeSolicitud)
+                    new SqlParameter("@verifica", formData.VerifyClient ?? (object)DBNull.Value),
+                    new SqlParameter("@gestion", formData.GestionRealizada ?? (object)DBNull.Value),
+                    new SqlParameter("@tipo", formData.TipoAtencion ?? (object)DBNull.Value),
+                    new SqlParameter("@contacto", formData.ContactReason ?? (object)DBNull.Value),
+                    new SqlParameter("@CodigoDeSolicitud", formData.Code)
                 };
 
-                _db.ExecuteNonQuery(updateQuery, parameters);
+                _logger.LogInformation("Ejecutando query con parámetros: {@parameters}", 
+                    parameters.Select(p => new { p.ParameterName, p.Value }));
 
-                return RedirectToAction(nameof(Index));
+                int affected = _db.ExecuteNonQuery(updateQuery, parameters);
+                _logger.LogInformation("Filas afectadas: {affected}", affected);
+
+                if (affected > 0)
+                {
+                    _logger.LogInformation("Actualización exitosa");
+                    return RedirectToAction("Index", "Process");
+                }
+                else
+                {
+                    _logger.LogWarning("No se actualizó ningún registro");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro.");
+                    return View(formData);
+                }
             }
             catch (Exception ex)
             {
@@ -168,53 +162,51 @@ namespace managerelchenchenvuelve.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AprobarSolicitud(string codigoSolicitud, string codigoId, string gestionreal)
+        public ActionResult AddComment(string requestCode, string commentText)
         {
             try
             {
+                _logger.LogInformation("Iniciando inserción de comentario para solicitud: {requestCode}", requestCode);
+
+                // Get the current user from session
                 var username = HttpContext.Session.GetString("UserName");
                 if (string.IsNullOrEmpty(username))
                 {
                     _logger.LogWarning("No se encontró usuario en la sesión");
-                    return RedirectToAction("Login", "Account");
+                    return Json(new { success = false, message = "Usuario no autenticado" });
                 }
 
-                // Update the process status in the database
-                string updateQuery = @"update [ToyNoToy].[dbo].[RequestDetails] 
-                                      set managementExecuted = @GestionRealiza
-                                      where RequestId = @codigoId";
+                // Insert the comment into the database
+                string insertQuery = @"INSERT INTO [ToyNoToy].[dbo].[Comments] 
+                                     (RequestCode, CommentText, CreatedBy, CreatedAt) 
+                                     VALUES (@requestCode, @commentText, @createdBy, @createdAt)";
 
                 SqlParameter[] parameters = new SqlParameter[]
-                {  
-                    new SqlParameter("@codigoId", codigoId),
-                    new SqlParameter("@GestionRealiza", gestionreal)
-                };
-
-                _db.ExecuteNonQuery(updateQuery, parameters);
-
-                // Create a new action log entry
-                var actionLog = new ActionLog
                 {
-                    Id = Guid.NewGuid(), 
-                    CreatedDate = DateTimeOffset.Now,
-                    ActionType = 2, // 2 represents approval action
-                    ActionLogData = System.Text.Json.JsonSerializer.Serialize(new
-                    {
-                        CodigoSolicitud = codigoSolicitud,
-                        Accion = "Aprobación",
-                        Fecha = DateTime.Now
-                    })
+                    new SqlParameter("@requestCode", requestCode),
+                    new SqlParameter("@commentText", commentText),
+                    new SqlParameter("@createdBy", username),
+                    new SqlParameter("@createdAt", DateTime.Now)
                 };
 
-                _context.ActionLogs.Add(actionLog);
-                await _context.SaveChangesAsync();
+                int affected = _db.ExecuteNonQuery(insertQuery, parameters);
+                _logger.LogInformation("Filas afectadas al insertar comentario: {affected}", affected);
 
-                return Json(new { success = true, message = "Solicitud aprobada exitosamente" });
+                if (affected > 0)
+                {
+                    _logger.LogInformation("Comentario insertado exitosamente");
+                    return Json(new { success = true, message = "Comentario agregado exitosamente" });
+                }
+                else
+                {
+                    _logger.LogWarning("No se pudo insertar el comentario");
+                    return Json(new { success = false, message = "No se pudo agregar el comentario" });
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al aprobar la solicitud");
-                return Json(new { success = false, message = "Error al aprobar la solicitud" });
+                _logger.LogError(ex, "Error al insertar comentario");
+                return Json(new { success = false, message = "Error al procesar el comentario" });
             }
         }
 

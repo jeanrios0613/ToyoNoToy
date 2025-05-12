@@ -7,15 +7,15 @@
 
 <div class="container__fijo">
     <div class="container">
-
-        <div class="d-flex justify-content-between mb-3">
-            <h4>Solicitud Nro.: @Html.DisplayFor(model => model.Code)</h4>
-            <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("SubirArchivo","Archivos")?ProcessId=@ViewBag.Codigo'">Agregar Información</button>
-        </div>
-
-            
+        <form action="@Url.Action("Solicitud", "Requests")" method="post">
             @Html.AntiForgeryToken()
-            <input type="hidden" name="CodigoDeSolicitud" value="@Model.Code" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <input type="hidden" name="Code" value="@Model.Code" />
+
+            <div class="d-flex justify-content-between mb-3">
+                <h4>Solicitud Nro.: @Html.DisplayFor(model => model.Code)</h4>
+                <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("SubirArchivo","Archivos")?ProcessId=@ViewBag.Codigo'">Agregar Información</button>
+            </div>
 
             <div class="row">
                 <!-- Datos Generales -->
@@ -49,10 +49,16 @@
                     <div class="card-custom mb-4">
 
                         <h6 class="mb-3">Datos De Contacto</h6>
-                        <div class="row mb-3">
-                            <label class="label-muted">Nombre</label>
-                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.FullName)</div>  
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="label-muted">Tipo de identificación</label>
+                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Nombre)</div>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="label-muted">Número de identificación</label>
+                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Apellido)</div>
+                        </div>
+                    </div>
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Tipo de identificación</label>
@@ -156,24 +162,24 @@
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Gestión Realizada *</label>
-                                <select class="form-control" name="GestionRealizada" id="gestionreal" required>
+                                <select name="GestionRealizada" class="form-control" id="gestionreal" required>
                                     <option value="">Seleccione una opción</option>
-                                    <option value="Por contactar" @(Model.ManagementExecuted == "Por contactar" ? "selected" : "" )>Por contactar</option>
-                                    <option value="Atendido" @(Model.ManagementExecuted == "Atendido" ? "selected" : "")>Atendido</option>
-                                    <option value="Llamada realizada sin exito" @(Model.ManagementExecuted == "Llamada realizada sin exito" ? "selected" : "")>Llamada realizada sin éxito</option>
+                                    <option value="Por contactar" @(Model.GestionRealizada == "Por contactar" ? "selected" : "" )>Por contactar</option>
+                                    <option value="Atendido" @(Model.GestionRealizada == "Atendido" ? "selected" : "")>Atendido</option>
+                                    <option value="Llamada realizada sin exito" @(Model.GestionRealizada == "Llamada realizada sin exito" ? "selected" : "")>Llamada realizada sin éxito</option>
                                 </select>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Verificación del Cliente *</label>
-                                <select class="form-control" name="TipoFormulario" id="TipoFormulario" required>
-                                    <option selected disabled value="">Seleccione una opción</option>
-                                    <option id="T0" value="T0" @(Model.VerifyClient == "T0" ? "selected" : "" ) >T0</option>
-                                    <option id="T1" value="T1" @(Model.VerifyClient == "T1" ? "selected" : "" ) >T1</option>
-                                    <option id="T2" value="T2" @(Model.VerifyClient == "T2" ? "selected" : "" ) >T2</option>
-                                    <option id="T3" value="T3" @(Model.VerifyClient == "T3" ? "selected" : "" ) >T3</option>
-                                    <option id="Fidemicro" value="Fidemicro" @(Model.VerifyClient == "Fidemicro" ? "selected" : "" ) >Fidemicro</option>
-                                    <option id="No Precalificado" value="No Precalificado" @(Model.VerifyClient == "No Precalificado" ? "selected" : "" ) >No Precalificado </option>
+                                <select name="VerifyClient" class="form-control" id="verifyClient" required>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="T0" @(Model.VerifyClient == "T0" ? "selected" : "")>T0</option>
+                                    <option value="T1" @(Model.VerifyClient == "T1" ? "selected" : "")>T1</option>
+                                    <option value="T2" @(Model.VerifyClient == "T2" ? "selected" : "")>T2</option>
+                                    <option value="T3" @(Model.VerifyClient == "T3" ? "selected" : "")>T3</option>
+                                    <option value="Fidemicro" @(Model.VerifyClient == "Fidemicro" ? "selected" : "")>Fidemicro</option>
+                                    <option value="No Precalificado" @(Model.VerifyClient == "No Precalificado" ? "selected" : "")>No Precalificado</option>
                                 </select>
                             </div>
                         </div>
@@ -182,11 +188,11 @@
                             <div>
                                 <label><strong>Razón</strong></label><br>
                                 <label>
-                                <input type="radio" name="Razon" value="Numero Incorrecto" @(Model.TipoAtencion == "Numero Incorrecto" ? "selected" : "") >
+                                    <input type="radio" name="ContactReason" value="número incorrecto" @(Model.ContactReason == "número incorrecto" ? "checked" : "")>
                                     Número Incorrecto
                                 </label><br>
                                 <label>
-                                <input type="radio" name="Razon" value="no_atiende" @(Model.TipoAtencion == "Numero Incorrecto" ? "selected" : "") >
+                                    <input type="radio" name="ContactReason" value="no atiende llamada" @(Model.ContactReason == "no atiende llamada" ? "checked" : "")>
                                     No Atiende Llamada
                                 </label>
                             </div>
@@ -196,19 +202,21 @@
                             <div>
                                 <label><strong>Tipo de atencion</strong></label><br>
                                 <label>
-                                <input type="radio" name="TipoAtencion" value="Contactado" @(Model.TipoAtencion == "Contactado" ? "selected" : "") >
+                                    <input type="radio" name="TipoAtencion" value="contactado" @(Model.TipoAtencion == "contactado" ? "checked" : "")>
                                     Contactado
                                 </label><br>
                                 <label>
-                                <input type="radio" name="TipoAtencion" value="Atendido en Sitio" @(Model.TipoAtencion == "Atendido en Sitio" ? "selected" : "") >
+                                    <input type="radio" name="TipoAtencion" value="Atendido en Sitio" @(Model.TipoAtencion == "Atendido en Sitio" ? "checked" : "")>
                                     Atendido en Sitio
                                 </label>
                             </div>
                         </section>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="showConfirmationModal()">Solicitar Cambio</button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="showApprovalModal()">Aprobar</button>
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmacionCambioModal">
+                                Solicitar Cambio
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar</button>
                             <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
                         </div>
                     </div>
@@ -251,6 +259,7 @@
                     </div>
                 </div>
             </div> 
+        
 
         <!-- Modal de Confirmación de Aprobación -->
         <div id="approvalModal" class="modal" tabindex="-1" role="dialog">
@@ -287,46 +296,62 @@
                 </div>
             </div>
         </div>
-    </div>
+            <div class="modal fade" id="confirmacionCambioModal" tabindex="-1" aria-labelledby="confirmacionCambioLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content rounded-4 p-3">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-bold" id="confirmacionCambioLabel">Confirmación de Decisión</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p class="mb-3">¿Está seguro que desea realizar esta acción? No se puede deshacer</p>
 
-        
+                            <div class="mb-3">
+                                <label for="comentarioCambio" class="form-label fw-semibold">Comentario</label>
+                                <textarea class="form-control" id="comentarioCambio" name="ComentarioCambio" rows="4" placeholder="Agregue un comentario..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 justify-content-end">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" onclick="submitComment()">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <script>
+                function submitComment() {
+                    var commentText = $('#comentarioCambio').val();
+                    var requestCode = '@Model.Code';
 
-
-@section Scripts {
-    <script>
-        function showApprovalModal() {
-            if (confirm('¿Está seguro que desea aprobar esta solicitud?')) {
-                const codigoSolicitud = '@Model.Code';
-                const codigoId = '@Model.id';
-                const gestionreal = document.getElementById('gestionreal').value;
-                const token = $('input[name="__RequestVerificationToken"]').val();
-
-                $.ajax({
-                    url: '@Url.Action("AprobarSolicitud", "Requests")',
-                    type: 'POST',
-                    data: {
-                        codigoSolicitud: codigoSolicitud,
-                            codigoId: codigoId,
-                            gestionreal: gestionreal,
-                        __RequestVerificationToken: token
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert(response.message);
-                            window.location.href = '@Url.Action("Index", "Requests")';
-                        } else {
-                            alert(response.message);
+                    $.ajax({
+                        url: '@Url.Action("AddComment", "Requests")',
+                        type: 'POST',
+                        data: {
+                            requestCode: requestCode,
+                            commentText: commentText
+                        },
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $('#confirmacionCambioModal').modal('hide');
+                                // Optionally show a success message
+                                alert('Comentario agregado exitosamente');
+                            } else {
+                                alert(response.message || 'Error al agregar el comentario');
+                            }
+                        },
+                        error: function() {
+                            alert('Error al procesar la solicitud');
                         }
-                    },
-                    error: function() {
-                        alert('Error al procesar la solicitud');
-                    }
-                });
-            }
-        }
-    </script>
-}
+                    });
+                }
+            </script>
+
+        </form>
+    </div>
+</div>
 
 
 

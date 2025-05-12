@@ -1,9 +1,8 @@
 ﻿////////////////////////////////
 $(document).ready(function () {
-
-
+    // Handle gestionreal select changes
     $("#gestionreal").change(function () {
-          var seleccion = $(this).val();
+        var seleccion = $(this).val();
 
         if (seleccion == "Atendido") {
             $("#atencion").show();
@@ -11,32 +10,21 @@ $(document).ready(function () {
         } else if (seleccion == "Llamada realizada sin exito") {
             $("#atencion").hide();
             $("#razon").show();
-
         } else {
             $("#atencion").hide();
             $("#razon").hide();
-
         }
     }).change();
 
+    // Modal event handlers
+    $("#closebutton").on("click", function () {
+        $("#confirmationModal").modal("show");
+    });
+
+    $("#closeModal").on("click", function () {
+        $("#confirmationModal").modal("hide");
+    });
 });
-
-
-document.getElementById("closebutton").addEventListener("click", function () {
-  $("#confirmationModal ").modal("show");
-});
-
-
-document.getElementById("closeModal").addEventListener("click", function () {
-    $("#confirmationModal").modal("hide");
-});
- 
-
- 
-
-function showApprovalModal() {
-    $('#approvalModal').modal('show');
-}
 
 function showConfirmationModal() {
     $('#confirmationModal').modal('show');
@@ -48,6 +36,6 @@ function showCancelModal() {
 
 function submitForm() {
     $('#approvalModal').modal('hide');
-    $('#solicitudForm').submit();
+    $('form').submit();
 }
  

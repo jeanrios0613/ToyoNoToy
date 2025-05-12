@@ -10,6 +10,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 
 
@@ -46,17 +47,22 @@ public class ArchivosController : Controller
     public IActionResult SubirArchivo(string? ProcessId)
     {   List<DatosCliente> Datos = new List<DatosCliente>();
 
-        string query = "SELECT * FROM [Consulta_solo_ampyme_completo] WHERE [Codigo De Solicitud] = @ProcessId";
-        SqlParameter param = new SqlParameter("@ProcessId", ProcessId ?? (object)DBNull.Value);
+        string query = @"SELECT * FROM [ToyNoToy].[dbo].[Request_Info] WHERE Codigo_de_solicitud = @Codigo";
 
-        DataTable result = _db.ExecuteQuery(query, param);
+        SqlParameter[] parameters = new SqlParameter[]
+        {
+                    new SqlParameter("@Codigo",ProcessId)
+            };
+
+
+        DataTable result = _db.ExecuteQuery(query, parameters);
 
         foreach (DataRow row in result.Rows)
         {
             Datos.Add(new DatosCliente
             {
-                reference = row["Id"].ToString(),
-                name = row["Nombre"].ToString()
+                reference = row["Codigo_de_solicitud"].ToString(),
+                name = row["Nombre"].ToString() 
             });
         }
 

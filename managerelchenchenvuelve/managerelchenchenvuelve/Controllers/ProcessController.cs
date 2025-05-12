@@ -82,7 +82,7 @@ namespace managerelchenchenvuelve.Controllers
                 {
 
                     query += "AND ETAPA != 'Completada'";
-                };
+                } 
 
                 query += " ORDER BY fecha_de_creacion desc " +
                          " OFFSET @Offset ROWS " +
