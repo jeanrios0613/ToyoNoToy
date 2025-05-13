@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Fecha De Creación</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Created)</div>
+                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.CreationDate)</div>
                             </div>
                         </div>
 
@@ -317,40 +317,7 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                function submitComment() {
-                    var commentText = $('#comentarioCambio').val();
-                    var requestCode = '@Model.Code';
-                    var gestor = '@Model.Gestor';
-
-                    $.ajax({
-                        url: '@Url.Action("AddComment", "Requests")',
-                        type: 'POST',
-                        data: {
-                            requestCode: requestCode,
-                            commentText: commentText,
-                            gestor: gestor
-                        },
-                        headers: {
-                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                $('#confirmacionCambioModal').modal('hide');
-                                // Optionally show a success message
-                                alert('Comentario agregado exitosamente');
-                            } else {
-                                alert(response.message || 'Error al agregar el comentario');
-                            }
-                        },
-                        error: function() {
-                            alert('Error al procesar la solicitud');
-                        }
-                    });
-                }
-            </script>
-
+ 
         </form>
     </div>
 </div>

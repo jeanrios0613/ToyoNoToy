@@ -2,14 +2,36 @@
 
 @{
     Layout = "_Layout";
- 
+
     ViewData["Title"] = "Procesos";
     int totalPages = ViewBag.TotalPages;
-    int currentPage = ViewBag.CurrentPage; 
+    int currentPage = ViewBag.CurrentPage;
+    var tareaasigna = ViewBag.Tarea;
     int delta = 2;
     int startPage = Math.Max(2, currentPage - delta);
     int endPage = Math.Min(totalPages - 1, currentPage + delta);
 }
+
+<style>
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        background-color: cornflowerblue;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .avatar-text {
+        color: black;
+        font-weight: bold;
+        font-size: 14px;
+    }
+</style>
+ 
+<input type="hidden" name="TareaUser" id="TareaUser" value="@ViewBag.Tarea" />
  
 </br> 
 <div class="container">
@@ -17,9 +39,17 @@
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <div   class="p-table__opts__navs">
                 <div class="p-table__opts__navs__titles">
-                    <span  class="p-table__opts__navs__titles__title">
+                    <span  id="TareaP" class="p-table__opts__navs__titles__title">
                         Tareas
                         Pendientes
+                    </span>
+                    <span id="TareaC" class="p-table__opts__navs__titles__title">
+                        Tareas
+                        Completadas
+                    </span>
+                    <span id="TareaA" class="p-table__opts__navs__titles__title">
+                        Tareas
+                        Asignadas
                     </span>
                     <span class="p-table__opts__navs__titles__subtitle">
                         Administra y monitorea
@@ -31,7 +61,10 @@
                 <button class="btn btn-outline-secondary">👤</button>
                 <button class="btn btn-outline-secondary">🔔</button>
                 <button class="btn btn-outline-secondary">⚙️</button>
-                <input type="text" class="form-control" placeholder="Buscar" style="width: 200px; height:40px;">
+                <input id="buscaform" type="text" class="form-control" placeholder="Buscar" style="width: 200px; height:40px;">
+                <button class="btn btn-outline-success" onclick="buscarFormulario()">
+                    Buscar
+                </button>
   
             </div>
         </div>
@@ -57,12 +90,13 @@
                                 Estatus
                             </div>
                         </th>
-                        <th style ="min-width:50px; width: 100px; top: 0px; z-index: 100;">
+                        
+                        <th id="bandejaTareaP" style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                                 Bandeja
                             </div>
                          </th>
-                        <th style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
+                        <th id="duraTareaP" style="min-width:140px; width: 140px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                                 Duración
                             </div>
@@ -88,12 +122,12 @@
                             <tr> 
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="~/img/contacto.png" alt="" style="width: 30px; height: 30px" class="rounded-circle" />
+                                        <input type="checkbox" class="form-check-input" style="width: 20px; height: 20px;">
                                     </div>
                                 </td>
                                 <td style="cursor: pointer; min-width: 150px; width: 200px;"> 
                                         <div class="p-table__content__cell">
-                                            @Html.DisplayFor(m => item.Etapa)
+                                        @Html.DisplayFor(m => item.gestor)
                                          </div> 
                                 </td>
                                 <td style="cursor: pointer; min-width: 150px; width: 300px;"> 
@@ -104,37 +138,63 @@
                                     </div>
                                 </td>
                                 <td style="cursor: pointer; min-width: 131.512px; width: 135px;">
-                                    <span class="badge badge-status" style="background-color:blanchedalmond">
-                                        En curso
+                                    <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#90EE90" : "cornflowerblue")">
+                                        @Html.DisplayFor(m => item.Etapa)
                                      </span>
                                  </td>
-                                <td style="cursor: pointer; min-width: 150px; width: 200px;">
+                                <td id="bandejaTareaP" style="cursor: pointer; min-width: 150px; width: 200px;">
                                     <span class="p-table__content__badge p-table__content__badge__text__active" style="background-color:cornflowerblue">
                                         <span class="p-table__content__badge__text"> Revisión y validación</span>
                                     </span>
                                  </td>
-                                <td style="cursor: pointer; min-width: 140px; width: 140px;"><div class="p-table__content__cell">🟢 @Html.DisplayFor(m => item.TiempoTranscurrido)</div></td>
+                                <td id="duraTareaP" style="cursor: pointer; min-width: 140px; width: 140px;">
+                                    <div class="p-table__content__cell">
+                                        @{  
+                                            var dias =  item.Tiempo ;
+                                            if (dias < 3)
+                                            {
+                                                <span>🟢</span>
+                                            }
+                                            else if (dias >= 3 && dias <= 5)
+                                            {
+                                                <span>🟡</span>
+                                            }
+                                            else
+                                            {
+                                                <span>🔴</span>
+                                            }
+                                        }
+                                        @Html.DisplayFor(m => item.TiempoTranscurrido)
+                                    </div>
+                                </td>
                                 <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
-                                <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.UserName)</div></td>
+                                <td style="cursor: pointer; min-width: 25px; width: 25px;">
+                                    <div class="p-table__content__cell">
+                                        <div class="user-avatar" title="@Html.DisplayFor(m => item.UserName)">
+                                            @{
+                                                var initials = "";
+                                                if (!string.IsNullOrEmpty(item.UserName))
+                                                {
+                                                    var nameParts = item.UserName.Split(' ');
+                                                    if (nameParts.Length >= 2)
+                                                    {
+                                                        initials = nameParts[0].Substring(0, 1) + nameParts[1].Substring(0, 1);
+                                                    }
+                                                    else if (nameParts.Length == 1)
+                                                    {
+                                                        initials = nameParts[0].Substring(0, Math.Min(2, nameParts[0].Length));
+                                                    }
+                                                }
+                                            }
+                                            <span class="avatar-text">@initials.ToUpper()</span>
+                                        </div>
+                                    </div>
+                                </td>
                             
                             </tr>
                         }
                     }
-                    else if (Model is managerelchenchenvuelve.Models.DatosReca formulario)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(m => formulario.Etapa)</td>
-                            <td>@Html.DisplayFor(m => formulario.CompletaActividad)</td>
-                            <td><span class="badge badge-status">En curso</span></td>
-                            <td><span class="badge badge-bandeja">Revisión y validación</span></td>
-                            <td>🟢 @Html.DisplayFor(m => formulario.TiempoTranscurrido)</td>
-                            <td>@Html.DisplayFor(m => formulario.FechaFormateada)</td>
-                            <td>N/A</td>
-                            <td class="acciones">
-                                <button type="button" class="btn btn-primary" onclick="window.location.href='../Process/solicitud?id=@formulario.CodigoDeSolicitud'">✎</button>
-                            </td>
-                        </tr>
-                    }
+                   
                 </tbody>
             </table>
         </div>
@@ -144,7 +204,7 @@
             <ul class="pagination">
                 <!-- Primera página -->
                 <li class="page-item @(currentPage == 1 ? "active" : "")">
-                    <a class="page-link" href="../Process/Index?page=1">1</a>
+                    <a class="page-link" href="../Process/Index?tarea=@tareaasigna&page=1">1</a>
                 </li>
 
                 @if (startPage > 2)
@@ -155,7 +215,7 @@
                 @for (int i = startPage; i <= endPage; i++)
                 {
                     <li class="page-item @(currentPage == i ? "active" : "")">
-                        <a class="page-link" href="../Process/Index?page=@i">@i</a>
+                        <a class="page-link" href="../Process/Index?tarea=@tareaasigna&page=@i">@i</a>
                     </li>
                 }
 
@@ -167,7 +227,7 @@
                 @if (totalPages > 1)
                 {
                     <li class="page-item @(currentPage == totalPages ? "active" : "")">
-                        <a class="page-link" href="../Process/Index?page=@totalPages">@totalPages</a>
+                        <a class="page-link" href="../Process/Index?tarea=@tareaasigna&page=@totalPages">@totalPages</a>
                     </li>
                 }
             </ul>

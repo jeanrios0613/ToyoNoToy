@@ -29,10 +29,10 @@ namespace managerelchenchenvuelve.Controllers
         }
 
         // GET: ProcessController
-        public ActionResult Index(string? id = null, string? tarea = "P", int page = 1, int pageSize = 10)
+        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10, string? tarea = null, string? search = null)
         {
             var username = HttpContext.Session.GetString("UserName");
-            string? PARAM;
+             
             try
             {
                 _logger.LogInformation("Accediendo a Process/Index");
@@ -53,25 +53,41 @@ namespace managerelchenchenvuelve.Controllers
 
                 List<DatosReca> Datos = new List<DatosReca>();
 
-                string query = @"SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
-                                    FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
-                                    CASE 
-                                    WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                string query = @"SELECT *
+                                 FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                                       FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
+                                       CASE 
+                                       WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
                                         THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
-                                    WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
                                         THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
-                                    ELSE 
-                                        'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
-                                        END AS TiempoTranscurrido,
+                                        ELSE 
+                                            'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
+                                            END AS TiempoTranscurrido,
+                                 
+                                        TRY_CAST(CASE 
+                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                            THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                            THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                        ELSE 
+                                            CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
+                                            END as int)  AS Tiempo,
  
- 
-                                    RI.* 
+                                        RI.* 
 
-                               FROM  [dbo].[Request_info] as RI 
-                               WHERE GESTOR = 'Gestión directa de Ampyme'  
-                               AND usuario_asignado = COALESCE(@USERNAME,usuario_asignado)  ";
+                                      FROM  [dbo].[Request_info] as RI ) as REQS ";
 
+                //Se utiliza este filtro para poder impletar el buscador 
+                if (search == null) {
+                    query += " WHERE GESTOR = 'Gestión directa de Ampyme'" +
+                              "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
 
+                }else if(search != null) {
+
+                    query += "WHERE CompletaActividad LIKE '%"+ search + "%'";
+
+                }
 
                 if (tarea == "C")
                 {
@@ -84,13 +100,14 @@ namespace managerelchenchenvuelve.Controllers
                     query += "AND ETAPA != 'Completada'";
                 } 
 
-                query += " ORDER BY fecha_de_creacion desc " +
-                         " OFFSET @Offset ROWS " +
-                         " FETCH NEXT @PageSize ROWS ONLY";
+
+                    query += " ORDER BY fecha_de_creacion desc " +
+                             " OFFSET @Offset ROWS " +
+                             " FETCH NEXT @PageSize ROWS ONLY";
 
                 SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@USERNAME",username),
+                {    
+                    new SqlParameter("@username",username),
                     new SqlParameter("@Offset", (page - 1) * pageSize),
                     new SqlParameter("@PageSize", pageSize)
                 };
@@ -98,10 +115,55 @@ namespace managerelchenchenvuelve.Controllers
                 DataTable result = _db.ExecuteQuery(query, parameters);
 
                 // Get total count for pagination
-                string countQuery = @"SELECT COUNT(*) FROM [dbo].[Request_info] 
-                                    WHERE GESTOR = 'Gestión directa de Ampyme' 
-                                    AND ETAPA != 'Completada' 
-                                    AND usuario_asignado = COALESCE(@USERNAME,usuario_asignado)";
+                string countQuery = @"SELECT COUNT(*) 
+                                     FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                                       FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
+                                       CASE 
+                                       WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                        THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
+                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                        THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
+                                        ELSE 
+                                            'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
+                                            END AS TiempoTranscurrido,
+                                 
+                                        TRY_CAST(CASE 
+                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                            THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                            THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                        ELSE 
+                                            CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
+                                            END as int)  AS Tiempo,
+ 
+                                        RI.* 
+
+                                      FROM  [dbo].[Request_info] as RI ) as REQS ";
+
+                //Se utiliza este filtro para poder impletar el buscador 
+                if (search == null)
+                {
+                    countQuery += " WHERE GESTOR          = 'Gestión directa de Ampyme'" +
+                                   "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
+
+                }
+                else if (search != null)
+                {
+
+                    countQuery += "WHERE CompletaActividad LIKE '%" + search + "%'";
+
+                }
+
+                if (tarea == "C")
+                {
+                    countQuery += "AND ETAPA = 'Completada'";
+
+                }
+                else if (tarea == "P")
+                {
+
+                    countQuery += "AND ETAPA != 'Completada'";
+                }
 
                 SqlParameter[] parameters1 = new SqlParameter[]
                {
@@ -118,19 +180,21 @@ namespace managerelchenchenvuelve.Controllers
                     foreach (DataRow row in result.Rows)
                     {
                         Datos.Add(new DatosReca
-                        {
+                        {   gestor = row["GESTOR"].ToString(),
                             Etapa = row["Etapa"].ToString(),
                             CompletaActividad = row["CompletaActividad"].ToString(),
                             FechaFormateada = row["FechaFormateada"].ToString(),
                             TiempoTranscurrido = row["TiempoTranscurrido"].ToString(),
                             UserName = row["usuario_asignado"].ToString(),
-                            CodigoDeSolicitud = row["codigo_de_solicitud"].ToString()
+                            CodigoDeSolicitud = row["codigo_de_solicitud"].ToString(),
+                            Tiempo =Convert.ToInt32(row["Tiempo"].ToString())
                         });
                     }
 
                     ViewBag.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
                     ViewBag.CurrentPage = page;
                     ViewBag.DatosReca = Datos;
+                    ViewBag.Tarea = tarea;
 
 
                     _logger.LogInformation("Obteniendo lista de formularios");

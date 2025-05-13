@@ -57,7 +57,7 @@
                        
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <span>Hola, @Context.Session.GetString("UserName")</span>
+                        <span>Hola, @Context.Session.GetString("Nombre")</span>
                         <form asp-controller="Account" asp-action="Logout" method="post">
                             @Html.AntiForgeryToken()
                             <button type="submit" class="btn btn-sm btn-primary">Cerrar Sesión</button>

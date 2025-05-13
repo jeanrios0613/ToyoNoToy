@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\controllers\\toyonotoycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\controllers\\toyonotoycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\views\\toyonotoy\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\views\\toyonotoy\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\views\\toyonotoy\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\views\\toyonotoy\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\views\\toyonotoy\\enviarsolicitud.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\views\\toyonotoy\\enviarsolicitud.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\controllers\\toyonotoycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\controllers\\toyonotoycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\models\\formularioclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\models\\formularioclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenchenvuelvecy\\elchenchenvuelvecy\\views\\toyonotoy\\enviarsolicitud.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2832B151-81C1-4865-8B70-B133C118EA87}|elchenchenvuelvecy\\elchenchenvuelvecy.csproj|solutionrelative:elchenchenvuelvecy\\views\\toyonotoy\\enviarsolicitud.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,24 +58,25 @@
       "DocumentGroups": [
         {
           "DockedHeight": 408,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\wwwroot\\js\\site.js",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\wwwroot\\js\\site.js",
               "RelativeToolTip": "elchenchenvuelvecy\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-03-25T17:03:21.177Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "style.css",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\wwwroot\\css\\style.css",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\wwwroot\\css\\style.css",
@@ -88,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\wwwroot\\css\\site.css",
@@ -101,44 +102,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "ToyoNoToyController.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
               "RelativeToolTip": "elchenchenvuelvecy\\Controllers\\ToyoNoToyController.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAqwHgAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T18:38:13.581Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Views\\ToyoNoToy\\Create.cshtml",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Views\\ToyoNoToy\\Create.cshtml",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Views\\ToyoNoToy\\Create.cshtml",
               "RelativeToolTip": "elchenchenvuelvecy\\Views\\ToyoNoToy\\Create.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACMAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-20T18:26:52.682Z"
+              "WhenOpened": "2025-03-20T18:26:52.682Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Program.cs",
-              "RelativeDocumentMoniker": "elchenchenvuelvecy\\Program.cs",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Program.cs",
-              "RelativeToolTip": "elchenchenvuelvecy\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T21:13:11.287Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Views\\Shared\\_Layout.cshtml",
@@ -150,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ToyoNoToyDbContext.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Models\\ToyoNoToyDbContext.cs",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Models\\ToyoNoToyDbContext.cs",
@@ -162,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "FormularioClass.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Models\\FormularioClass.cs",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Models\\FormularioClass.cs",
@@ -174,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Enterprise.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Models\\Enterprise.cs",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Models\\Enterprise.cs",
@@ -186,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Contact.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Models\\Contact.cs",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Models\\Contact.cs",
@@ -198,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "EnviarSolicitud.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Views\\ToyoNoToy\\EnviarSolicitud.cshtml",
               "RelativeDocumentMoniker": "elchenchenvuelvecy\\Views\\ToyoNoToy\\EnviarSolicitud.cshtml",
@@ -206,7 +196,20 @@
               "RelativeToolTip": "elchenchenvuelvecy\\Views\\ToyoNoToy\\EnviarSolicitud.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T15:35:37.413Z"
+              "WhenOpened": "2025-04-03T15:35:37.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Program.cs",
+              "RelativeDocumentMoniker": "elchenchenvuelvecy\\Program.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\elchenchenvuelvecy\\elchenchenvuelvecy\\Program.cs",
+              "RelativeToolTip": "elchenchenvuelvecy\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T21:13:11.287Z"
             }
           ]
         }

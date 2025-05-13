@@ -7,6 +7,8 @@
 
         public string? Etapa { get; set; }
 
+        public string? gestor { get; set; }
+
         public string? FechaFormateada { get; set; }
 
         public string? TiempoTranscurrido { get; set; }
@@ -14,6 +16,8 @@
         public string? UserName { get; set; }
 
         public string? CodigoDeSolicitud { get; set; }
+
+        public int? Tiempo { get; set; }
 
     }
 }

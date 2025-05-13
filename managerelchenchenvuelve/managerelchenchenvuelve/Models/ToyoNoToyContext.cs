@@ -57,7 +57,7 @@ public partial class ToyoNoToyContext : DbContext
 
     public virtual DbSet<TrayTheme> TrayThemes { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<User> m { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
 

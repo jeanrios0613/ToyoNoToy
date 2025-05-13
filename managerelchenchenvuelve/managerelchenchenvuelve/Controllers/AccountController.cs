@@ -10,6 +10,7 @@ using System.Data;
 using System.Security.Claims;
 using Microsoft.Data.SqlClient;
 using managerelchenchenvuelve.Models;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace managerelchenchenvuelve.Controllers
 {
@@ -50,9 +51,12 @@ namespace managerelchenchenvuelve.Controllers
                 return View();
             }
 
+            List<User> users = new List<User>();
+
+
             string encryptedPassword = EncryptPass.Encriptar(password);
 
-            string query = "SELECT * FROM [Users] WHERE [UserName] = @username AND [PasswordHash] = @PasswordHash";
+            string query = "SELECT ( Names +' '+Lastname) Nombre,* FROM [Users] WHERE [UserName] = @username AND [PasswordHash] = @PasswordHash";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@username", username),
@@ -60,10 +64,27 @@ namespace managerelchenchenvuelve.Controllers
             };
 
             DataTable result;
+           
+
             try
             {
                 result = _db.ExecuteQuery(query, parameters);
+                
+                foreach (DataRow row in result.Rows)
+                {
+                    users.Add(new User
+                    {
+                         Lastname = row["Nombre"].ToString(),
+                    });
+                }
+
+                if (users.Count > 0)
+                {
+                    HttpContext.Session.SetString("Nombre", users[0].Lastname);
+                }
+
                 _logger.LogInformation("Resultado de login para {Username}: {Rows} filas", username, result.Rows.Count);
+
             }
             catch (Exception ex)
             {
@@ -103,7 +124,7 @@ namespace managerelchenchenvuelve.Controllers
                 _logger.LogInformation("Usuario {Username} autenticado exitosamente.", username);
 
                 HttpContext.Session.SetString("UserName", username);
-
+               
                 // Redirección segura
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {

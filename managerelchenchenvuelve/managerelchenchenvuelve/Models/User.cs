@@ -11,9 +11,9 @@ public partial class User
 
     public string Password { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
-    public string Lastname { get; set; } = null!;
+    public string? Lastname { get; set; }
 
     public DateTimeOffset Created { get; set; }
 

@@ -16,6 +16,5 @@ public partial class ActionLog
     public Guid? ProcessInstanceId { get; set; }
 
     public string ActionLogData { get; set; } = null!;
-
     public virtual ProcessInstance? ProcessInstance { get; set; }
 }
