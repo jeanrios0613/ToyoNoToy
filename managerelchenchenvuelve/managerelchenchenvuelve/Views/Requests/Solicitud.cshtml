@@ -10,7 +10,13 @@
         <form action="@Url.Action("Solicitud", "Requests")" method="post">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <input type="hidden" name="Code" value="@Model.Code" />
+
+            <!--HIDDEN VALUE-->
+            <input type="hidden" name="Code" id="Code" value="@Model.Code" />
+            <input type="hidden" name="Gestor" id="Gestor" value="@Model.Gestor" />
+            <input type="hidden" name="Etapa" id="Etapa" value="@Model.Etapa" />
+            <!--HIDDEN VALUE-->
+
 
             <div class="d-flex justify-content-between mb-3">
                 <h4>Solicitud Nro.: @Html.DisplayFor(model => model.Code)</h4>
@@ -184,7 +190,7 @@
                             </div>
                         </div>
 
-                        <section id="razon" style="display: none;">
+                        <section id="razon" style="@(Model.Etapa == "Completada" ? "display: disable;" : "")">
                             <div>
                                 <label><strong>Razón</strong></label><br>
                                 <label>
@@ -198,8 +204,9 @@
                             </div>
                         </section>
 
-                        <section id="atencion" style="display: none;">
+                        <section id="atencion" style="@(Model.Etapa == "Completada" ? "display: disable;" : "")">
                             <div>
+                              
                                 <label><strong>Tipo de atencion</strong></label><br>
                                 <label>
                                     <input type="radio" name="TipoAtencion" value="contactado" @(Model.TipoAtencion == "contactado" ? "checked" : "")>
@@ -209,15 +216,25 @@
                                     <input type="radio" name="TipoAtencion" value="Atendido en Sitio" @(Model.TipoAtencion == "Atendido en Sitio" ? "checked" : "")>
                                     Atendido en Sitio
                                 </label>
+                            
                             </div>
                         </section>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <section id="to-pass" style="@(Model.Etapa == "Completada" ? "display: none;" : "")">
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmacionCambioModal">
                                 Solicitar Cambio
                             </button>
                             <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar</button>
                             <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
+                            </section>
+
+                            <section id="reopen" style="@(Model.Etapa != "Completada" ? "display: none;" : "")">
+                                <button id="to-reprove" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmacionAprobarModal">
+                                    Re-Aprobar
+                                </button>
+                            </section>
+
                         </div>
                     </div>
                 </div>
@@ -258,10 +275,10 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-        
+            </div>
 
-        <!-- Modal de Confirmación de Aprobación -->
+         <!----------------------------------------------------------------Modal de Confirmación ------------------------------------------------------------->
+        <!-- Modal de Aprobación -->
         <div id="approvalModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -272,12 +289,13 @@
                         <p>¿Está seguro de que desea aprobar esta solicitud?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#approvalModal').modal('hide')">Cancelar</button>
                         <button type="button" class="btn btn-success" onclick="submitForm()">Sí, Aprobar</button>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Modal de Cancelación -->
         <div id="confirmationModal" class="modal" tabindex="-1" role="dialog">
@@ -296,6 +314,8 @@
                 </div>
             </div>
         </div>
+
+            <!-- Modal de Cambio Solicitud -->
             <div class="modal fade" id="confirmacionCambioModal" tabindex="-1" aria-labelledby="confirmacionCambioLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content rounded-4 p-3">
@@ -311,8 +331,34 @@
                             </div>
                         </div>
                         <div class="modal-footer border-0 justify-content-end">
+                            <input type="hidden" name="ChangeRequest" id="ChangeRequest" value="ChangeRequest" />
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success" onclick="submitComment()">Agregar</button>
+                            <button type="button" class="btn btn-success" onclick="submitComment('comentarioCambio','ChangeRequest')">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal de Re-Aprobar -->
+            <div class="modal fade" id="confirmacionAprobarModal" tabindex="-1" aria-labelledby="confirmacionAprobarLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content rounded-4 p-3">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-bold" id="confirmacionAprobarLabel">Confirmación de Decisión</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p class="mb-3">¿Está seguro que desea Re-Aprobar Esta Solicitud?</p>
+
+                            <div class="mb-3">
+                                <input type="hidden" name="AprovedRequest" id="AprovedRequest" value="AprovedRequest" />
+                                <label for="comentarioAprobar" class="form-label fw-semibold">Comentario</label>
+                                <textarea class="form-control" id="comentarioAprobar" name="ComentarioAprobar" rows="4" placeholder="Agregue un comentario..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 justify-content-end">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" onclick="submitComment('comentarioAprobar','AprovedRequest')">Agregar</button>
                         </div>
                     </div>
                 </div>

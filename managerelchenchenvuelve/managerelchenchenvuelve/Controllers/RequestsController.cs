@@ -123,6 +123,7 @@ namespace managerelchenchenvuelve.Controllers
                                        ,Gestion_Realizada    = @gestion
                                        ,Tipo_atencion        = @tipo
                                        ,Porque_no_contacto   = @contacto
+                                       ,Etapa  = 'Completada'
                                  WHERE Codigo_de_solicitud   = @CodigoDeSolicitud";
 
                 SqlParameter[] parameters = new SqlParameter[]
@@ -151,6 +152,8 @@ namespace managerelchenchenvuelve.Controllers
                     ModelState.AddModelError("", "No se pudo actualizar el registro.");
                     return View(formData);
                 }
+
+                 
             }
             catch (Exception ex)
             {
@@ -162,11 +165,12 @@ namespace managerelchenchenvuelve.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddComment(string requestCode, string commentText, string gestor)
+        public ActionResult AddComment(string requestCode, string commentText, string gestor, string Etapa, string TypeRequest)
         {
             try
             {
                 _logger.LogInformation("Iniciando inserción de comentario para solicitud: {requestCode}", requestCode);
+                _logger.LogInformation("Revisa Valores insertados : {TypeRequest}", TypeRequest);
 
                 // Get the current user from session
                 var username = HttpContext.Session.GetString("UserName");
@@ -191,6 +195,44 @@ namespace managerelchenchenvuelve.Controllers
                     new SqlParameter("@StageName", gestor)
                 };
 
+
+                if (TypeRequest == "AprovedRequest") {
+                 string UpdateQuery = @"UPDATE [dbo].[Request_info] 
+                                       SET     Etapa  = 'Re-Abrir Solicitud', 
+                                               Usuario_Asignado = null
+                                       WHERE  Codigo_de_solicitud = @codigo;";
+
+
+                    SqlParameter[] parameters2 = new SqlParameter[] {
+                        new SqlParameter("@codigo", requestCode)
+
+                    };
+
+                 _db.ExecuteNonQuery(UpdateQuery, parameters2);
+                 _logger.LogWarning("update AprovedRequest Realizado para " + requestCode);
+                }
+
+
+                if (TypeRequest == "ChangeRequest")
+                {
+                    string UpdateQuery2 = @"UPDATE [dbo].[Request_info] 
+                                       SET     Etapa  = 'Cambio de Solicitud', 
+                                               Usuario_Asignado = null
+                                       WHERE  Codigo_de_solicitud = @codigo;";
+
+
+                    SqlParameter[] parameters3 = new SqlParameter[] {
+                        new SqlParameter("@codigo", requestCode)
+
+                    };
+
+                    _logger.LogWarning("update ChangeRequest Realizado para " + requestCode);
+                    _db.ExecuteNonQuery(UpdateQuery2, parameters3);
+
+                }
+
+
+
                 int affected = _db.ExecuteNonQuery(insertQuery, parameters);
                 _logger.LogInformation("Filas afectadas al insertar comentario: {affected}", affected);
 
@@ -204,6 +246,8 @@ namespace managerelchenchenvuelve.Controllers
                     _logger.LogWarning("No se pudo insertar el comentario");
                     return Json(new { success = false, message = "No se pudo agregar el comentario" });
                 }
+
+
             }
             catch (Exception ex)
             {

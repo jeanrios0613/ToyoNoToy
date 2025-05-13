@@ -68,36 +68,53 @@ function submitForm() {
 
 
 
-function submitComment() {
-    var commentText = $('#comentarioCambio').val();
-    var requestCode = '@Model.Code';
-    var gestor      = '@Model.Gestor';
+function submitComment(textareaId, TypeRequest) {
+    var commentText = $('#' + textareaId).val();
+    var TypeRequest = $('#' + TypeRequest).val();
+    var requestCode = document.getElementById('Code').value; 
+    var gestor = document.getElementById('Gestor').value; 
+    var Etapa = document.getElementById('Etapa').value; 
+
+    if (!commentText || !requestCode || !gestor) {
+        alert('Por favor complete todos los campos requeridos');
+        return;
+    }
 
     $.ajax({
-        url: '@Url.Action("AddComment", "Requests")',
+        url: '../Requests/AddComment',
         type: 'POST',
         data: {
             requestCode: requestCode,
             commentText: commentText,
-            gestor: gestor
+            gestor: gestor,
+            Etapa: Etapa,
+            TypeRequest: TypeRequest
+
         },
         headers: {
             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
         },
         success: function (response) {
             if (response.success) {
-                $('#confirmacionCambioModal').modal('hide');
-                // Optionally show a success message
+                $('#confirmacionCambioModal').modal('hide'); 
+                $('#comentarioCambio').val(''); // Clear the comment field 
                 alert('Comentario agregado exitosamente');
+                // Optionally refresh the page or update the comments list
+                location.reload();
             } else {
                 alert(response.message || 'Error al agregar el comentario');
             }
         },
-        error: function () {
-            alert('Error al procesar la solicitud');
+        error: function (xhr, status, error) {
+            console.error('Error details:', {xhr: xhr, status: status, error: error});
+            alert('Error al procesar la solicitud: ' + requestCode);
         }
     });
 }
+
+
+
+ 
 
 
 function buscarFormulario() {
