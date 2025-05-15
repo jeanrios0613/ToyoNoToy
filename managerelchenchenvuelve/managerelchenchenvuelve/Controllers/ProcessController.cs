@@ -319,21 +319,22 @@ namespace managerelchenchenvuelve.Controllers
         {
             try
             {
-                if (model == null || model.Usuario == null || string.IsNullOrEmpty(model.Usuario))
+                if (model == null || model.Usuario == null || string.IsNullOrEmpty(model.Usuario) || model.Ids == null || !model.Ids.Any())
                 {
                     return BadRequest("Datos incompletos");
                 }
 
-                foreach (var codigo in model.Usuario)
+                foreach (var codigo in model.Ids)
                 {
                     string updateQuery = @"UPDATE dbo.Request_Info 
                                    SET usuario_asignado = @usuario 
                                    WHERE codigo_de_solicitud = @codigo";
 
+                    _logger.LogInformation("hacer update ************************: {codigo}", codigo);
                     SqlParameter[] parameters = new SqlParameter[]
                     {
-                new SqlParameter("@usuario", model.Usuario),
-                new SqlParameter("@codigo", codigo)
+                        new SqlParameter("@usuario", model.Usuario),
+                        new SqlParameter("@codigo", codigo)
                     };
 
                     _db.ExecuteNonQuery(updateQuery, parameters);

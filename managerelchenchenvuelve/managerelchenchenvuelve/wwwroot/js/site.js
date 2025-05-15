@@ -123,4 +123,86 @@ function buscarFormulario() {
     }
 }
 
+function actualizarSeleccion() {
+    const checkboxes = document.querySelectorAll('.tarea-checkbox:checked');
+    const actionBar = document.getElementById('action-bar');
+    const selectedCount = document.getElementById('selected-count');
 
+    selectedCount.textContent = checkboxes.length;
+
+    if (checkboxes.length > 0) {
+        actionBar.style.display = 'flex';
+        setTimeout(() => actionBar.classList.add('visible'), 10);
+    } else {
+        actionBar.classList.remove('visible');
+        setTimeout(() => {
+            if (checkboxes.length === 0) {
+                actionBar.style.display = 'none';
+            }
+        }, 300);
+    }
+}
+
+function limpiarSeleccion() {
+    const checkboxes = document.querySelectorAll('.tarea-checkbox');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+    actualizarSeleccion();
+}
+
+function asignarSeleccionados() {
+    const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
+        .map(checkbox => checkbox.dataset.id);
+    // Aquí puedes implementar la lógica para asignar los elementos seleccionados
+    console.log('IDs seleccionados:', selectedIds);
+}
+
+function mostrarModalUsuarios() {
+    const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
+        .map(checkbox => checkbox.dataset.id);
+
+    if (selectedIds.length === 0) {
+        alert("Selecciona al menos una tarea.");
+        return;
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById('modalUsuarios'));
+    modal.show();
+}
+
+function asignarSeleccionadosA(nombreUsuario) {
+    const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
+        .map(checkbox => checkbox.dataset.id);
+
+    if (selectedIds.length === 0) {
+        alert("Selecciona al menos una tarea.");
+        return;
+    }
+
+    fetch('/Process/AsignarTareas', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+        },
+        body: JSON.stringify({
+            ids: selectedIds,
+            usuario: nombreUsuario
+        })
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Tareas asignadas correctamente.");
+                location.reload();
+            } else {
+                alert("Error al asignar tareas.");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error al asignar tareas.");
+        });
+
+    // Cerrar el modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('modalUsuarios'));
+    modal.hide();
+}
