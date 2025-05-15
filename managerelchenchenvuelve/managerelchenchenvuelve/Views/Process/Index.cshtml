@@ -1,4 +1,4 @@
-﻿@model object
+﻿@using managerelchenchenvuelve.Models
 
 @{
     Layout = "_Layout";
@@ -10,6 +10,7 @@
     int delta = 2;
     int startPage = Math.Max(2, currentPage - delta);
     int endPage = Math.Min(totalPages - 1, currentPage + delta);
+    var lista = ViewBag.listUsers as List<AsignacionClass>;
 }
 
 <style>
@@ -29,8 +30,121 @@
         font-weight: bold;
         font-size: 14px;
     }
+
+    .action-bar-custom {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #212529;
+        color: white;
+        padding: 20px;
+        border-radius: 1rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease-in-out;
+        min-width: 280px;
+    }
+
+        .action-bar-custom.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .action-bar-custom button {
+            min-width: 100px;
+        }
 </style>
- 
+
+<script>
+    function actualizarSeleccion() {
+        const checkboxes = document.querySelectorAll('.tarea-checkbox:checked');
+        const actionBar = document.getElementById('action-bar');
+        const selectedCount = document.getElementById('selected-count');
+        
+        selectedCount.textContent = checkboxes.length;
+        
+        if (checkboxes.length > 0) {
+            actionBar.style.display = 'flex';
+            setTimeout(() => actionBar.classList.add('visible'), 10);
+        } else {
+            actionBar.classList.remove('visible');
+            setTimeout(() => {
+                if (checkboxes.length === 0) {
+                    actionBar.style.display = 'none';
+                }
+            }, 300);
+        }
+    }
+
+    function limpiarSeleccion() {
+        const checkboxes = document.querySelectorAll('.tarea-checkbox');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+        actualizarSeleccion();
+    }
+
+    function asignarSeleccionados() {
+        const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
+            .map(checkbox => checkbox.dataset.id);
+        // Aquí puedes implementar la lógica para asignar los elementos seleccionados
+        console.log('IDs seleccionados:', selectedIds);
+    }
+
+    function mostrarModalUsuarios() {
+        const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
+            .map(checkbox => checkbox.dataset.id);
+
+        if (selectedIds.length === 0) {
+            alert("Selecciona al menos una tarea.");
+            return;
+        }
+
+        const modal = new bootstrap.Modal(document.getElementById('modalUsuarios'));
+        modal.show();
+    }
+
+    function asignarSeleccionadosA(nombreUsuario) {
+        const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
+            .map(checkbox => checkbox.dataset.id);
+
+        if (selectedIds.length === 0) {
+            alert("Selecciona al menos una tarea.");
+            return;
+        }
+
+        fetch('/Process/AsignarTareas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+            },
+            body: JSON.stringify({
+                ids: selectedIds,
+                usuario: nombreUsuario
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Tareas asignadas correctamente.");
+                location.reload();
+            } else {
+                alert("Error al asignar tareas.");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error al asignar tareas.");
+        });
+
+        // Cerrar el modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalUsuarios'));
+        modal.hide();
+    }
+</script>
+
 <input type="hidden" name="TareaUser" id="TareaUser" value="@ViewBag.Tarea" />
  
 </br> 
@@ -91,12 +205,12 @@
                             </div>
                         </th>
                         
-                        <th id="bandejaTareaP" style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
+                        <th  style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                                 Bandeja
                             </div>
                          </th>
-                        <th id="duraTareaP" style="min-width:140px; width: 140px; top: 0px; z-index: 100;">
+                        <th   style="min-width:140px; width: 140px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                                 Duración
                             </div>
@@ -120,7 +234,7 @@
                         {  <tr> 
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <input type="checkbox" class="form-check-input" style="width: 20px; height: 20px;">
+                                        <input type="checkbox" class="form-check-input tarea-checkbox" style="width: 20px; height: 20px;" data-id="@item.CodigoDeSolicitud" onchange="actualizarSeleccion()">
                                     </div>
                                 </td>
                                 <td style="cursor: pointer; min-width: 150px; width: 200px;"> 
@@ -140,12 +254,12 @@
                                         @Html.DisplayFor(m => item.Etapa)
                                      </span>
                                  </td>
-                                <td id="bandejaTareaP" style="cursor: pointer; min-width: 150px; width: 200px;">
+                                <td   style="cursor: pointer; min-width: 150px; width: 200px;">
                                     <span class="p-table__content__badge p-table__content__badge__text__active" style="background-color:cornflowerblue">
                                         <span class="p-table__content__badge__text"> Revisión y validación</span>
                                     </span>
                                  </td>
-                                <td id="duraTareaP" style="cursor: pointer; min-width: 140px; width: 140px;">
+                                <td   style="cursor: pointer; min-width: 140px; width: 140px;">
                                     <div class="p-table__content__cell">
                                         @{  
                                             var dias =  item.Tiempo ;
@@ -235,3 +349,50 @@
 
 
 </div>
+
+<div id="action-bar" class="action-bar-custom">
+    <div class="d-flex flex-column text-end">
+        <div class="mb-2">
+            <span id="selected-count">0</span> seleccionadas
+        </div>
+        <div class="d-flex gap-2 justify-content-end">
+            <button class="btn btn-primary" type="button" onclick="mostrarModalUsuarios()">
+                Asignar a
+            </button>
+            <button class="btn btn-outline-light" onclick="limpiarSeleccion()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Usuarios -->
+<div class="modal fade" id="modalUsuarios" tabindex="-1" aria-labelledby="modalUsuariosLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalUsuariosLabel">Seleccionar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    @if (lista != null)
+                    {
+                        foreach (var user in lista)
+                        {
+                            <button type="button" class="list-group-item list-group-item-action"
+                                    onclick="asignarSeleccionadosA('@user.Usuario')">
+                                @user.NombreCompleto
+                            </button>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

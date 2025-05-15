@@ -190,7 +190,7 @@
                             </div>
                         </div>
 
-                        <section id="razon" style="@(Model.Etapa == "Completada" ? "display: disable;" : "")">
+                        <section id="razon" style="display: none;">
                             <div>
                                 <label><strong>Razón</strong></label><br>
                                 <label>
@@ -204,9 +204,8 @@
                             </div>
                         </section>
 
-                        <section id="atencion" style="@(Model.Etapa == "Completada" ? "display: disable;" : "")">
+                        <section id="atencion" style="display: none;">
                             <div>
-                              
                                 <label><strong>Tipo de atencion</strong></label><br>
                                 <label>
                                     <input type="radio" name="TipoAtencion" value="contactado" @(Model.TipoAtencion == "contactado" ? "checked" : "")>
@@ -216,7 +215,6 @@
                                     <input type="radio" name="TipoAtencion" value="Atendido en Sitio" @(Model.TipoAtencion == "Atendido en Sitio" ? "checked" : "")>
                                     Atendido en Sitio
                                 </label>
-                            
                             </div>
                         </section>
 

@@ -8,21 +8,18 @@ $(document).ready(function () {
             $("#TareaC").show();
             $("#TareaP").hide();
             $("#TareaA").hide();
-            $("duraTareaP").hide();
-            $("bandejaTareaP").hide();
+        
              
         } else if (seleccion == "P") {
             $("#TareaC").hide();
             $("#TareaP").show();
             $("#TareaA").hide();
-            $("duraTareaP").show();
-            $("bandejaTareaP").show();
+        
         } else {
             $("#TareaC").hide();
             $("#TareaP").hide();
             $("#TareaA").show();
-            $("duraTareaP").show();
-            $("bandejaTareaP").show();
+    
         }
 
     }).change();
@@ -125,3 +122,5 @@ function buscarFormulario() {
         window.location.href = '../Process/Index?';
     }
 }
+
+

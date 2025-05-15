@@ -11,6 +11,8 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace managerelchenchenvuelve.Controllers
 {
@@ -175,12 +177,12 @@ namespace managerelchenchenvuelve.Controllers
                 int totalCount = Convert.ToInt32(countResult.Rows[0][0]);
 
 
-                if (id == null)
-                {
+                 
                     foreach (DataRow row in result.Rows)
                     {
                         Datos.Add(new DatosReca
-                        {   gestor = row["GESTOR"].ToString(),
+                        {   Id = row["codigo_de_solicitud"].ToString(),
+                            gestor = row["GESTOR"].ToString(),
                             Etapa = row["Etapa"].ToString(),
                             CompletaActividad = row["CompletaActividad"].ToString(),
                             FechaFormateada = row["FechaFormateada"].ToString(),
@@ -195,20 +197,13 @@ namespace managerelchenchenvuelve.Controllers
                     ViewBag.CurrentPage = page;
                     ViewBag.DatosReca = Datos;
                     ViewBag.Tarea = tarea;
+                    ViewBag.listUsers = ObtenerUsuariosAmpyme();
 
 
                     _logger.LogInformation("Obteniendo lista de formularios");
                     return View(Datos);
-                }
-                else
-                {
-                    _logger.LogInformation("Obteniendo formulario específico: {Id}", id);
-                    var formulario = _context.ConsultaSoloAmpymeCompletos
-                        .Where(f => id == null || f.CodigoDeSolicitud == id)
-                        .FirstOrDefault();
-
-                    return View(formulario);
-                }
+                 
+                 
             }
             catch (Exception ex)
             {
@@ -285,5 +280,74 @@ namespace managerelchenchenvuelve.Controllers
                 return View();
             }
         }
+
+
+        public List<AsignacionClass> ObtenerUsuariosAmpyme() {
+
+            List<AsignacionClass> Userlist = new List<AsignacionClass>();
+
+            String Datas = @"select us.username, (names+' '+Lastname) nombrecompleto 
+                            from       [dbo].[Users]     as US
+                            inner join [dbo].[UserRoles] as UR
+                                    on us.id = UR.Userid
+                            inner join [dbo].[Roles]     as RL 
+                                    ON rl.id = ur.roleid
+                            where rl.rolname = 'GESTIÓN DE AMPYME'
+                            and    us.Status = 1
+                            order by 2"
+            ;
+
+            DataTable listUser = _db.ExecuteQuery(Datas);
+
+            foreach (DataRow row in listUser.Rows)
+            {
+                Userlist.Add(new AsignacionClass
+                {
+                    Usuario = row["username"].ToString(),
+                    NombreCompleto = row["nombrecompleto"].ToString()
+                });
+            }
+ 
+            return Userlist;
+
+        }
+
+
+
+        [HttpPost]
+        public IActionResult AsignarTareas([FromBody] AsignacionClass model)
+        {
+            try
+            {
+                if (model == null || model.Usuario == null || string.IsNullOrEmpty(model.Usuario))
+                {
+                    return BadRequest("Datos incompletos");
+                }
+
+                foreach (var codigo in model.Usuario)
+                {
+                    string updateQuery = @"UPDATE dbo.Request_Info 
+                                   SET usuario_asignado = @usuario 
+                                   WHERE codigo_de_solicitud = @codigo";
+
+                    SqlParameter[] parameters = new SqlParameter[]
+                    {
+                new SqlParameter("@usuario", model.Usuario),
+                new SqlParameter("@codigo", codigo)
+                    };
+
+                    _db.ExecuteNonQuery(updateQuery, parameters);
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // opcional: _logger.LogError(ex, "Error al asignar tareas");
+                return StatusCode(500, "Error al asignar tareas");
+            }
+        }
+
+
     }
 }

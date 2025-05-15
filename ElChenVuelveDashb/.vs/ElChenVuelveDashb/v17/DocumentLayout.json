@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\formularios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\controllers\\iniciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\controllers\\iniciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,10 +31,6 @@
       "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\formularios\\reporte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\elchenvuelvedashb\\elchenvuelvedashb\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E505862B-5576-4663-B49C-BD73CE374E89}|ElChenVuelveDashb\\ElChenVuelveDashb.csproj|solutionrelative:elchenvuelvedashb\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -42,37 +46,49 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Program.cs",
-              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Program.cs",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Program.cs*",
-              "RelativeToolTip": "ElChenVuelveDashb\\Program.cs*",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:33:03.567Z",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "RelativeToolTip": "ElChenVuelveDashb\\Views\\Formularios\\Index.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAvwDQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-13T15:09:21.922Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Program.cs",
+              "RelativeDocumentMoniker": "ElChenVuelveDashb\\Program.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Program.cs",
+              "RelativeToolTip": "ElChenVuelveDashb\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T17:33:03.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "InicioController.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Controllers\\InicioController.cs",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Controllers\\InicioController.cs",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Controllers\\InicioController.cs",
               "RelativeToolTip": "ElChenVuelveDashb\\Controllers\\InicioController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAhwDoAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAIA1wCAAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T21:44:52.222Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Interface.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Servicios\\Contrato\\Interface.cs",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Servicios\\Contrato\\Interface.cs",
@@ -84,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Servicios\\Implementacion\\UsuarioService.cs",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Servicios\\Implementacion\\UsuarioService.cs",
@@ -92,24 +108,24 @@
               "RelativeToolTip": "ElChenVuelveDashb\\Servicios\\Implementacion\\UsuarioService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T21:27:49.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T21:27:49.377Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "ElChenVuelveDashb\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-25T20:51:05.542Z"
+              "WhenOpened": "2025-04-25T20:51:05.542Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "SubirArchivo.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Archivos\\SubirArchivo.cshtml",
@@ -121,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Reporte.cshtml",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Views\\Formularios\\Reporte.cshtml",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Views\\Formularios\\Reporte.cshtml",
@@ -133,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "FormulariosController.cs",
               "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\ElChenVuelveDashb\\ElChenVuelveDashb\\Controllers\\FormulariosController.cs",
               "RelativeDocumentMoniker": "ElChenVuelveDashb\\Controllers\\FormulariosController.cs",
