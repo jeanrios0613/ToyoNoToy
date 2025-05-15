@@ -12,9 +12,9 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <!--HIDDEN VALUE-->
-            <input type="hidden" name="Code" id="Code" value="@Model.Code" />
+            <input type="hidden" name="Code"   id="Code"     value="@Model.Code" />
             <input type="hidden" name="Gestor" id="Gestor" value="@Model.Gestor" />
-            <input type="hidden" name="Etapa" id="Etapa" value="@Model.Etapa" />
+            <input type="hidden" name="Etapa"  id="Etapa"   value="@Model.Etapa" />
             <!--HIDDEN VALUE-->
 
 
@@ -219,15 +219,19 @@
                         </section>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <section id="to-pass" style="@(Model.Etapa == "Completada" ? "display: none;" : "")">
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmacionCambioModal">
-                                Solicitar Cambio
-                            </button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar</button>
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
+                            <section id="to-pass" style="@(Model.Etapa == "5-Gestión Ampyme" ? "" : "display: none;")">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmacionCambioModal">
+                                    Solicitar Cambio
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar</button>
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
                             </section>
 
-                            <section id="reopen" style="@(Model.Etapa != "Completada" ? "display: none;" : "")">
+                            <section id="to-pass" style="@(Model.Etapa == "Cambio de Solicitud" ? "" : "display: none;")">
+                               <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar Cambio</button>
+                            </section>
+
+                            <section id="reopen" style="@(Model.Etapa == "Completada" ? "" : "display: none;")">
                                 <button id="to-reprove" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmacionAprobarModal">
                                     Re-Aprobar
                                 </button>
@@ -306,7 +310,7 @@
                         <p>¿Está seguro de que desea cancelar la solicitud?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                         <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Index","Process")'">Sí</button>
                     </div>
                 </div>

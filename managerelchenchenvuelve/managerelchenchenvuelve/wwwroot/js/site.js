@@ -40,19 +40,10 @@ $(document).ready(function () {
         }
     }).change();
 
-    // Modal event handlers
-    $("#closebutton").on("click", function () {
-        $("#confirmationModal").modal("show");
-    });
-
-    $("#closeModal").on("click", function () {
-        $("#confirmationModal").modal("hide");
-    });
+ 
 });
 
-function showConfirmationModal() {
-    $('#confirmationModal').modal('show');
-}
+ 
 
 function showCancelModal() {
     $('#confirmationModal').modal('show');

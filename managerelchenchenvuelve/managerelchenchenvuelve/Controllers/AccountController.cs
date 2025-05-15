@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.Data.SqlClient;
 using managerelchenchenvuelve.Models;
 using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace managerelchenchenvuelve.Controllers
 {
@@ -56,9 +57,16 @@ namespace managerelchenchenvuelve.Controllers
 
             string encryptedPassword = EncryptPass.Encriptar(password);
 
-            string query = "SELECT ( Names +' '+Lastname) Nombre,* FROM [Users] WHERE [UserName] = @username AND [PasswordHash] = @PasswordHash";
+            string query =  " SELECT (case  " +
+                            " when  UR.rolname = 'ADMINISTRADOR' " +
+                            " then 'chenchen'  " +
+                            " else UR.Username " +
+                            " END) AS userss  , Nombre, RolName " +
+                            " FROM [vw_UserRolesInfo] as UR " +
+                            " WHERE [UserName] = @username AND [PasswordHash] = @PasswordHash";
 
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = new SqlParameter[]
+             {
                 new SqlParameter("@username", username),
                 new SqlParameter("@PasswordHash", encryptedPassword)
             };
@@ -75,13 +83,17 @@ namespace managerelchenchenvuelve.Controllers
                     users.Add(new User
                     {
                          Lastname = row["Nombre"].ToString(),
+						 Roles    = row["RolName"].ToString(),
+                         Userss   = row["userss"].ToString()
                     });
                 }
 
                 if (users.Count > 0)
                 {
+                    HttpContext.Session.SetString("Userss"  , users[0].Userss);
                     HttpContext.Session.SetString("Nombre", users[0].Lastname);
-                }
+					HttpContext.Session.SetString("Roles" , users[0].Roles);
+				}
 
                 _logger.LogInformation("Resultado de login para {Username}: {Rows} filas", username, result.Rows.Count);
 
@@ -101,8 +113,8 @@ namespace managerelchenchenvuelve.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.Role, "User")
+                new Claim(ClaimTypes.Name, users[0].Lastname),
+                new Claim(ClaimTypes.Role, users[0].Roles)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

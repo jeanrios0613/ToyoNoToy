@@ -13,11 +13,13 @@ public partial class User
 
     public string? Name { get; set; }
 
+    public string? Userss { get; set; }
+
     public string? Lastname { get; set; }
 
     public DateTimeOffset Created { get; set; }
 
-    public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
+	public string? Roles { get; set; } 
 
     public virtual ICollection<Secret> Secrets { get; set; } = new List<Secret>();
 

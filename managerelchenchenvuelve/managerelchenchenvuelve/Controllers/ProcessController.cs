@@ -31,11 +31,13 @@ namespace managerelchenchenvuelve.Controllers
         }
 
         // GET: ProcessController
-        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10, string? tarea = null, string? search = null)
+        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10, string? tarea = "P", string? search = null)
         {
-            var username = HttpContext.Session.GetString("UserName");
-             
-            try
+            var username  = HttpContext.Session.GetString("UserName");
+            var Userss    = HttpContext.Session.GetString("Userss");
+            var Roles     = HttpContext.Session.GetString("Roles");
+
+			try
             {
                 _logger.LogInformation("Accediendo a Process/Index");
 
@@ -47,11 +49,9 @@ namespace managerelchenchenvuelve.Controllers
                     _logger.LogWarning("No se encontró usuario en la sesión");
                     return RedirectToAction("Login", "Account");
                 }
+ 
 
-
-
-
-                ViewData["nombreUsuario"] = username;
+					ViewBag.nombreUsuario  = username;
 
                 List<DatosReca> Datos = new List<DatosReca>();
 
@@ -81,16 +81,19 @@ namespace managerelchenchenvuelve.Controllers
                                       FROM  [dbo].[Request_info] as RI ) as REQS ";
 
                 //Se utiliza este filtro para poder impletar el buscador 
-                if (search == null) {
+                if (search == null)
+                {
                     query += " WHERE GESTOR = 'Gestión directa de Ampyme'" +
                               "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
 
-                }else if(search != null) {
-
-                    query += "WHERE CompletaActividad LIKE '%"+ search + "%'";
-
                 }
+                else if (search != null)
+                {
 
+                    query += "WHERE CompletaActividad LIKE '%" + search + "%'";
+
+                } 
+                 
                 if (tarea == "C")
                 {
                     query += "AND ETAPA = 'Completada'";
@@ -109,16 +112,17 @@ namespace managerelchenchenvuelve.Controllers
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {    
-                    new SqlParameter("@username",username),
+                    new SqlParameter("@username",Userss),
                     new SqlParameter("@Offset", (page - 1) * pageSize),
                     new SqlParameter("@PageSize", pageSize)
                 };
 
                 DataTable result = _db.ExecuteQuery(query, parameters);
 
-                // Get total count for pagination
-                string countQuery = @"SELECT COUNT(*) 
-                                     FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                /////////////////////////////////////********** TOTAL PARA PAGINATION ************************//////////////////////////////////////////////
+
+                string CountQuery = @"SELECT  * 
+                                 FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
                                        FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
                                        CASE 
                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
@@ -145,40 +149,43 @@ namespace managerelchenchenvuelve.Controllers
                 //Se utiliza este filtro para poder impletar el buscador 
                 if (search == null)
                 {
-                    countQuery += " WHERE GESTOR          = 'Gestión directa de Ampyme'" +
-                                   "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
+                    CountQuery += " WHERE GESTOR = 'Gestión directa de Ampyme'" +
+                              "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
 
                 }
                 else if (search != null)
                 {
 
-                    countQuery += "WHERE CompletaActividad LIKE '%" + search + "%'";
+                    CountQuery += "WHERE CompletaActividad LIKE '%" + search + "%'";
 
                 }
 
                 if (tarea == "C")
                 {
-                    countQuery += "AND ETAPA = 'Completada'";
+                    CountQuery += "AND ETAPA = 'Completada'";
 
                 }
                 else if (tarea == "P")
                 {
 
-                    countQuery += "AND ETAPA != 'Completada'";
+                    CountQuery += "AND ETAPA != 'Completada'";
                 }
 
-                SqlParameter[] parameters1 = new SqlParameter[]
-               {
-                    new SqlParameter("@USERNAME",username)
-               };
 
-                DataTable countResult = _db.ExecuteQuery(countQuery, parameters1);
+                CountQuery += " ORDER BY fecha_de_creacion desc " ;
 
-                int totalCount = Convert.ToInt32(countResult.Rows[0][0]);
+                SqlParameter[] Countparameters = new SqlParameter[]
+                {
+                    new SqlParameter("@username",Userss)
+                };
+
+                DataTable Countresult = _db.ExecuteQuery(CountQuery, Countparameters);
+
+                int totalCount = Countresult.Rows.Count;
 
 
-                 
-                    foreach (DataRow row in result.Rows)
+
+                foreach (DataRow row in result.Rows)
                     {
                         Datos.Add(new DatosReca
                         {   Id = row["codigo_de_solicitud"].ToString(),
@@ -193,11 +200,14 @@ namespace managerelchenchenvuelve.Controllers
                         });
                     }
 
-                    ViewBag.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-                    ViewBag.CurrentPage = page;
-                    ViewBag.DatosReca = Datos;
-                    ViewBag.Tarea = tarea;
-                    ViewBag.listUsers = ObtenerUsuariosAmpyme();
+                    ViewBag.TotalQuery   = totalCount;
+                    ViewBag.ViewQuery    = page * 10;
+                    ViewBag.AdminUser    = HttpContext.Session.GetString("Roles");
+                    ViewBag.TotalPages   = (int)Math.Ceiling((double)totalCount / pageSize);
+                    ViewBag.CurrentPage  = page;
+                    ViewBag.DatosReca    = Datos;
+                    ViewBag.Tarea        = tarea;
+                    ViewBag.listUsers    = ObtenerUsuariosAmpyme();
 
 
                     _logger.LogInformation("Obteniendo lista de formularios");

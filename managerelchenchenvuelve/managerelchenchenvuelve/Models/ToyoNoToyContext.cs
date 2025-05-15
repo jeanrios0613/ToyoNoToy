@@ -613,7 +613,6 @@ public partial class ToyoNoToyContext : DbContext
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Name).HasMaxLength(256);
 
-            entity.HasOne(d => d.Owner).WithMany(p => p.Roles).HasForeignKey(d => d.OwnerId);
         });
 
         modelBuilder.Entity<Secret>(entity =>

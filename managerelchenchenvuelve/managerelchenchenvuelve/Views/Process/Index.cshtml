@@ -11,10 +11,12 @@
     int startPage = Math.Max(2, currentPage - delta);
     int endPage = Math.Min(totalPages - 1, currentPage + delta);
     var lista = ViewBag.listUsers as List<AsignacionClass>;
+    var nombre = ViewBag.nombreUsuario;
+
 }
  
 
- 
+
 
 <input type="hidden" name="TareaUser" id="TareaUser" value="@ViewBag.Tarea" />
  
@@ -43,6 +45,7 @@
                 </div><!----><!---->
             </div>
             <div class="d-flex align-items-center gap-3">
+                
                 <button class="btn btn-outline-secondary">👤</button>
                 <button class="btn btn-outline-secondary">🔔</button>
                 <button class="btn btn-outline-secondary">⚙️</button>
@@ -53,13 +56,13 @@
   
             </div>
         </div>
- 
+          
         <!-- Tabla con scroll -->
         <div class="scrollable-table-container">
             <table class="table table-hover">
                 <thead class="table-light">
-                    <tr> 
-                        <th style="min-width: 75px; width: 75px;" ></th>
+                    <tr>  
+                        <th style="@(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")  min-width: 75px; width: 75px;"></th>
                         <th style="min-width: 150px; width: 150px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                                 Nombre de Tarea
@@ -102,9 +105,9 @@
                     @if (Model is IEnumerable<managerelchenchenvuelve.Models.DatosReca> formularios)
                     {
                         foreach (var item in formularios)
-                        {  <tr> 
-                                <td>
-                                    <div class="d-flex align-items-center">
+                        {  <tr>
+                                <td style="@(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
+                                    <div class="d-flex align-items-center" >
                                         <input type="checkbox" class="form-check-input tarea-checkbox" style="width: 20px; height: 20px;" data-id="@item.Id" onchange="actualizarSeleccion()">
                                     </div>
                                 </td>
@@ -136,15 +139,15 @@
                                             var dias =  item.Tiempo ;
                                             if (dias < 3)
                                             {
-                                                <span>🟢</span>
+                                                <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟢</span>
                                             }
                                             else if (dias >= 3 && dias <= 5)
                                             {
-                                                <span>🟡</span>
+                                                <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟡</span>
                                             }
                                             else
                                             {
-                                                <span>🔴</span>
+                                                <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🔴</span>
                                             }
                                         }
                                         @Html.DisplayFor(m => item.TiempoTranscurrido)
@@ -181,10 +184,25 @@
                 </tbody>
             </table>
         </div>
-    
+
+      
+
         <!-- Paginación -->
         <nav  style="height:40px">
-            <ul class="pagination">
+            <div class="row mb-3">
+                <div class="col-md-6 mb-3">
+                    <br/>
+                    <span class="p-table__opts__navs__titles__subtitle">
+                        Monstrando @ViewBag.ViewQuery de  @ViewBag.TotalQuery
+                    </span>
+
+                </div>
+                <div class="col-md-6 mb-3">
+                     
+          
+
+            <ul class="pagination justify-content-end">
+
                 <!-- Primera página -->
                 <li class="page-item @(currentPage == 1 ? "active" : "")">
                     <a class="page-link" href="../Process/Index?tarea=@tareaasigna&page=1">1</a>
@@ -214,6 +232,9 @@
                     </li>
                 }
             </ul>
+
+                </div>
+            </div>
         </nav>
 
     </div>

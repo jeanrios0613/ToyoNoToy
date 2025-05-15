@@ -169,15 +169,15 @@ table {
     padding:0.5rem; 
 }
 
-    .pagination .page-link { 
+    .pagination .page-link {
         padding: 8px 12px;
         color: #333;
-        border: none;
+        border-radius: 50%;
         background-color: transparent;
     }
 
     .pagination .active .page-link {
-        background-color: #ff7043;
+        background-color: #375ea4;
         color: white;
     }
 
@@ -393,5 +393,6 @@ max-height: calc(95vh - 200px); /* Ajusta según tu layout */
 .nav-item {
     position: relative;
 }
+
 
  
