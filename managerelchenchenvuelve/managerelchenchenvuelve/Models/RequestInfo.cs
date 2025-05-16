@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace managerelchenchenvuelve.Models;
 
-public partial class ConsultaSoloAmpymeCompleto
+public partial class RequestInfo
 {
     public string? CodigoDeSolicitud { get; set; }
 
-    public string? FechaDeCreacion { get; set; }
+    public DateTimeOffset? FechaDeCreacion { get; set; }
 
-    public DateTimeOffset FechaDeActualizacion { get; set; }
+    public string? FechaActualizacion { get; set; }
 
     public string? Gestor { get; set; }
 
-    public string EtapaDelNegocio { get; set; } = null!;
+    public string? EtapaDelNegocio { get; set; }
 
     public string? CorreoElectronico { get; set; }
 
@@ -21,17 +21,17 @@ public partial class ConsultaSoloAmpymeCompleto
 
     public string? Apellido { get; set; }
 
-    public string? NumeroDeIdentificacion { get; set; }
+    public string? NumeroIdentificacion { get; set; }
 
-    public string? TipoDeIdentificacion { get; set; }
+    public string? TipoIdentificacion { get; set; }
 
-    public string? Teléfono { get; set; }
+    public string? Telefono { get; set; }
 
-    public string? NombreDelNegocio { get; set; }
+    public string? NombreNegocio { get; set; }
 
-    public string? DescripcionDelNegocio { get; set; }
+    public string? DescripcionNegocio { get; set; }
 
-    public string? ActividadEconómica { get; set; }
+    public string? ActividadEconomica { get; set; }
 
     public string? Instagram { get; set; }
 
@@ -45,34 +45,39 @@ public partial class ConsultaSoloAmpymeCompleto
 
     public string? Corregimiento { get; set; }
 
-    public string? ProyeccionDeVentasMensuales { get; set; }
+    public string? ProyeccionVentasMensuales { get; set; }
 
     public string? VentasMensuales { get; set; }
 
-    public string? FechaDeInicioDeOperaciones { get; set; }
+    public string? FechaInicioOperaciones { get; set; }
 
     public string? CuantoChenchenNecesitas { get; set; }
 
     public string? EnQueLoInvertiras { get; set; }
 
-    public string? VerificacionDelCliente { get; set; }
+    public string? VerificacionCliente { get; set; }
 
     public string? GestionRealizada { get; set; }
 
-    public string? TipoDeAtencion { get; set; }
+    public string? TipoAtencion { get; set; }
 
-    public string? PorQueNoSeContacto { get; set; }
+    public string? PorqueNoContacto { get; set; }
 
     public string? Etapa { get; set; }
 
     public string? UsuarioAsignado { get; set; }
 
-    public Guid Id { get; set; }
- 
-
-    public string CompletaActividad { get; set; } = null!;
-
+     
     public string? FechaFormateada { get; set; }
 
     public string? TiempoTranscurrido { get; set; }
+
+     public string? CompletaActividad { get; set; }
+
+     public int? Tiempo { get; set; }
+
+     
+    public Guid? CodId { get; set; }
+
+    public Guid? IdChen { get; set; }
 }

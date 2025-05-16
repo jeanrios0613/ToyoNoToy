@@ -47,10 +47,7 @@ builder.Services.AddDbContext<ToyoNoToyContext>(options =>
 
 
  
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ToyoNoToyContext>()
-    .AddDefaultTokenProviders();
-
+ 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

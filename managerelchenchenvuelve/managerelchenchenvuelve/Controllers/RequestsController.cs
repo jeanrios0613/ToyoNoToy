@@ -49,44 +49,46 @@ namespace managerelchenchenvuelve.Controllers
 
             DataTable dt = _db.ExecuteQuery(query,parameters); ;
 
-            RequestClass info = null;
+            RequestInfo info = null;
 
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-                info = new RequestClass
-                {    
-                    Code = row["Codigo_de_solicitud"].ToString(),
-                    CreationDate = DateTime.Parse(row["Fecha_de_Creacion"].ToString()), 
+                info = new RequestInfo
+                {
+                    CodigoDeSolicitud = row["Codigo_de_solicitud"].ToString(),
+                    FechaDeCreacion = string.IsNullOrEmpty(row["Fecha_de_Creacion"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["Fecha_de_Creacion"].ToString()),
+                    FechaActualizacion = row["Fecha_Actualizacion"].ToString(),
                     Gestor = row["Gestor"].ToString(),
-                    Etapa_del_Negocio = row["Etapa_del_Negocio"].ToString(),
-                    Etapa = row["Etapa"].ToString(),
-                    Email = row["Correo_Electronico"].ToString(),
+                    EtapaDelNegocio = row["Etapa_del_Negocio"].ToString(),
+                    CorreoElectronico = row["Correo_Electronico"].ToString(),
                     Nombre = row["Nombre"].ToString(),
                     Apellido = row["Apellido"].ToString(),
-                    IdentificationNumber = row["Numero_identificacion"].ToString(),
-                    IdentificationType = row["Tipo_identificacion"].ToString(),
-                    Phone = row["Telefono"].ToString(),
-                    BusinessName = row["Nombre_Negocio"].ToString(),
-                    BusinessDescription = row["Descripcion_negocio"].ToString(), 
-                    EconomicActivity = row["Actividad_economica"].ToString(),
+                    NumeroIdentificacion = row["Numero_identificacion"].ToString(),
+                    TipoIdentificacion = row["Tipo_identificacion"].ToString(),
+                    Telefono = row["Telefono"].ToString(),
+                    NombreNegocio = row["Nombre_Negocio"].ToString(),
+                    DescripcionNegocio = row["Descripcion_negocio"].ToString(),
+                    ActividadEconomica = row["Actividad_economica"].ToString(),
                     Instagram = row["Instagram"].ToString(),
-                    Ruc = row["Ruc"].ToString(),
+                    Ruc = row["RUC"].ToString(),
                     WebSite = row["Web_Site"].ToString(),
+                    Provincia = row["Provincia"].ToString(),
+                    Distrito = row["Distrito"].ToString(),
                     Corregimiento = row["corregimiento"].ToString(),
-                    District = row["Distrito"].ToString(),
-                    Province = row["Provincia"].ToString(),
-                    MonthlySales = string.IsNullOrEmpty(row["Ventas_mensuales"].ToString()) ? (decimal?)null : decimal.Parse(row["Ventas_mensuales"].ToString()),
-                    ProyectedSales = string.IsNullOrEmpty(row["Proyeccion_ventas_mensuales"].ToString()) ? (decimal?)null : decimal.Parse(row["Proyeccion_ventas_mensuales"].ToString()),
-                    QuantityToInvert = string.IsNullOrEmpty(row["Cuanto_Chenchen_necesitas"].ToString()) ? (decimal?)null : decimal.Parse(row["Cuanto_Chenchen_necesitas"].ToString()),
-                    OperationsStartDate = DateTime.Parse(row["Fecha_Inicio_Operaciones"].ToString()), 
-                    ReasonForMoney = row["En_que_lo_invertiras"].ToString(),
-                    VerifyClient = row["Verificacion_Cliente"].ToString(),
+                    ProyeccionVentasMensuales = row["Proyeccion_ventas_mensuales"].ToString(),
+                    VentasMensuales = row["Ventas_mensuales"].ToString(),
+                    FechaInicioOperaciones = row["Fecha_Inicio_Operaciones"].ToString(),
+                    CuantoChenchenNecesitas = row["Cuanto_Chenchen_necesitas"].ToString(),
+                    EnQueLoInvertiras = row["En_que_lo_invertiras"].ToString(),
+                    VerificacionCliente = row["Verificacion_Cliente"].ToString(),
                     GestionRealizada = row["Gestion_Realizada"].ToString(),
                     TipoAtencion = row["Tipo_atencion"].ToString(),
-                    ContactReason = row["Porque_no_contacto"].ToString(),
-                    Usuario_Asignado = row["Usuario_Asignado"].ToString(),
-                   
+                    PorqueNoContacto = row["Porque_no_contacto"].ToString(),
+                    Etapa = row["Etapa"].ToString(),
+                    UsuarioAsignado = row["Usuario_Asignado"].ToString(),
+
+
                 };
             }
 
@@ -101,7 +103,7 @@ namespace managerelchenchenvuelve.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult solicitud(RequestClass formData)
+        public ActionResult solicitud(RequestInfo formData)
         {
             try
             {
@@ -128,11 +130,11 @@ namespace managerelchenchenvuelve.Controllers
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-                    new SqlParameter("@verifica", formData.VerifyClient ?? (object)DBNull.Value),
+                    new SqlParameter("@verifica", formData.VerificacionCliente ?? (object)DBNull.Value),
                     new SqlParameter("@gestion", formData.GestionRealizada ?? (object)DBNull.Value),
                     new SqlParameter("@tipo", formData.TipoAtencion ?? (object)DBNull.Value),
-                    new SqlParameter("@contacto", formData.ContactReason ?? (object)DBNull.Value),
-                    new SqlParameter("@CodigoDeSolicitud", formData.Code)
+                    new SqlParameter("@contacto", formData.PorqueNoContacto ?? (object)DBNull.Value),
+                    new SqlParameter("@CodigoDeSolicitud", formData.CodigoDeSolicitud)
                 };
 
                 _logger.LogInformation("Ejecutando query con parámetros: {@parameters}", 
@@ -196,44 +198,43 @@ namespace managerelchenchenvuelve.Controllers
                 };
 
 
-                if (TypeRequest == "AprovedRequest") {
-                 string UpdateQuery = @"UPDATE [dbo].[Request_info] 
-                                       SET     Etapa  = 'Re-Abrir Solicitud', 
-                                               Usuario_Asignado = null
-                                       WHERE  Codigo_de_solicitud = @codigo;";
+				string UpdateQuery = @"UPDATE [dbo].[Request_info]  SET ";
+				if (TypeRequest == "AprovedChange")
+				{
+					UpdateQuery += "Etapa = 'Re-Abrir Solicitud'," +
+								   "Usuario_Asignado = 'chenchen'";
+				}
+				else if (TypeRequest == "OpenRequest")
+				{
+
+					UpdateQuery += "Etapa = '5-Gestión Ampyme'" +
+								   "Usuario_Asignado = 'chenchen'";
+
+				}
+				else if (TypeRequest == "ChangeRequest")
+				{
+
+					UpdateQuery += "Etapa = 'Solicitar Cambio'" +
+								   "Usuario_Asignado = 'chenchen'";
+
+				}
+				else if (TypeRequest == "AprovedChange")
+				{
+
+					UpdateQuery += "Etapa = 'Aprobar Cambio'," +
+								   " Usuario_Asignado = null," +
+								   " Gestor = 'Gestión Caja de Ahorros'";
+				}
+
+				UpdateQuery += " WHERE Codigo_de_solicitud = @codigo; ";
+				SqlParameter[] parameters2 = new SqlParameter[] {
+	               new SqlParameter("@codigo", requestCode)   };
+
+				_db.ExecuteNonQuery(UpdateQuery, parameters2);
+				_logger.LogWarning("update AprovedRequest Realizado para " + requestCode);
 
 
-                    SqlParameter[] parameters2 = new SqlParameter[] {
-                        new SqlParameter("@codigo", requestCode)
-
-                    };
-
-                 _db.ExecuteNonQuery(UpdateQuery, parameters2);
-                 _logger.LogWarning("update AprovedRequest Realizado para " + requestCode);
-                }
-
-
-                if (TypeRequest == "ChangeRequest")
-                {
-                    string UpdateQuery2 = @"UPDATE [dbo].[Request_info] 
-                                       SET     Etapa  = 'Cambio de Solicitud', 
-                                               Usuario_Asignado = null
-                                       WHERE  Codigo_de_solicitud = @codigo;";
-
-
-                    SqlParameter[] parameters3 = new SqlParameter[] {
-                        new SqlParameter("@codigo", requestCode)
-
-                    };
-
-                    _logger.LogWarning("update ChangeRequest Realizado para " + requestCode);
-                    _db.ExecuteNonQuery(UpdateQuery2, parameters3);
-
-                }
-
-
-
-                int affected = _db.ExecuteNonQuery(insertQuery, parameters);
+				int affected = _db.ExecuteNonQuery(insertQuery, parameters);
                 _logger.LogInformation("Filas afectadas al insertar comentario: {affected}", affected);
 
                 if (affected > 0)

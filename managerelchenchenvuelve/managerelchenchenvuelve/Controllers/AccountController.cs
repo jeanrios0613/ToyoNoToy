@@ -52,7 +52,7 @@ namespace managerelchenchenvuelve.Controllers
                 return View();
             }
 
-            List<User> users = new List<User>();
+            List<VwUserRolesInfo> users = new List<VwUserRolesInfo>();
 
 
             string encryptedPassword = EncryptPass.Encriptar(password);
@@ -80,19 +80,19 @@ namespace managerelchenchenvuelve.Controllers
                 
                 foreach (DataRow row in result.Rows)
                 {
-                    users.Add(new User
+                    users.Add(new VwUserRolesInfo
                     {
-                         Lastname = row["Nombre"].ToString(),
-						 Roles    = row["RolName"].ToString(),
-                         Userss   = row["userss"].ToString()
+                         Nombre = row["Nombre"].ToString(),
+						 RolName = row["RolName"].ToString(), 
+                        Username = row["userss"].ToString()
                     });
                 }
 
                 if (users.Count > 0)
                 {
-                    HttpContext.Session.SetString("Userss"  , users[0].Userss);
-                    HttpContext.Session.SetString("Nombre", users[0].Lastname);
-					HttpContext.Session.SetString("Roles" , users[0].Roles);
+                    HttpContext.Session.SetString("Userss", users[0].Username);
+                    HttpContext.Session.SetString("Nombre", users[0].Nombre);
+					HttpContext.Session.SetString("Roles" , users[0].RolName);
 				}
 
                 _logger.LogInformation("Resultado de login para {Username}: {Rows} filas", username, result.Rows.Count);
@@ -113,8 +113,8 @@ namespace managerelchenchenvuelve.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, users[0].Lastname),
-                new Claim(ClaimTypes.Role, users[0].Roles)
+                new Claim(ClaimTypes.Name, users[0].Nombre),
+                new Claim(ClaimTypes.Role, users[0].RolName)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

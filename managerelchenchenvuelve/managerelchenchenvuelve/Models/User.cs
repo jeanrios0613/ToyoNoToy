@@ -5,23 +5,37 @@ namespace managerelchenchenvuelve.Models;
 
 public partial class User
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+    public string UserName { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+    public string? NormalizedUserName { get; set; }
 
-    public string? Name { get; set; }
+    public string? Email { get; set; }
 
-    public string? Userss { get; set; }
+    public string? NormalizedEmail { get; set; }
 
-    public string? Lastname { get; set; }
+    public bool EmailConfirmed { get; set; }
 
-    public DateTimeOffset Created { get; set; }
+    public string? PasswordHash { get; set; }
 
-	public string? Roles { get; set; } 
+    public string? PhoneNumber { get; set; }
 
-    public virtual ICollection<Secret> Secrets { get; set; } = new List<Secret>();
+    public bool PhoneNumberConfirmed { get; set; }
 
-    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+    public bool TwoFactorEnabled { get; set; }
+
+    public DateTimeOffset? LockoutEnd { get; set; }
+
+    public bool LockoutEnabled { get; set; }
+
+    public int AccessFailedCount { get; set; }
+
+    public DateTime Created { get; set; }
+
+    public string Lastname { get; set; } = null!;
+
+    public string Names { get; set; } = null!;
+
+    public bool Status { get; set; }
 }

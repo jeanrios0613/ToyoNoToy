@@ -106,7 +106,7 @@
                     {
                         foreach (var item in formularios)
                         {  <tr>
-                                <td style="@(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
+                                <td style="@(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "disabled")">
                                     <div class="d-flex align-items-center" >
                                         <input type="checkbox" class="form-check-input tarea-checkbox" style="width: 20px; height: 20px;" data-id="@item.Id" onchange="actualizarSeleccion()">
                                     </div>
@@ -124,7 +124,7 @@
                                     </div>
                                 </td>
                                 <td style="cursor: pointer; min-width: 131.512px; width: 135px; color: black;">
-                                    <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#228B22" : "#e1c92d"); color: white;">
+                                    <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#77F177" : "#FFF091"); color: white;">
                                         @Html.DisplayFor(m => item.Etapa)
                                      </span>
                                  </td>

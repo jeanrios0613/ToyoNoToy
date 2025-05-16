@@ -54,7 +54,18 @@ function submitForm() {
     $('form').submit();
 }
 
-
+function showCommentModal(title, type) {
+ 
+    $('#commentModalLabel').text(title);
+    $('#commentModalMessage').text(`¿Está seguro que desea ${title.toLowerCase()} la solicitud?`);
+    
+ 
+    $('#commentType').val(type);
+     
+    $('#commentText').val(''); 
+ 
+    $('#commentModal').modal('show');
+}
 
 function submitComment(textareaId, TypeRequest) {
     var commentText = $('#' + textareaId).val();
@@ -77,15 +88,14 @@ function submitComment(textareaId, TypeRequest) {
             gestor: gestor,
             Etapa: Etapa,
             TypeRequest: TypeRequest
-
         },
         headers: {
             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
         },
         success: function (response) {
             if (response.success) {
-                $('#confirmacionCambioModal').modal('hide'); 
-                $('#comentarioCambio').val(''); // Clear the comment field 
+                $('#commentModal').modal('hide'); 
+                $('#commentText').val(''); // Clear the comment field 
                 alert('Comentario agregado exitosamente');
                 // Optionally refresh the page or update the comments list
                 location.reload();
@@ -99,11 +109,6 @@ function submitComment(textareaId, TypeRequest) {
         }
     });
 }
-
-
-
- 
-
 
 function buscarFormulario() {
     var buscaform = document.getElementById('buscaform').value;  
@@ -196,4 +201,11 @@ function asignarSeleccionadosA(nombreUsuario) {
     // Cerrar el modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('modalUsuarios'));
     modal.hide();
+}
+
+
+
+function CargaInfo(data) {
+    window.location.href = '../Archivos/SubirArchivo?ProcessId=' + data;
+
 }

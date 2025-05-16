@@ -5,17 +5,17 @@ namespace managerelchenchenvuelve.Models;
 
 public partial class Role
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = null!;
 
     public string Name { get; set; } = null!;
 
-    public DateTimeOffset Created { get; set; }
+    public string? RolName { get; set; }
 
-    public DateTimeOffset Modified { get; set; }
+    public string? ActiveDirectoryGroup { get; set; }
 
-    public Guid OwnerId { get; set; }
+    public string? Description { get; set; }
 
-    public virtual User Owner { get; set; } = null!;
+    public bool IsActiveDirectorySync { get; set; }
 
-    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+    public bool Status { get; set; }
 }

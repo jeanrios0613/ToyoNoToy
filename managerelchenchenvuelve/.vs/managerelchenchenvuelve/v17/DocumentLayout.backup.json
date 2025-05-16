@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|solutionrelative:managerelchenchenvuelve\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\managerelchenchenvuelve\\managerelchenchenvuelve\\views\\requests\\solicitud.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|solutionrelative:managerelchenchenvuelve\\views\\requests\\solicitud.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\managerelchenchenvuelve\\managerelchenchenvuelve\\controllers\\requestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|solutionrelative:managerelchenchenvuelve\\controllers\\requestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\toyonotoy\\managerelchenchenvuelve\\managerelchenchenvuelve\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC4EC902-714A-4EDE-9CAC-6B4F4DE7A7F6}|managerelchenchenvuelve\\managerelchenchenvuelve.csproj|solutionrelative:managerelchenchenvuelve\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "site.js",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\js\\site.js",
-              "RelativeDocumentMoniker": "managerelchenchenvuelve\\wwwroot\\js\\site.js",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\js\\site.js",
-              "RelativeToolTip": "managerelchenchenvuelve\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-15T17:49:15.663Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Solicitud.cshtml",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\Views\\Requests\\Solicitud.cshtml",
-              "RelativeDocumentMoniker": "managerelchenchenvuelve\\Views\\Requests\\Solicitud.cshtml",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\Views\\Requests\\Solicitud.cshtml",
-              "RelativeToolTip": "managerelchenchenvuelve\\Views\\Requests\\Solicitud.cshtml",
-              "ViewState": "AgIAABcBAAAAAAAAAAAAAOIAAABvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-15T17:36:40.821Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RequestsController.cs",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\Controllers\\RequestsController.cs",
-              "RelativeDocumentMoniker": "managerelchenchenvuelve\\Controllers\\RequestsController.cs",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\Controllers\\RequestsController.cs",
-              "RelativeToolTip": "managerelchenchenvuelve\\Controllers\\RequestsController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\Program.cs",
+              "RelativeDocumentMoniker": "managerelchenchenvuelve\\Program.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\Program.cs",
+              "RelativeToolTip": "managerelchenchenvuelve\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T17:36:33.222Z",
+              "WhenOpened": "2025-05-16T19:49:08.431Z",
               "EditorCaption": ""
             }
           ]
