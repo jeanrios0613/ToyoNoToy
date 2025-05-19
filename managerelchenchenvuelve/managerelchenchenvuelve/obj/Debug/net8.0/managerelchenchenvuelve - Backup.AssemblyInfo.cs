@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("managerelchenchenvuelve - Backup")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b45d4417bfc53c874aa7299297a839d134b35a8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76fc8f9bfa51925d4cb5fbfaa3371fd2a152337b")]
 [assembly: System.Reflection.AssemblyProductAttribute("managerelchenchenvuelve - Backup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("managerelchenchenvuelve - Backup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

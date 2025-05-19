@@ -18,7 +18,7 @@
                     <label class="lettertitle" >Cargar Archivos</label>
                         <!-- Formulario para cargar archivo -->
                     <form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="ProcessId" value="@ViewBag.Id" />
+                            <input type="hidden" name="ProcessId" value="@ViewBag.ProcessId" />
                         @Html.AntiForgeryToken()
                             <div class="file-size-info">
                                 Adjuntar archivo <strong>(máx. 5 MB):</strong>
@@ -46,8 +46,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Descripción</th>
+                            <th>Archivos Cargados</th> 
                             <th>Ruta</th>
                         </tr>
                     </thead>
@@ -58,10 +57,11 @@
                         foreach (var item in formularios)
                         {
                             <tr>
-                                        <td>@item.DocumentTitle</td>
-                                        <td>@item.StageName</td>
+
+                                <td>@item.DocumentTitle</td> 
                                 <td><a href="@Url.Content(item.StageName)" target="_blank">Descargar</a></td>
-                            </tr>
+         
+                           </tr>
                         }
                     }
                     </tbody>

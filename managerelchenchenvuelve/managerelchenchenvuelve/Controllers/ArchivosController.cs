@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using System.Diagnostics;
+using managerelchenchenvuelve.Controllers;
 
 
 
@@ -20,21 +21,76 @@ public class ArchivosController : Controller
     
     private readonly ToyoNoToyContext   _context;
     private readonly DatabaseConnection _db;
-    private readonly string rutaServidor = "..\\wwwroot\\Reportes";
+    private readonly string rutaServidor = "..\\managerelchenchenvuelve\\wwwroot\\Reportes\\";
+    private readonly ILogger<ProcessController> _logger;
 
 
-   
-    public ArchivosController(ToyoNoToyContext context, DatabaseConnection db)
+    public ArchivosController(ToyoNoToyContext context, DatabaseConnection db,ILogger<ProcessController> logger)
     {
         _context = context;
+        _logger = logger;
         _db      = db;
     }
  
 
     // GET: Archivos/SubirArchivo
     public IActionResult SubirArchivo(string? ProcessId)
-    {    
- 
+    {
+        var username = HttpContext.Session.GetString("UserName");
+        if (string.IsNullOrEmpty(username))
+        {
+            _logger.LogWarning("No se encontró usuario en la sesión");
+            return RedirectToAction("Login", "Account");
+        }
+        var archivos =  _context.DocumentReferences.Where(a => a.ProcessInstanceId == ProcessId).ToList();
+
+        ViewBag.ProcessId = ProcessId;
+        return View(archivos); 
+    }
+
+
+    // POST: Archivos/SubirArchivo
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SubirArchivo(IFormFile archivo, string ProcessId, string descripcion)
+    {
+        if (archivo != null && archivo.Length > 0 && archivo.Length <= 5 * 1024 * 1024)
+        {
+            // Crear la ruta de la carpeta usando el ProcessId
+            string carpetaProcess = Path.Combine(rutaServidor, ProcessId);
+            _logger.LogInformation($"Carpeta: {carpetaProcess}");
+            // Crear la carpeta si no existe
+            if (!Directory.Exists(carpetaProcess))
+            {
+                Directory.CreateDirectory(carpetaProcess);
+            }
+
+            // Guardar el archivo en la carpeta del ProcessId
+            string rutaDocumento = Path.Combine(carpetaProcess, archivo.FileName);
+
+            using (var stream = new FileStream(rutaDocumento, FileMode.Create))
+            {
+                await archivo.CopyToAsync(stream);
+            }
+
+            var nuevoArchivo = new DocumentReference
+            {
+                Id = Guid.NewGuid(),
+                ProcessInstanceId = ProcessId,
+                DocumentTitle = archivo.FileName,
+                StageName = rutaDocumento,
+                CreatedAt = DateTimeOffset.UtcNow,
+                CreatedBy = HttpContext.Session.GetString("UserName")
+            };
+
+            _context.DocumentReferences.Add(nuevoArchivo);
+            await _context.SaveChangesAsync();
+
+            // Redirigir al usuario para que vea los archivos subidos
+            return RedirectToAction(nameof(SubirArchivo), new { ProcessId = ProcessId });
+        }
+
+        ModelState.AddModelError("", "El archivo debe ser menor a 5 MB.");
         return View();
     }
 

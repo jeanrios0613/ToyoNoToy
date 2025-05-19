@@ -45,6 +45,13 @@ public partial class ToyoNoToyContext : DbContext
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AsignacionClass>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Usuario).HasMaxLength(256);
+            entity.Property(e => e.NombreCompleto).HasMaxLength(256);
+        });
+
         modelBuilder.Entity<Comment>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();

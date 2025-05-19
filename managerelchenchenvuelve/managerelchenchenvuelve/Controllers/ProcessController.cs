@@ -199,7 +199,10 @@ namespace managerelchenchenvuelve.Controllers
                             Tiempo =Convert.ToInt32(row["Tiempo"].ToString())
                         });
                     }
+                    
 
+
+                    ViewBag.Cantidad     = Math.Min(page * pageSize, totalCount);
                     ViewBag.TotalQuery   = totalCount;
                     ViewBag.ViewQuery    = page * 10;
                     ViewBag.AdminUser    = HttpContext.Session.GetString("Roles");

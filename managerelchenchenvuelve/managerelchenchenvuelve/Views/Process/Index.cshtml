@@ -16,8 +16,7 @@
 }
  
 
-
-
+ 
 <input type="hidden" name="TareaUser" id="TareaUser" value="@ViewBag.Tarea" />
  
 </br> 
@@ -104,80 +103,91 @@
                 <tbody>
                     @if (Model is IEnumerable<managerelchenchenvuelve.Models.DatosReca> formularios)
                     {
-                        foreach (var item in formularios)
-                        {  <tr>
-                                <td style="@(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "disabled")">
-                                    <div class="d-flex align-items-center" >
-                                        <input type="checkbox" class="form-check-input tarea-checkbox" style="width: 20px; height: 20px;" data-id="@item.Id" onchange="actualizarSeleccion()">
-                                    </div>
+                        if (formularios == null || !formularios.Any())
+                        {
+                            <tr>
+                                <td colspan="8" style="text-align: center; font-style: italic; color: gray;">
+                                    "Sin Solicitud para ser atendida". 
                                 </td>
-                                <td style="cursor: pointer; min-width: 150px; width: 200px;"> 
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in formularios)
+                            {  <tr>
+                                                <td style="@(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")  min-width: 75px; width: 75px;">
+                                        <div class="d-flex align-items-center" >
+                                            <input type="checkbox" class="form-check-input tarea-checkbox" style="width: 20px; height: 20px;" data-id="@item.Id" onchange="actualizarSeleccion()">
+                                        </div>
+                                    </td>
+                                    <td style="cursor: pointer; min-width: 150px; width: 200px;"> 
+                                            <div class="p-table__content__cell">
+                                            @Html.DisplayFor(m => item.gestor)
+                                             </div> 
+                                    </td>
+                                    <td style="cursor: pointer; min-width: 150px; width: 300px;"> 
                                         <div class="p-table__content__cell">
-                                        @Html.DisplayFor(m => item.gestor)
-                                         </div> 
-                                </td>
-                                <td style="cursor: pointer; min-width: 150px; width: 300px;"> 
-                                    <div class="p-table__content__cell">
-                                        <a class="nav-link" href='../Requests/Solicitud?id=@item.CodigoDeSolicitud'>
-                                            @Html.DisplayFor(m => item.CompletaActividad)
-                                        </a>
-                                    </div>
-                                </td>
-                                <td style="cursor: pointer; min-width: 131.512px; width: 135px; color: black;">
-                                    <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#77F177" : "#FFF091"); color: white;">
-                                        @Html.DisplayFor(m => item.Etapa)
-                                     </span>
-                                 </td>
-                                <td   style="cursor: pointer; min-width: 150px; width: 200px;">
-                                    <span class="p-table__content__badge p-table__content__badge__text__active" style="background-color:cornflowerblue">
-                                        <span class="p-table__content__badge__text"> Revisión y validación</span>
-                                    </span>
-                                 </td>
-                                <td   style="cursor: pointer; min-width: 140px; width: 140px;">
-                                    <div class="p-table__content__cell">
-                                        @{  
-                                            var dias =  item.Tiempo ;
-                                            if (dias < 3)
-                                            {
-                                                <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟢</span>
-                                            }
-                                            else if (dias >= 3 && dias <= 5)
-                                            {
-                                                <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟡</span>
-                                            }
-                                            else
-                                            {
-                                                <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🔴</span>
-                                            }
-                                        }
-                                        @Html.DisplayFor(m => item.TiempoTranscurrido)
-                                    </div>
-                                </td>
-                                <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
-                                <td style="cursor: pointer; min-width: 25px; width: 25px;">
-                                    <div class="p-table__content__cell">
-                                        <div class="user-avatar" title="@Html.DisplayFor(m => item.UserName)">
-                                            @{
-                                                var initials = "";
-                                                if (!string.IsNullOrEmpty(item.UserName))
+                                            <a class="nav-link" href='../Requests/Solicitud?id=@item.CodigoDeSolicitud'>
+                                                @Html.DisplayFor(m => item.CompletaActividad)
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td style="cursor: pointer; min-width: 131.512px; width: 135px; color: black;">
+                                        <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#77F177" : "#FFF091"); color: white;">
+                                            @Html.DisplayFor(m => item.Etapa)
+                                         </span>
+                                     </td>
+                                    <td   style="cursor: pointer; min-width: 150px; width: 200px;">
+                                        <span class="p-table__content__badge p-table__content__badge__text__active" style="background-color:cornflowerblue">
+                                            <span class="p-table__content__badge__text"> Revisión y validación</span>
+                                        </span>
+                                     </td>
+                                    <td   style="cursor: pointer; min-width: 140px; width: 140px;">
+                                        <div class="p-table__content__cell">
+                                            @{  
+                                                var dias =  item.Tiempo ;
+                                                if (dias < 3)
                                                 {
-                                                    var nameParts = item.UserName.Split(' ');
-                                                    if (nameParts.Length >= 2)
-                                                    {
-                                                        initials = nameParts[0].Substring(0, 1) + nameParts[1].Substring(0, 1);
-                                                    }
-                                                    else if (nameParts.Length == 1)
-                                                    {
-                                                        initials = nameParts[0].Substring(0, Math.Min(2, nameParts[0].Length));
-                                                    }
+                                                    <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟢</span>
+                                                }
+                                                else if (dias >= 3 && dias <= 5)
+                                                {
+                                                    <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟡</span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🔴</span>
                                                 }
                                             }
-                                            <span class="avatar-text">@initials.ToUpper()</span>
+                                            @Html.DisplayFor(m => item.TiempoTranscurrido)
                                         </div>
-                                    </div>
-                                </td>
-                            
-                            </tr>
+                                    </td>
+                                    <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
+                                    <td style="cursor: pointer; min-width: 25px; width: 25px;">
+                                        <div class="p-table__content__cell">
+                                            <div class="user-avatar" title="@Html.DisplayFor(m => item.UserName)">
+                                                @{
+                                                    var initials = "";
+                                                    if (!string.IsNullOrEmpty(item.UserName))
+                                                    {
+                                                        var nameParts = item.UserName.Split(' ');
+                                                        if (nameParts.Length >= 2)
+                                                        {
+                                                            initials = nameParts[0].Substring(0, 1) + nameParts[1].Substring(0, 1);
+                                                        }
+                                                        else if (nameParts.Length == 1)
+                                                        {
+                                                            initials = nameParts[0].Substring(0, Math.Min(2, nameParts[0].Length));
+                                                        }
+                                                    }
+                                                }
+                                                <span class="avatar-text">@initials.ToUpper()</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                
+                                </tr>
+                            }
                         }
                     }
                    
@@ -193,7 +203,7 @@
                 <div class="col-md-6 mb-3">
                     <br/>
                     <span class="p-table__opts__navs__titles__subtitle">
-                        Monstrando @ViewBag.ViewQuery de  @ViewBag.TotalQuery
+                        Monstrando @ViewBag.Cantidad de  @ViewBag.TotalQuery
                     </span>
 
                 </div>
@@ -248,42 +258,48 @@
             <span id="selected-count">0</span> seleccionadas
         </div>
         <div class="d-flex gap-2 justify-content-end">
-            <button class="btn btn-primary" type="button" onclick="mostrarModalUsuarios()">
-                Asignar a
-            </button>
+            <div class="relative">
+                <button class="btn btn-primary" type="button" id="toggleUserList">
+                    Asignar a
+                </button>
+                <div id="userList" class="position-absolute end-0 bottom-100 mb-2 bg-white rounded shadow-lg d-none" style="width: 300px; max-height: 400px; overflow-y: auto; z-index: 1000; color: gray">
+                    <div class="list-group">
+                        @if (lista != null)
+                        {
+                            foreach (var user in lista)
+                            {
+                                <button type="button" class="list-group-item list-group-item-action"
+                                        onclick="asignarSeleccionadosA('@user.Usuario')">
+                                    @user.NombreCompleto
+                                </button>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
             <button class="btn btn-outline-light" onclick="limpiarSeleccion()">Cancelar</button>
         </div>
     </div>
 </div>
 
-<!-- Modal de Usuarios -->
-<div class="modal fade" id="modalUsuarios" tabindex="-1" aria-labelledby="modalUsuariosLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalUsuariosLabel">Seleccionar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="list-group">
-                    @if (lista != null)
-                    {
-                        foreach (var user in lista)
-                        {
-                            <button type="button" class="list-group-item list-group-item-action"
-                                    onclick="asignarSeleccionadosA('@user.Usuario')">
-                                @user.NombreCompleto
-                            </button>
-                        }
-                    }
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButton = document.getElementById('toggleUserList');
+        const userList = document.getElementById('userList');
+
+        toggleButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userList.classList.toggle('d-none');
+        });
+
+        // Cerrar la lista cuando se hace clic fuera
+        document.addEventListener('click', function(e) {
+            if (!userList.contains(e.target) && e.target !== toggleButton) {
+                userList.classList.add('d-none');
+            }
+        });
+    });
+</script>
 
 
 
