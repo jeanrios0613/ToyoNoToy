@@ -74,15 +74,10 @@
                         </th>
                         <th style="min-width: 131.512px; width: 135px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
-                                Estatus
+                                Estado
                             </div>
                         </th>
-                        
-                        <th  style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
-                            <div class="mat-sort-header-container">
-                                Bandeja
-                            </div>
-                         </th>
+                         
                         <th   style="min-width:140px; width: 140px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                                 Duración
@@ -91,6 +86,11 @@
                         <th style ="min-width:50px; width: 100px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                             Fecha de Creación
+                            </div>
+                        </th>
+                        <th style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
+                            <div class="mat-sort-header-container">
+                                Fecha de Actualizacion
                             </div>
                         </th>
                         <th style="min-width: 131.512px; width: 135px; top: 0px; z-index: 100;">
@@ -133,15 +133,11 @@
                                         </div>
                                     </td>
                                     <td style="cursor: pointer; min-width: 131.512px; width: 135px; color: black;">
-                                        <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#77F177" : "#FFF091"); color: white;">
+                                        <span class="badge badge-status" style="background-color: @(item.Etapa == "Completada" ? "#006400" : "#2563eb"); color: white;">
                                             @Html.DisplayFor(m => item.Etapa)
                                          </span>
                                      </td>
-                                    <td   style="cursor: pointer; min-width: 150px; width: 200px;">
-                                        <span class="p-table__content__badge p-table__content__badge__text__active" style="background-color:cornflowerblue">
-                                            <span class="p-table__content__badge__text"> Revisión y validación</span>
-                                        </span>
-                                     </td>
+                                   
                                     <td   style="cursor: pointer; min-width: 140px; width: 140px;">
                                         <div class="p-table__content__cell">
                                             @{  
@@ -162,6 +158,7 @@
                                             @Html.DisplayFor(m => item.TiempoTranscurrido)
                                         </div>
                                     </td>
+                                    <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
                                     <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
                                     <td style="cursor: pointer; min-width: 25px; width: 25px;">
                                         <div class="p-table__content__cell">

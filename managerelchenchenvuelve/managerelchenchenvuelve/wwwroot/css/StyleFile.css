@@ -19,10 +19,8 @@
 
 .status-badge {
     background-color: #dbeafe;
-    color: #2563eb;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
+    color: #2563eb; 
+    border-radius: 12px; 
 }
 
 

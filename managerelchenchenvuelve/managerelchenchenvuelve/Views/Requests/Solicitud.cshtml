@@ -19,7 +19,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <!--HIDDEN VALUE-->
-            <input type="hidden" name="Code" id="Code" value="@Model.CodigoDeSolicitud" />
+            <input type="hidden" name="CodigoDeSolicitud"  id="CodigoDeSolicitud" value="@Model.CodigoDeSolicitud" />
             <input type="hidden" name="Gestor" id="Gestor"   value="@Model.Gestor" />
             <input type="hidden" name="Etapa"  id="Etapa"    value="@Model.Etapa" />
             <!--HIDDEN VALUE-->
@@ -252,32 +252,23 @@
                             <strong>No. solicitud:</strong> @Html.DisplayFor(model => model.CodigoDeSolicitud)
                         </div>
                         <div class="mb-2">
-                            <strong>Tipo de solicitud:</strong><br> @Html.DisplayFor(model => model.TipoAtencion)
+                            <strong>Tipo de solicitud:</strong><br> @Html.DisplayFor(model => model.Gestor)
                         </div>
                         <div class="mb-2">
                             <strong>Fecha creación:</strong><br> @Html.DisplayFor(model => model.FechaDeCreacion)
+                        </div> 
+                        <div class="mb-2">
+                            <strong>Duración:</strong><br>  @Html.DisplayFor(model => model.TiempoTranscurrido)
                         </div>
                         <div class="mb-2">
-                            <strong>Creado por:</strong><br> @Html.DisplayFor(model => model.Gestor)
+                            <strong>Asignado a:</strong><br> @Html.DisplayFor(model => model.UsuarioAsignado)
                         </div>
                         <div class="mb-2">
-                            <strong>Duración:</strong><br> 🟢 @Html.DisplayFor(model => model.TiempoTranscurrido)
-                        </div>
-                        <div class="mb-2">
-                            <strong>Asignado a:</strong><br> @Html.DisplayFor(model => model.Gestor)
-                        </div>
-                        <div class="mb-2">
-                            <strong>Estado:</strong><br> <span class="status-badge">En curso</span>
-                        </div>
-                        <div class="mb-2">
-                            <strong>Bandeja:</strong><br> <span class="badge bg-warning text-dark">Revisión y Asignación</span>
-                        </div>
-                        <div class="mb-2">
-                            <strong>Tareas:</strong><br> 1 tarea activa
-                        </div>
-                        <div class="mb-2">
-                            <strong>Comentarios:</strong><br> 0 Comentarios
-                        </div>
+                            <strong>Estado:</strong><br> <span class="badge badge-status" style="background-color: (@Html.DisplayFor(model => model.Etapa) == "Completada" ? "#006400" : "#2563eb" ); color: white;">
+                                @Html.DisplayFor(model => model.Etapa)
+                            </span>
+                        </div> 
+                        
                     </div>
                 </div>
             </div>

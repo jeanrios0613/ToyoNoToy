@@ -15,5 +15,5 @@ public partial class Comment
 
     public DateTimeOffset CreatedAt { get; set; }
 
-    public string StageName { get; set; } = null!;
+    public string StageName { get; set; } = null!; 
 }

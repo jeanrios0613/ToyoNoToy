@@ -1,7 +1,8 @@
-﻿
+﻿@using managerelchenchenvuelve.Models
 
 @{
     Layout = "_Layout";
+    var listaComenta = ViewBag.DataComenta as List<Comment>;
 }
  
  <div class="container__fijo">
@@ -69,7 +70,7 @@
               </div>
           </div>
        </div>
-
+       
 
             <!-- Tabla de comentarios -->
       <div class="col-md-6">
@@ -77,20 +78,21 @@
            <div class="comentarios-box">
             <h3>Comentarios</h3>
 
-            <div class="comentario"> 
-                <div class="comentario-info">
-                    <p class="autor">Fabiola G. <span class="fecha">Dic 23, 2014</span></p>
-                    <p class="texto">Inicio de la construcción</p>
-                </div>
-            </div>
+                        @if (listaComenta != null)
+                        {
+                            foreach (var CommentL in listaComenta)
+                            {
+                                
+                                <div class="comentario">
+                                    <div class="comentario-info">
+                                        <p class="autor"> @CommentL.CreatedBy  <span class="fecha">@CommentL.CreatedAt</span></p>
+                                        <p class="texto"> @CommentL.Message </p>
+                                    </div>
+                                </div>
 
-            <div class="comentario"> 
-                <div class="comentario-info">
-                    <p class="autor">Barbara A. <span class="fecha">Ago 11, 2016</span></p>
-                    <p class="texto">Favor confirmar con el cliente.</p>
-                </div>
-            </div>
-
+                            }
+                        }
+ 
             <div class="nuevo-comentario"> 
                 <textarea rows="3" placeholder="Agregar comentario"></textarea>
             </div>

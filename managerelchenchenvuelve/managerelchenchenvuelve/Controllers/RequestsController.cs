@@ -40,7 +40,30 @@ namespace managerelchenchenvuelve.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            string query = @"SELECT * FROM [ToyNoToy].[dbo].[Request_Info] WHERE Codigo_de_solicitud = @Codigo";
+            string query =   @"SELECT  * 
+                                 FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                                       FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
+                                       CASE 
+                                       WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                        THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
+                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                        THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
+                                        ELSE 
+                                            'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
+                                            END AS TiempoTranscurrido,
+                                 
+                                        TRY_CAST(CASE 
+                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                            THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                            THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                        ELSE 
+                                            CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
+                                            END as int)  AS Tiempo,
+ 
+                                        RI.* 
+
+                                      FROM  [dbo].[Request_info] as RI ) as REQS  WHERE Codigo_de_solicitud = @Codigo ";
 
             SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -87,6 +110,8 @@ namespace managerelchenchenvuelve.Controllers
                     PorqueNoContacto = row["Porque_no_contacto"].ToString(),
                     Etapa = row["Etapa"].ToString(),
                     UsuarioAsignado = row["Usuario_Asignado"].ToString(),
+                    TiempoTranscurrido = row["TiempoTranscurrido"].ToString()
+
 
 
                 };
@@ -121,12 +146,20 @@ namespace managerelchenchenvuelve.Controllers
 
                 // Update the process status in the database
                 string updateQuery = @"update ToyNoToy.dbo.Request_Info
-                                 set    Verificacion_Cliente = @verifica
-                                       ,Gestion_Realizada    = @gestion
-                                       ,Tipo_atencion        = @tipo
-                                       ,Porque_no_contacto   = @contacto
-                                       ,Etapa  = 'Completada'
-                                 WHERE Codigo_de_solicitud   = @CodigoDeSolicitud";
+                                       set Etapa  = 'Completada'
+                                       ,Verificacion_Cliente = @verifica
+                                       ,Gestion_Realizada    = @gestion";
+                 if (formData.TipoAtencion == null)
+                {
+                    updateQuery += ",Tipo_atencion = @tipo";
+                }
+
+                if (formData.PorqueNoContacto == null)
+                {
+                    updateQuery += ",Porque_no_contacto = @contacto ";
+                }
+
+                updateQuery += "WHERE Codigo_de_solicitud   = @CodigoDeSolicitud";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -142,6 +175,7 @@ namespace managerelchenchenvuelve.Controllers
 
                 int affected = _db.ExecuteNonQuery(updateQuery, parameters);
                 _logger.LogInformation("Filas afectadas: {affected}", affected);
+                _logger.LogInformation("Iniciando procesamiento de solicitud. Datos recibidos: {@updateQuery}", updateQuery);
 
                 if (affected > 0)
                 {
@@ -155,7 +189,8 @@ namespace managerelchenchenvuelve.Controllers
                     return View(formData);
                 }
 
-                 
+                
+
             }
             catch (Exception ex)
             {
@@ -199,7 +234,7 @@ namespace managerelchenchenvuelve.Controllers
 
 
 				string UpdateQuery = @"UPDATE [dbo].[Request_info]  SET ";
-				if (TypeRequest == "AprovedChange")
+				if (TypeRequest == "AprovedRequest")
 				{
 					UpdateQuery += "Etapa = 'Re-Abrir Solicitud'," +
 								   "Usuario_Asignado = 'chenchen'";

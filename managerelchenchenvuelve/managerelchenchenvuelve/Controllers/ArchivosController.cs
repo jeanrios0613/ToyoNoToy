@@ -42,9 +42,12 @@ public class ArchivosController : Controller
             _logger.LogWarning("No se encontró usuario en la sesión");
             return RedirectToAction("Login", "Account");
         }
-        var archivos =  _context.DocumentReferences.Where(a => a.ProcessInstanceId == ProcessId).ToList();
+        _logger.LogInformation("Buscando archivos para ProcessId: {ProcessId}", ProcessId);
+        var archivos = _context.DocumentReferences.Where(a => a.ProcessInstanceId == ProcessId).ToList();
+        _logger.LogInformation("Archivos encontrados: {Count}", archivos.Count);
 
         ViewBag.ProcessId = ProcessId;
+        ViewBag.DataComenta = GetCommentsByProcessId(ProcessId);
         return View(archivos); 
     }
 
@@ -95,4 +98,32 @@ public class ArchivosController : Controller
     }
 
 
+     
+
+    public List<Comment> GetCommentsByProcessId(string? ProcessId)
+    {
+        List<Comment> CommentList = new List<Comment>();
+
+        if (string.IsNullOrEmpty(ProcessId))
+        {
+            return new List<Comment>();
+        }
+        _logger.LogInformation("Buscando Comentarios para ProcessId: {ProcessId}", ProcessId);
+        CommentList = _context.Comments
+            .Where(a => a.ProcessInstanceId == ProcessId)
+            .Select(c => new Comment
+            {
+                Id = c.Id,
+                ProcessInstanceId = c.ProcessInstanceId,
+                Message = c.Message,
+                CreatedBy = c.CreatedBy,
+                CreatedAt = c.CreatedAt,
+                StageName = c.StageName
+            })
+            .ToList();
+        _logger.LogInformation("Archivos Comentarios encontrados: {Count}", CommentList.Count);
+
+        return CommentList;
+    }
+     
 }
