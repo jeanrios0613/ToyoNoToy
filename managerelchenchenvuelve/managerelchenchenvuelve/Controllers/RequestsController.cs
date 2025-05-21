@@ -34,6 +34,8 @@ namespace managerelchenchenvuelve.Controllers
         public ActionResult solicitud(string? id)
         {
             var username = HttpContext.Session.GetString("UserName");
+            var Roles = HttpContext.Session.GetString("Roles");
+
             if (string.IsNullOrEmpty(username))
             {
                 _logger.LogWarning("No se encontró usuario en la sesión");
@@ -121,7 +123,9 @@ namespace managerelchenchenvuelve.Controllers
             {
                 return NotFound();
             }
-            
+
+
+            ViewBag.AdminUser = HttpContext.Session.GetString("Roles");
             ViewBag.Codigo = id;
             return View(info);
         }
@@ -189,7 +193,7 @@ namespace managerelchenchenvuelve.Controllers
                     return View(formData);
                 }
 
-                
+               
 
             }
             catch (Exception ex)
@@ -236,29 +240,29 @@ namespace managerelchenchenvuelve.Controllers
 				string UpdateQuery = @"UPDATE [dbo].[Request_info]  SET ";
 				if (TypeRequest == "AprovedRequest")
 				{
-					UpdateQuery += "Etapa = 'Re-Abrir Solicitud'," +
-								   "Usuario_Asignado = 'chenchen'";
+					UpdateQuery += "Etapa = 'Re-Abrir Solicitud', " +
+								   "Usuario_Asignado = 'chenchen' ";
 				}
 				else if (TypeRequest == "OpenRequest")
 				{
 
-					UpdateQuery += "Etapa = '5-Gestión Ampyme'" +
-								   "Usuario_Asignado = 'chenchen'";
+					UpdateQuery += "Etapa = '5-Gestión Ampyme', " +
+								   "Usuario_Asignado = 'chenchen' ";
 
 				}
 				else if (TypeRequest == "ChangeRequest")
 				{
 
-					UpdateQuery += "Etapa = 'Solicitar Cambio'" +
-								   "Usuario_Asignado = 'chenchen'";
+					UpdateQuery += "Etapa = 'Solicitar Cambio', " +
+								   "Usuario_Asignado = 'chenchen' ";
 
 				}
 				else if (TypeRequest == "AprovedChange")
 				{
 
-					UpdateQuery += "Etapa = 'Aprobar Cambio'," +
-								   " Usuario_Asignado = null," +
-								   " Gestor = 'Gestión Caja de Ahorros'";
+					UpdateQuery += " Etapa = '4-Gestión CA', " +
+								   " Usuario_Asignado = null, " +
+								   " Gestor = 'Gestión Caja de Ahorros' ";
 				}
 
 				UpdateQuery += " WHERE Codigo_de_solicitud = @codigo; ";

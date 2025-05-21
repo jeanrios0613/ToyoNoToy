@@ -229,16 +229,16 @@
                                 <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
                             </section>
 
-                            <section id="to-pass" style="@(Model.Etapa == "Cambio de Solicitud" ? "" : "display: none;")">
+                            <section id="to-pass" style="@(Model.Etapa == "Solicitar Cambio" ? "" : "display: none;") @(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Aprobar Cambio', 'AprovedChange')">Aprobar Cambio</button>
                             </section>
 
-                            <section id="to-pass" style="@(Model.Etapa == "Re-Abrir Solicitud" ? "" : "display: none;")">
+                            <section id="to-pass" style="@(Model.Etapa == "Re-Abrir Solicitud" ? "" : "display: none;") @(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Abrir Solicitud', 'OpenRequest')">Confirma Solicitud</button>
                             </section>
 
-                            <section id="reopen" style="@(Model.Etapa == "Completada" ? "" : "display: none;")">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Aprobar', 'AprovedRequest')"> Re-Aprobar </button>
+                            <section id="reopen" style="@(Model.Etapa == "Completada" ? "" : "display: none;") ">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Aprobar', 'AprovedRequest')"> Re - Apertura </button>
                             </section>
                         </div>
                     </div>

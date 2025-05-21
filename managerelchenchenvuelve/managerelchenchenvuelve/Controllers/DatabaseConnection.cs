@@ -19,6 +19,7 @@ namespace managerelchenchenvuelve.Services
         public DataTable ExecuteQuery(string query, params SqlParameter[] parameters)
 		{
 			DataTable result = new DataTable();
+
             _logger.LogInformation("Executing query: {Query}", query);
 
 			using (SqlConnection connection = new SqlConnection(_connectionString))

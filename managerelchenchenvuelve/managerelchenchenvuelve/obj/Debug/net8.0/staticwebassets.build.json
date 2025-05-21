@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MutJZZEdAm22gblZiiOtMau2d2yERgljEV4bQgU3dsw=",
+  "Hash": "8g74pFQMkEfXgxrGGeETC1fjGFQfk7eyuxGrnprkhs4=",
   "Source": "managerelchenchenvuelve",
   "BasePath": "_content/managerelchenchenvuelve",
   "Mode": "Default",
@@ -4292,12 +4292,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\Reportes\\1.PNG",
+      "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\Reportes\\20250508-SCC53254102\\Formulario Corto Vida y Salud.pdf",
       "SourceId": "managerelchenchenvuelve",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\",
       "BasePath": "_content/managerelchenchenvuelve",
-      "RelativePath": "Reportes/1.PNG",
+      "RelativePath": "Reportes/20250508-SCC53254102/Formulario Corto Vida y Salud.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4308,26 +4308,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Reportes\\1.PNG"
-    },
-    {
-      "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\Reportes\\2.PNG",
-      "SourceId": "managerelchenchenvuelve",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\",
-      "BasePath": "_content/managerelchenchenvuelve",
-      "RelativePath": "Reportes/2.PNG",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Reportes\\2.PNG"
+      "OriginalItemSpec": "wwwroot\\Reportes\\20250508-SCC53254102\\Formulario Corto Vida y Salud.pdf"
     }
   ]
 }

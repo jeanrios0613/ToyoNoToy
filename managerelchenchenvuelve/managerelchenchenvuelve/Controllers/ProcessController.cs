@@ -31,7 +31,7 @@ namespace managerelchenchenvuelve.Controllers
         }
 
         // GET: ProcessController
-        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10, string? tarea = "P", string? search = null)
+        public ActionResult Index(string? id = null, int page = 1, int pageSize = 10, string? tarea = "P", string? search = null, string? business = null,string?  ListUser = null)
         {
             var username  = HttpContext.Session.GetString("UserName");
             var Userss    = HttpContext.Session.GetString("Userss");
@@ -55,8 +55,12 @@ namespace managerelchenchenvuelve.Controllers
 
                 List<DatosReca> Datos = new List<DatosReca>();
 
+
+
+              
+
                 string query = @"SELECT *
-                                 FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                                 FROM (SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
                                        FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
                                        CASE 
                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
@@ -83,8 +87,8 @@ namespace managerelchenchenvuelve.Controllers
                 //Se utiliza este filtro para poder impletar el buscador 
                 if (search == null)
                 {
-                    query += " WHERE GESTOR = 'Gestión directa de Ampyme'" +
-                              "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
+                    query += " WHERE GESTOR = 'Gestión directa de Ampyme' ";
+                              
 
                 }
                 else if (search != null)
@@ -92,27 +96,43 @@ namespace managerelchenchenvuelve.Controllers
 
                     query += "WHERE CompletaActividad LIKE '%" + search + "%'";
 
-                } 
-                 
+                }
+
+
+                if (!string.IsNullOrEmpty(ListUser))
+                {
+                    query += " AND usuario_asignado in  ( "+ListUser+" )";
+                }
+                else
+                {
+
+                    query += " AND usuario_asignado = COALESCE(@username, usuario_asignado)";
+                }
+
+
                 if (tarea == "C")
                 {
-                    query += "AND ETAPA = 'Completada'";
+                    query += " AND ETAPA = 'Completada'";
 
                 }
-                else if (tarea == "P")
+                if (tarea == "P")
                 {
 
-                    query += "AND ETAPA != 'Completada'";
-                } 
+                    query += " AND ETAPA != 'Completada'";
+                }
 
+                if (!string.IsNullOrEmpty(business))
+                {
+                    query += " AND Etapa_del_Negocio in (" + business + ")";
+                }
 
-                    query += " ORDER BY fecha_de_creacion desc " +
+                query += " ORDER BY fecha_de_creacion desc " +
                              " OFFSET @Offset ROWS " +
                              " FETCH NEXT @PageSize ROWS ONLY";
 
                 SqlParameter[] parameters = new SqlParameter[]
-                {    
-                    new SqlParameter("@username",Userss),
+                {   
+                    new SqlParameter("@username",Userss), 
                     new SqlParameter("@Offset", (page - 1) * pageSize),
                     new SqlParameter("@PageSize", pageSize)
                 };
@@ -122,53 +142,67 @@ namespace managerelchenchenvuelve.Controllers
                 /////////////////////////////////////********** TOTAL PARA PAGINATION ************************//////////////////////////////////////////////
 
                 string CountQuery = @"SELECT  * 
-                                 FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
-                                       FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
-                                       CASE 
-                                       WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
-                                        THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
-                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
-                                        THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
-                                        ELSE 
-                                            'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
-                                            END AS TiempoTranscurrido,
+                                      FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
+                                            FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
+                                            CASE 
+                                            WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                            THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
+                                            WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                            THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
+                                            ELSE 
+                                                'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
+                                                END AS TiempoTranscurrido,
                                  
-                                        TRY_CAST(CASE 
-                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
-                                            THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
-                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
-                                            THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
-                                        ELSE 
-                                            CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
-                                            END as int)  AS Tiempo,
+                                            TRY_CAST(CASE 
+                                            WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
+                                                THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                            WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
+                                                THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
+                                            ELSE 
+                                                CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
+                                                END as int)  AS Tiempo,
  
-                                        RI.* 
+                                            RI.* 
 
-                                      FROM  [dbo].[Request_info] as RI ) as REQS ";
+                                            FROM  [dbo].[Request_info] as RI ) as REQS ";
 
                 //Se utiliza este filtro para poder impletar el buscador 
                 if (search == null)
                 {
-                    CountQuery += " WHERE GESTOR = 'Gestión directa de Ampyme'" +
-                              "AND usuario_asignado = COALESCE(@username, usuario_asignado)";
+                    CountQuery += " WHERE GESTOR = 'Gestión directa de Ampyme'";
 
                 }
                 else if (search != null)
                 {
 
-                    CountQuery += "WHERE CompletaActividad LIKE '%" + search + "%'";
+                    CountQuery += " WHERE CompletaActividad LIKE '%" + search + "%'";
 
+                }
+
+                if (!string.IsNullOrEmpty(ListUser))
+                {
+                    CountQuery += " AND usuario_asignado in  ( " + ListUser + " )";
+                }
+                else
+                {
+
+                    CountQuery += " AND usuario_asignado = COALESCE(@username, usuario_asignado)";
                 }
 
                 if (tarea == "C")
                 {
-                    CountQuery += "AND ETAPA = 'Completada'";
+                    CountQuery += " AND ETAPA = 'Completada'";
 
                 }
-                else if (tarea == "P")
+                if (tarea == "P")
                 {
 
-                    CountQuery += "AND ETAPA != 'Completada'";
+                    CountQuery += " AND ETAPA != 'Completada'";
+                }
+
+                if (!string.IsNullOrEmpty(business))
+                {
+                    CountQuery += " AND Etapa_del_Negocio in (" + business + ")";
                 }
 
 
@@ -176,7 +210,8 @@ namespace managerelchenchenvuelve.Controllers
 
                 SqlParameter[] Countparameters = new SqlParameter[]
                 {
-                    new SqlParameter("@username",Userss)
+                    new SqlParameter("@username",Userss) 
+
                 };
 
                 DataTable Countresult = _db.ExecuteQuery(CountQuery, Countparameters);
@@ -299,13 +334,13 @@ namespace managerelchenchenvuelve.Controllers
 
             List<AsignacionClass> Userlist = new List<AsignacionClass>();
 
-            String Datas = @"select us.username, (names+' '+Lastname) nombrecompleto 
+            String Datas = @"select upper(SUBSTRING(us.names,1,1)) letters, us.username, (names+' '+Lastname) nombrecompleto 
                             from       [dbo].[Users]     as US
                             inner join [dbo].[UserRoles] as UR
                                     on us.id = UR.Userid
                             inner join [dbo].[Roles]     as RL 
                                     ON rl.id = ur.roleid
-                            where rl.rolname = 'GESTIÓN DE AMPYME'
+                            where rl.rolname in ('GESTIÓN DE AMPYME','ADMINISTRADOR') 
                             and    us.Status = 1
                             order by 2"
             ;
@@ -317,10 +352,11 @@ namespace managerelchenchenvuelve.Controllers
                 Userlist.Add(new AsignacionClass
                 {
                     Usuario = row["username"].ToString(),
-                    NombreCompleto = row["nombrecompleto"].ToString()
+                    NombreCompleto = row["nombrecompleto"].ToString(),
+                    Letters = row["letters"].ToString()
                 });
             }
- 
+            
             return Userlist;
 
         }

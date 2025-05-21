@@ -80,7 +80,7 @@ namespace elchenchenvuelvecy.Controllers
                 _context.RequestDetails.Add(Formulario.RequestDetail);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("EnviarSolicitud" ); 
+                return RedirectToAction("EnviarSolicitud","ToyoNoToy"); 
             }
 
             

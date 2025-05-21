@@ -1,9 +1,29 @@
-﻿
-@{
+﻿@{
     Layout = "_Layout";
     ViewData["Title"] = "Reporte";
 }
  
+<script>
+        function GenereReporte() {
+            var startDate = document.getElementById('startDate').value;
+            var endDate = document.getElementById('endDate').value;
+
+            
+            var url = '../Reportes/Descargar_Reportes';
+            var params = [];
+            
+            if (startDate) params.push('Fecin=' + startDate);
+            if (endDate) params.push('Fecfin=' + endDate);
+
+            
+            if (params.length > 0) {
+                url += '?' + params.join('&');
+            }
+            
+            window.location.href = url;
+        }
+</script>
+
 
 <div class="container__fijo">
     <div class="container">  
@@ -14,24 +34,10 @@
                          <div class="col-md-4">
                             <label class="form-label">Tipo de reporte</label>
                             <select class="form-select">
-                                <option>Tabla de datos</option>
-                                <option>Gráfico</option>
+                                <option>Formulario Registrados</option> 
                             </select>
                           </div>
-                         <div class="col-md-4">
-                            <label class="form-label">Sistema</label>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownSystems" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Seleccionar sistemas
-                                </button>
-                                <ul class="dropdown-menu dropdown-systems p-2" aria-labelledby="dropdownSystems">
-                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="qom"><label class="form-check-label" for="qom">QOM</label></div></li>
-                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="isms"><label class="form-check-label" for="isms">ISMS</label></div></li>
-                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="aml"><label class="form-check-label" for="aml">AML</label></div></li>
-                                    <li><div class="form-check"><input class="form-check-input" type="checkbox" id="compliance"><label class="form-check-label" for="compliance">Compliance</label></div></li>
-                                </ul>
-                            </div>
-                        </div>
+                         
                     </div>
 
                     <hr>
@@ -42,14 +48,14 @@
                         <div class="col-md-4">
                             <label class="form-label">Fecha de creación</label>
                             <div class="input-group">
-                                <input type="date" class="form-control" id="startDate">
-                                <span class="input-group-text">a</span>
-                                <input type="date" class="form-control" id="endDate">
+                                <input id="startDate" class="form-control" type="date" aria-label="Fecha Inicio">
+                                <span class="input-group-text">a</span> 
+                                <input id="endDate" class="form-control" type="date" aria-label="Fecha Fin">
                             </div>
                         </div>
                        
                         <div class="col-md-4 text-end">
-                            <button class="btn btn-primary" onclick="downloadReport()">Descargar</button>
+                            <button class="btn btn-primary" onclick="GenereReporte()">Descargar</button>
                         </div>
                     </div>
 

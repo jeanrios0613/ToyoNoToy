@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     }).change();
 
-    // Handle gestionreal select changes
+ 
     $("#gestionreal").change(function () {
         var seleccion = $(this).val();
 
@@ -69,10 +69,10 @@ function showCommentModal(title, type) {
 
 function submitComment(textareaId, TypeRequest) {
     var commentText = $('#' + textareaId).val();
-    var TypeRequest = $('#' + TypeRequest).val();
-    var requestCode = document.getElementById('Code').value; 
-    var gestor = document.getElementById('Gestor').value; 
-    var Etapa = document.getElementById('Etapa').value; 
+    var typeRequest = $('#' + TypeRequest).val();
+    var requestCode = $('#CodigoDeSolicitud').val(); 
+    var gestor = $('#Gestor').val(); 
+    var etapa = $('#Etapa').val(); 
 
     if (!commentText || !requestCode || !gestor) {
         alert('Por favor complete todos los campos requeridos');
@@ -80,14 +80,14 @@ function submitComment(textareaId, TypeRequest) {
     }
 
     $.ajax({
-        url: '../Requests/AddComment',
+        url: '/Requests/AddComment',
         type: 'POST',
         data: {
             requestCode: requestCode,
             commentText: commentText,
             gestor: gestor,
-            Etapa: Etapa,
-            TypeRequest: TypeRequest
+            Etapa: etapa,
+            TypeRequest: typeRequest
         },
         headers: {
             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
@@ -95,9 +95,8 @@ function submitComment(textareaId, TypeRequest) {
         success: function (response) {
             if (response.success) {
                 $('#commentModal').modal('hide'); 
-                $('#commentText').val(''); // Clear the comment field 
-                alert('Comentario agregado exitosamente');
-                // Optionally refresh the page or update the comments list
+                $('#commentText').val('');  
+                alert('Comentario agregado exitosamente'); 
                 location.reload();
             } else {
                 alert(response.message || 'Error al agregar el comentario');
@@ -147,8 +146,8 @@ function limpiarSeleccion() {
 
 function asignarSeleccionados() {
     const selectedIds = Array.from(document.querySelectorAll('.tarea-checkbox:checked'))
-        .map(checkbox => checkbox.dataset.id);
-    // Aquí puedes implementar la lógica para asignar los elementos seleccionados
+        .map(checkbox => checkbox.dataset.id); 
+
     console.log('IDs seleccionados:', selectedIds);
 }
 
@@ -198,7 +197,7 @@ function asignarSeleccionadosA(nombreUsuario) {
             alert("Error al asignar tareas.");
         });
 
-    // Cerrar el modal
+  
     const modal = bootstrap.Modal.getInstance(document.getElementById('modalUsuarios'));
     modal.hide();
 }
@@ -209,3 +208,5 @@ function CargaInfo(data) {
     window.location.href = '../Archivos/SubirArchivo?ProcessId=' + data;
 
 }
+
+
