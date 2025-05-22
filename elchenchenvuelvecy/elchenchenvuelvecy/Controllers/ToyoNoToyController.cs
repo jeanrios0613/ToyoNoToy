@@ -11,9 +11,9 @@ using System.Globalization;
 
 namespace elchenchenvuelvecy.Controllers
 {
-    public class ToyoNoToyController(ToyoNoToyDbContext context) : Controller
+    public class ToyoNoToyController(ToyoNoToyContext context) : Controller
     {
-        private readonly ToyoNoToyDbContext _context = context;
+        private readonly ToyoNoToyContext _context = context;
 
         public IActionResult EnviarSolicitud( )
         {
@@ -78,6 +78,7 @@ namespace elchenchenvuelvecy.Controllers
                 _context.Contacts.Add(Formulario.Contact);
                 _context.Enterprises.Add(Formulario.Enterprise);
                 _context.RequestDetails.Add(Formulario.RequestDetail);
+
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("EnviarSolicitud","ToyoNoToy"); 

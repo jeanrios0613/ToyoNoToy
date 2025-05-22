@@ -7,7 +7,7 @@ public partial class VwUserRolesInfo
 {
     public string Username { get; set; } = null!;
 
-    public bool Status { get; set; }
+    public bool? Status { get; set; }
 
     public string? Email { get; set; }
 

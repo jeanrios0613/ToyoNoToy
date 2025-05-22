@@ -25,7 +25,7 @@ namespace managerelchenchenvuelve.Recursos
                     sb.Append(b.ToString("x2"));
             }
 
-            return sb.ToString();
+            return sb.ToString().ToUpper(); ;
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8g74pFQMkEfXgxrGGeETC1fjGFQfk7eyuxGrnprkhs4=",
+  "Hash": "WDXnBMK9Z8Ug/ORbZbD+FbECWzNqP0850DXq9mA0LfM=",
   "Source": "managerelchenchenvuelve",
   "BasePath": "_content/managerelchenchenvuelve",
   "Mode": "Default",
@@ -4290,6 +4290,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\Reportes\\20250508-SCC53205065\\Doc1.pdf",
+      "SourceId": "managerelchenchenvuelve",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\",
+      "BasePath": "_content/managerelchenchenvuelve",
+      "RelativePath": "Reportes/20250508-SCC53205065/Doc1.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Reportes\\20250508-SCC53205065\\Doc1.pdf"
     },
     {
       "Identity": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\wwwroot\\Reportes\\20250508-SCC53254102\\Formulario Corto Vida y Salud.pdf",

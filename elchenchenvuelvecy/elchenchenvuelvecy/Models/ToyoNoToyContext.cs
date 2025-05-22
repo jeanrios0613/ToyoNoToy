@@ -14,7 +14,7 @@ public partial class ToyoNoToyContext : DbContext
         : base(options)
     {
     }
-
+    public virtual DbSet<FormularioClass> FormularioClasses { get; set; }
     public virtual DbSet<Comment> Comments { get; set; }
 
     public virtual DbSet<Contact> Contacts { get; set; }
@@ -44,6 +44,9 @@ public partial class ToyoNoToyContext : DbContext
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<FormularioClass>()
+      .HasNoKey();
+
         modelBuilder.Entity<Comment>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();

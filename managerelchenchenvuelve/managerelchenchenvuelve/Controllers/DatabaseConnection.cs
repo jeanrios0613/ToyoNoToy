@@ -7,7 +7,7 @@ namespace managerelchenchenvuelve.Services
 {
 	public class DatabaseConnection
     {
-        private readonly string _connectionString;
+        private readonly string? _connectionString;
         private readonly ILogger<DatabaseConnection> _logger;
 
         public DatabaseConnection(IConfiguration configuration, ILogger<DatabaseConnection> logger)

@@ -37,9 +37,7 @@ public partial class ToyoNoToyContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserRole> UserRoles { get; set; }
+    public virtual DbSet<Useres> Users { get; set; }
 
     public virtual DbSet<VwUserRolesInfo> VwUserRolesInfos { get; set; }
  
@@ -265,17 +263,17 @@ public partial class ToyoNoToyContext : DbContext
             entity.Property(e => e.RolName).HasMaxLength(256);
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Useres>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Email).HasMaxLength(256);
             entity.Property(e => e.Id).HasMaxLength(450);
-            entity.Property(e => e.Lastname).HasMaxLength(30);
-            entity.Property(e => e.Names).HasMaxLength(30);
-            entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-            entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-            entity.Property(e => e.UserName).HasMaxLength(256);
+            entity.Property(e => e.Lastname).HasMaxLength(30).IsRequired();
+            entity.Property(e => e.Names).HasMaxLength(30).IsRequired();
+            entity.Property(e => e.PasswordHash).IsRequired();
+            entity.Property(e => e.UserName).HasMaxLength(256).IsRequired();
+            entity.Property(e => e.Updatepass).HasColumnName("UPDATEPASS");
         });
 
         modelBuilder.Entity<UserRole>(entity =>

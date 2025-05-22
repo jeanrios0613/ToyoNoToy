@@ -4,9 +4,8 @@
     Layout = "_Layout";
     ViewData["Title"] = "solicitud";
 }
-
-<div class="container__fijo">
-    <div class="container">
+ 
+<div class="container">
 
 
         <div class="d-flex justify-content-between mb-3">
@@ -19,7 +18,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <!--HIDDEN VALUE-->
-            <input type="hidden" name="CodigoDeSolicitud"  id="CodigoDeSolicitud" value="@Model.CodigoDeSolicitud" />
+            <input type="hidden" name="CodigoDeSolicitud"    id="CodigoDeSolicitud" value="@Model.CodigoDeSolicitud" />
             <input type="hidden" name="Gestor" id="Gestor"   value="@Model.Gestor" />
             <input type="hidden" name="Etapa"  id="Etapa"    value="@Model.Etapa" />
             <!--HIDDEN VALUE-->
@@ -336,8 +335,7 @@
         </div>
  
         </form>
-    </div>
-</div>
-
+  </div>
+ 
 
 

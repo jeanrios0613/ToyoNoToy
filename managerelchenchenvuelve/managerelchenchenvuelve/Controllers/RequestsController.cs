@@ -21,9 +21,9 @@ namespace managerelchenchenvuelve.Controllers
 
         private readonly DatabaseConnection _db;
         private readonly ToyoNoToyContext _context;
-        private readonly ILogger<ProcessController> _logger;
+        private readonly ILogger<RequestsController> _logger;
 
-        public RequestsController(ToyoNoToyContext context, DatabaseConnection db, ILogger<ProcessController> logger)
+        public RequestsController(ToyoNoToyContext context, DatabaseConnection db, ILogger<RequestsController> logger)
         {
             _context = context;
             _logger = logger;

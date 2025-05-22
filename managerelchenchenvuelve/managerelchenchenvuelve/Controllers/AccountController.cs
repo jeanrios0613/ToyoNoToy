@@ -12,6 +12,7 @@ using Microsoft.Data.SqlClient;
 using managerelchenchenvuelve.Models;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Office2016.Drawing.Charts;
 
 namespace managerelchenchenvuelve.Controllers
 {
@@ -61,7 +62,7 @@ namespace managerelchenchenvuelve.Controllers
                             " when  UR.rolname = 'ADMINISTRADOR' " +
                             " then 'chenchen'  " +
                             " else UR.Username " +
-                            " END) AS userss  , Nombre, RolName " +
+                            " END) AS userss  , Nombre, RolName , status" +
                             " FROM [vw_UserRolesInfo] as UR " +
                             " WHERE [UserName] = @username AND [PasswordHash] = @PasswordHash";
 
@@ -80,14 +81,18 @@ namespace managerelchenchenvuelve.Controllers
                 
                 foreach (DataRow row in result.Rows)
                 {
+                    string? StatusUser = row["status"].ToString();
+
                     users.Add(new VwUserRolesInfo
                     {
-                         Nombre = row["Nombre"].ToString(),
-						 RolName = row["RolName"].ToString(), 
-                        Username = row["userss"].ToString()
+                         Nombre    = row["Nombre"].ToString(),
+						 RolName   = row["RolName"].ToString(), 
+                         Username  = row["userss"].ToString(),
+                         Status    = Convert.ToBoolean(row["status"].ToString()),
                     });
                 }
 
+              
                 if (users.Count > 0)
                 {
                     HttpContext.Session.SetString("Userss", users[0].Username);
@@ -97,12 +102,25 @@ namespace managerelchenchenvuelve.Controllers
 
                 _logger.LogInformation("Resultado de login para {Username}: {Rows} filas", username, result.Rows.Count);
 
+                if (users.Count == 0)
+                {
+                    ViewData["Mensaje"] = "Usuario o contraseña incorrecta.";
+                    return View();
+                }
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error consultando usuario en base de datos.");
                 ViewData["Mensaje"] = "Error al conectarse con la base de datos.";
                 return View();
+            }
+
+            if (users[0].Status == false )
+            {
+                ViewData["Mensaje"] = "Usuario Deshabilitado.";
+                return View();
+
             }
 
             if (result.Rows.Count == 0)
