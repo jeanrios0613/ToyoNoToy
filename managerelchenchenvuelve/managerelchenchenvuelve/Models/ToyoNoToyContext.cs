@@ -39,6 +39,8 @@ public partial class ToyoNoToyContext : DbContext
 
     public virtual DbSet<Useres> Users { get; set; }
 
+    public virtual DbSet<UserRole> UserRoles { get; set; }
+
     public virtual DbSet<VwUserRolesInfo> VwUserRolesInfos { get; set; }
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)

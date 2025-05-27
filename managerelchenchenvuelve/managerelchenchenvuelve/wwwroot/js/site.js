@@ -210,3 +210,21 @@ function CargaInfo(data) {
 }
 
 
+function GenereReporte() {
+    var startDate = document.getElementById('startDate').value;
+    var endDate = document.getElementById('endDate').value;
+
+
+    var url = '../Reportes/Descargar_Reportes';
+    var params = [];
+
+    if (startDate) params.push('Fecin=' + startDate);
+    if (endDate) params.push('Fecfin=' + endDate);
+
+
+    if (params.length > 0) {
+        url += '?' + params.join('&');
+    }
+
+    window.location.href = url;
+}

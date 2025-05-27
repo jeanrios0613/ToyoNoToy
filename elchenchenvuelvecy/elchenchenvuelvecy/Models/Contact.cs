@@ -1,15 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace elchenchenvuelvecy.Models;
 
 public partial class Contact
 {
-    public Guid Id { get; set; }
+	[Key]
+	public Guid Id { get; set; }
 
-    public string Email { get; set; } = null!;
+	[NotMapped]
+	[Required(ErrorMessage = "Este campo es obligatorio")]
+	public string? Nombre { get; set; }
+	[NotMapped]
+	[Required(ErrorMessage = "Este campo es obligatorio")]
+	public string? Apellido { get; set; }
 
-    public string FullName { get; set; } = null!;
+
+	[Required(ErrorMessage = "Este campo es obligatorio")]
+	public string FullName
+	{
+		get => $"{Nombre} {Apellido}";
+		set { }
+	}
+	public string Email { get; set; } = null!; 
 
     public string IdentificationNumber { get; set; } = null!;
 

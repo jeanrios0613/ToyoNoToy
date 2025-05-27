@@ -270,21 +270,19 @@
         </section>
 
         <!-- Modal -->
-        <div id="confirmationModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Confirmar envío</h5>
+                        <h5 class="modal-title" id="confirmationModalLabel">Confirmar envío</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p>¿Estás seguro de que deseas enviar esta solicitud?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal">Cancelar</button>
-                        <!--form asp-action="EnviarSolicitud" asp-controller="Solicitud" method="post"-->
-                            <button type="submit" class="btn btn-success" id="confirmButton">Enviar</button>
-                        <!--form-->
-                        
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="confirmButton">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -359,4 +357,28 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    
+    <script>
+        $(document).ready(function() {
+            // Handle the open modal button click
+            $("#openModal").click(function(e) {
+                e.preventDefault();
+                if ($("#termsCheckbox").is(":checked")) {
+                    $("#confirmationModal").modal("show");
+                } else {
+                    alert("Por favor, acepte los términos y condiciones primero.");
+                }
+            });
+
+            // Handle the close modal button
+            $("#closeModal").click(function() {
+                $("#confirmationModal").modal("hide");
+            });
+
+            // Handle the confirm button
+            $("#confirmButton").click(function() {
+                // The form will submit automatically since it's inside a form tag
+            });
+        });
+    </script>
 }

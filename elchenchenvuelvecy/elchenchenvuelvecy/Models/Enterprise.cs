@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema; 
+
 
 namespace elchenchenvuelvecy.Models;
 
@@ -15,9 +18,23 @@ public partial class Enterprise
 
     public string Instagram { get; set; } = null!;
 
-    public string? Ruc { get; set; }
+	[NotMapped]
+	[Required(ErrorMessage = "Este campo es obligatorio")]
+	public string? RucEmpresa { get; set; }
 
-    public string WebSite { get; set; } = null!;
+
+	[NotMapped]
+	[Required(ErrorMessage = "Este campo es obligatorio")]
+	public string? DvEmpresa { get; set; }
+
+	[Required(ErrorMessage = "Este campo es obligatorio")]
+	public string Ruc
+	{
+		get => $"{RucEmpresa} DV  {DvEmpresa}";
+		set { }
+	}
+
+	public string WebSite { get; set; } = null!;
 
     public DateTime CreationDate { get; set; }
 

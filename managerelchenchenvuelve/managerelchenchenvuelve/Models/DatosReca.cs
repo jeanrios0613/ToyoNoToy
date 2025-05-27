@@ -10,6 +10,7 @@
         public string? gestor { get; set; }
 
         public string? FechaFormateada { get; set; }
+        public string? FechaActualizacion { get; set; }
 
         public string? TiempoTranscurrido { get; set; }
 

@@ -61,7 +61,7 @@
                                         <input type="checkbox" class="form-check-input tarea-checkbox me-2" style="width: 20px; height: 20px;" value="'@usuario.Usuario'" id="@usuario.Usuario">
                                         <a class="dropdown-item flex-grow-1 p-0" style="border: none; background: none; cursor: pointer;">
                                             @usuario.NombreCompleto
-                                        </a>ñ
+                                        </a>
                                     </div>
                                 }
                             }
@@ -137,11 +137,12 @@
                             </div>
                         </th>
                          
-                        <th   style="min-width:140px; width: 140px; top: 0px; z-index: 100;">
+                        <th  style="min-width:140px; width: 140px; top: 0px; z-index: 100;  @(tareaasigna == "C" ? "display: none;" : "")">
                             <div class="mat-sort-header-container">
                                 Duración
                             </div>
                         </th>
+
                         <th style ="min-width:50px; width: 100px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
                             Fecha de Creación
@@ -149,7 +150,7 @@
                         </th>
                         <th style="min-width:50px; width: 100px; top: 0px; z-index: 100;">
                             <div class="mat-sort-header-container">
-                                Fecha de Actualizacion
+                              Actualizacion
                             </div>
                         </th>
                         <th style="min-width: 131.512px; width: 135px; top: 0px; z-index: 100;">
@@ -196,8 +197,8 @@
                                             @Html.DisplayFor(m => item.Etapa)
                                          </span>
                                      </td>
-                                   
-                                    <td   style="cursor: pointer; min-width: 140px; width: 140px;">
+
+                                    <td style="cursor: pointer; min-width: 140px; width: 140px; @(item.Etapa == "Completada" ? "display: none;" : "")">
                                         <div class="p-table__content__cell">
                                             @{  
                                                 var dias =  item.Tiempo ;
@@ -209,7 +210,7 @@
                                                 {
                                                         <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟡</span>
                                                 }
-                                                else
+                                                else if (dias >  5)
                                                 {
                                                         <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🔴</span>
                                                 }
@@ -218,7 +219,7 @@
                                         </div>
                                     </td>
                                     <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
-                                    <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaFormateada)</div></td>
+                                    <td style="cursor: pointer; min-width: 150px; width: 150px;"><div class="p-table__content__cell">@Html.DisplayFor(m => item.FechaActualizacion)</div></td>
                                     <td style="cursor: pointer; min-width: 25px; width: 25px;">
                                         <div class="p-table__content__cell">
                                             <div class="user-avatar" title="@Html.DisplayFor(m => item.UserName)">
@@ -325,9 +326,8 @@
                             foreach (var user in lista)
                             {
                                 <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between"
-                                        onclick="asignarSeleccionadosA('@user.Usuario')" style="font-style: italic; color: gray;">
-                                    <span class="user-avatar2 ms-2">@user.Letters</span>
-                                    <span class="ms-2">@user.NombreCompleto</span>
+                                        onclick="asignarSeleccionadosA('@user.Usuario')" style="color: #000;">
+                                     <span class="ms-2">@user.NombreCompleto</span>
                                 </button>
                             }
                         }

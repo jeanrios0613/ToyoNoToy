@@ -9,7 +9,7 @@ public partial class RequestInfo
 
     public DateTimeOffset? FechaDeCreacion { get; set; }
 
-    public string? FechaActualizacion { get; set; }
+    public DateTimeOffset? FechaActualizacion { get; set; }
 
     public string? Gestor { get; set; }
 

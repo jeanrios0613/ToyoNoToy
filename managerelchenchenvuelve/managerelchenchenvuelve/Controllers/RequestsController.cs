@@ -151,6 +151,7 @@ namespace managerelchenchenvuelve.Controllers
                 // Update the process status in the database
                 string updateQuery = @"update ToyNoToy.dbo.Request_Info
                                        set Etapa  = 'Completada'
+                                       ,Fecha_Actualizacion  = @FechaActualizacion
                                        ,Verificacion_Cliente = @verifica
                                        ,Gestion_Realizada    = @gestion";
                  if (formData.TipoAtencion == null)
@@ -166,7 +167,7 @@ namespace managerelchenchenvuelve.Controllers
                 updateQuery += "WHERE Codigo_de_solicitud   = @CodigoDeSolicitud";
 
                 SqlParameter[] parameters = new SqlParameter[]
-                {
+                {   new SqlParameter("@FechaActualizacion", DateTime.Now),
                     new SqlParameter("@verifica", formData.VerificacionCliente ?? (object)DBNull.Value),
                     new SqlParameter("@gestion", formData.GestionRealizada ?? (object)DBNull.Value),
                     new SqlParameter("@tipo", formData.TipoAtencion ?? (object)DBNull.Value),
@@ -237,7 +238,8 @@ namespace managerelchenchenvuelve.Controllers
                 };
 
 
-				string UpdateQuery = @"UPDATE [dbo].[Request_info]  SET ";
+				string UpdateQuery = @"UPDATE [dbo].[Request_info]  SET Fecha_Actualizacion = @FechaActualizacion,";
+
 				if (TypeRequest == "AprovedRequest")
 				{
 					UpdateQuery += "Etapa = 'Re-Abrir Solicitud', " +
@@ -246,7 +248,7 @@ namespace managerelchenchenvuelve.Controllers
 				else if (TypeRequest == "OpenRequest")
 				{
 
-					UpdateQuery += "Etapa = '5-Gestión Ampyme', " +
+					UpdateQuery += "Etapa = 'Por Asignar', " +
 								   "Usuario_Asignado = 'chenchen' ";
 
 				}
@@ -260,14 +262,17 @@ namespace managerelchenchenvuelve.Controllers
 				else if (TypeRequest == "AprovedChange")
 				{
 
-					UpdateQuery += " Etapa = '4-Gestión CA', " +
+					UpdateQuery += " Etapa = 'Por Asignar', " +
 								   " Usuario_Asignado = null, " +
+                                   " TipoRequest = 2, " +
 								   " Gestor = 'Gestión Caja de Ahorros' ";
 				}
 
 				UpdateQuery += " WHERE Codigo_de_solicitud = @codigo; ";
-				SqlParameter[] parameters2 = new SqlParameter[] {
-	               new SqlParameter("@codigo", requestCode)   };
+				SqlParameter[] parameters2 = new SqlParameter[] 
+                {  new SqlParameter("@FechaActualizacion", DateTime.Now),
+                   new SqlParameter("@codigo", requestCode)   
+                };
 
 				_db.ExecuteNonQuery(UpdateQuery, parameters2);
 				_logger.LogWarning("update AprovedRequest Realizado para " + requestCode);

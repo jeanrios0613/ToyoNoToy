@@ -14,7 +14,7 @@ public partial class ToyoNoToyContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<FormularioClass> FormularioClasses { get; set; }
+
     public virtual DbSet<Comment> Comments { get; set; }
 
     public virtual DbSet<Contact> Contacts { get; set; }
@@ -44,9 +44,6 @@ public partial class ToyoNoToyContext : DbContext
  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<FormularioClass>()
-      .HasNoKey();
-
         modelBuilder.Entity<Comment>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();
@@ -191,9 +188,7 @@ public partial class ToyoNoToyContext : DbContext
             entity.Property(e => e.EtapaDelNegocio)
                 .HasMaxLength(17)
                 .HasColumnName("Etapa_del_Negocio");
-            entity.Property(e => e.FechaActualizacion)
-                .HasMaxLength(30)
-                .HasColumnName("Fecha_Actualizacion");
+            entity.Property(e => e.FechaActualizacion).HasColumnName("Fecha_Actualizacion");
             entity.Property(e => e.FechaDeCreacion).HasColumnName("Fecha_de_Creacion");
             entity.Property(e => e.FechaInicioOperaciones)
                 .HasMaxLength(4000)
@@ -268,8 +263,7 @@ public partial class ToyoNoToyContext : DbContext
             entity.Property(e => e.Id).HasMaxLength(450);
             entity.Property(e => e.Lastname).HasMaxLength(30);
             entity.Property(e => e.Names).HasMaxLength(30);
-            entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-            entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+            entity.Property(e => e.Updatepass).HasColumnName("UPDATEPASS");
             entity.Property(e => e.UserName).HasMaxLength(256);
         });
 

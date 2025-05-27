@@ -62,6 +62,7 @@ namespace managerelchenchenvuelve.Controllers
                 string query = @"SELECT *
                                  FROM (SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
                                        FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
+                                       FORMAT(SWITCHOFFSET(RI.Fecha_Actualizacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaActualizacion,  
                                        CASE 
                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
                                         THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
@@ -71,59 +72,52 @@ namespace managerelchenchenvuelve.Controllers
                                             'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
                                             END AS TiempoTranscurrido,
                                  
-                                        TRY_CAST(CASE 
-                                        WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
-                                            THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
-                                        WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
-                                            THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
-                                        ELSE 
-                                            CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
-                                            END as int)  AS Tiempo,
+                                        TRY_CAST(CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) as int) AS Tiempo,
  
                                         RI.* 
 
                                       FROM  [dbo].[Request_info] as RI ) as REQS ";
 
                 //Se utiliza este filtro para poder impletar el buscador 
-                if (search == null)
+                if (search != null)
                 {
-                    query += " WHERE GESTOR = 'Gestión directa de Ampyme' ";
-                              
+                     query += "WHERE CompletaActividad LIKE '%" + search + "%'";
 
                 }
-                else if (search != null)
+                else if (search == null)
                 {
-
-                    query += "WHERE CompletaActividad LIKE '%" + search + "%'";
-
-                }
+                    query += " WHERE TipoRequest = 1 ";
 
 
-                if (!string.IsNullOrEmpty(ListUser))
-                {
-                    query += " AND usuario_asignado in  ( "+ListUser+" )";
-                }
-                else
-                {
-
-                    query += " AND usuario_asignado = COALESCE(@username, usuario_asignado)";
-                }
 
 
-                if (tarea == "C")
-                {
-                    query += " AND ETAPA = 'Completada'";
 
-                }
-                if (tarea == "P")
-                {
+                    if (!string.IsNullOrEmpty(ListUser))
+                    {
+                        query += " AND usuario_asignado in  ( "+ListUser+" )";
+                    }
+                    else
+                    {
 
-                    query += " AND ETAPA != 'Completada'";
-                }
+                        query += " AND usuario_asignado = COALESCE(@username, usuario_asignado)";
+                    }
 
-                if (!string.IsNullOrEmpty(business))
-                {
-                    query += " AND Etapa_del_Negocio in (" + business + ")";
+
+                    if (tarea == "C")
+                    {
+                        query += " AND ETAPA = 'Completada'";
+
+                    }
+                    if (tarea == "P")
+                    {
+
+                        query += " AND ETAPA != 'Completada'";
+                    }
+
+                    if (!string.IsNullOrEmpty(business))
+                    {
+                        query += " AND Etapa_del_Negocio in (" + business + ")";
+                    }
                 }
 
                 query += " ORDER BY fecha_de_creacion desc " +
@@ -143,33 +137,14 @@ namespace managerelchenchenvuelve.Controllers
 
                 string CountQuery = @"SELECT  * 
                                       FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
-                                            FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
-                                            CASE 
-                                            WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
-                                            THEN 'hace ' + CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' minutos'
-                                            WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
-                                            THEN 'hace ' + CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' horas'
-                                            ELSE 
-                                                'hace ' + CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) + ' días'
-                                                END AS TiempoTranscurrido,
-                                 
-                                            TRY_CAST(CASE 
-                                            WHEN DATEDIFF(MINUTE, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 60 
-                                                THEN CAST(DATEDIFF(MINUTE,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
-                                            WHEN DATEDIFF(HOUR, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) < 24 
-                                                THEN CAST(DATEDIFF(HOUR,RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR)
-                                            ELSE 
-                                                CAST(DATEDIFF(DAY, RI.Fecha_de_creacion, SYSDATETIMEOFFSET()) AS VARCHAR) 
-                                                END as int)  AS Tiempo,
- 
-                                            RI.* 
+                                             RI.* 
 
                                             FROM  [dbo].[Request_info] as RI ) as REQS ";
 
                 //Se utiliza este filtro para poder impletar el buscador 
                 if (search == null)
                 {
-                    CountQuery += " WHERE GESTOR = 'Gestión directa de Ampyme'";
+                    CountQuery += " WHERE TipoRequest = 1";
 
                 }
                 else if (search != null)
@@ -228,6 +203,7 @@ namespace managerelchenchenvuelve.Controllers
                             Etapa = row["Etapa"].ToString(),
                             CompletaActividad = row["CompletaActividad"].ToString(),
                             FechaFormateada = row["FechaFormateada"].ToString(),
+                            FechaActualizacion = row["FechaActualizacion"].ToString(),
                             TiempoTranscurrido = row["TiempoTranscurrido"].ToString(),
                             UserName = row["usuario_asignado"].ToString(),
                             CodigoDeSolicitud = row["codigo_de_solicitud"].ToString(),
@@ -376,13 +352,16 @@ namespace managerelchenchenvuelve.Controllers
                 foreach (var codigo in model.Ids)
                 {
                     string updateQuery = @"UPDATE dbo.Request_Info 
-                                   SET usuario_asignado = @usuario 
-                                   WHERE codigo_de_solicitud = @codigo";
+                                          SET usuario_asignado = @usuario,
+                                              Etapa = 'En Curso',
+                                            Fecha_Actualizacion = @FechaActualizacion
+                                          WHERE codigo_de_solicitud = @codigo";
 
                     _logger.LogInformation("hacer update ************************: {codigo}", codigo);
                     SqlParameter[] parameters = new SqlParameter[]
                     {
                         new SqlParameter("@usuario", model.Usuario),
+                        new SqlParameter("@FechaActualizacion", DateTime.Now),
                         new SqlParameter("@codigo", codigo)
                     };
 

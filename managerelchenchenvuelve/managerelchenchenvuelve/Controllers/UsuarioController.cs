@@ -50,7 +50,7 @@ namespace managerelchenchenvuelve.Controllers
         // POST: Usuario/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Useres user, string? RoleId)
+        public async Task<ActionResult> Create(Useres user, string? RoleId)
         {
             _logger.LogInformation("Iniciando creación de usuario: {RoleId}",  RoleId);
             _logger.LogInformation("Datos recibidos - UserName: {UserName}, Email: {Email}, Names: {Names}, Lastname: {Lastname}",
@@ -67,16 +67,23 @@ namespace managerelchenchenvuelve.Controllers
             {
                 try
                 {
-                    // Log all received properties
-                    
+                     
 
                     user.Id = Guid.NewGuid().ToString();
                     user.Created = DateTime.Now;
                     user.PasswordHash = EncryptPass.Encriptar(user.PasswordHash);
                     user.Status = true;
 
+
+                    var Roles = new UserRole
+                    {   UserId = user.Id,
+                        RoleId = RoleId
+                    };
+
                     _context.Users.Add(user);
-                    _context.SaveChangesAsync();
+                    _context.UserRoles.Add(Roles);
+
+                    await _context.SaveChangesAsync();
 
                     _logger.LogInformation("Usuario creado exitosamente: {UserName}", user.UserName);
                     return RedirectToAction("Index");
@@ -98,6 +105,80 @@ namespace managerelchenchenvuelve.Controllers
             var roles = _context.Roles.ToList();
             ViewBag.Roles = roles;
             return View(user);
+        }
+
+        // GET: Usuario/UpdateUser/{id}
+        public IActionResult UpdateUser(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return NotFound();
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+                return NotFound();
+
+            var roles = _context.Roles.ToList();
+            ViewBag.Roles = roles;
+            var userRole = _context.UserRoles.FirstOrDefault(ur => ur.UserId == id);
+            ViewBag.CurrentRoleId = userRole?.RoleId;
+            return View(user);
+        }
+
+        // POST: Usuario/UpdateUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUser(Useres user, string RoleId)
+        {
+            if (user == null || string.IsNullOrEmpty(user.Id))
+                return NotFound();
+
+            var userDb = _context.Users.FirstOrDefault(u => u.Id == user.Id);
+            if (userDb == null)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                userDb.Email = user.Email;
+                if (!string.IsNullOrWhiteSpace(user.PasswordHash))
+                {
+                    userDb.PasswordHash = EncryptPass.Encriptar(user.PasswordHash);
+                }
+                // Actualizar el rol
+                var userRole = _context.UserRoles.FirstOrDefault(ur => ur.UserId == user.Id);
+                if (userRole != null && userRole.RoleId != RoleId)
+                {
+                    userRole.RoleId = RoleId;
+                }
+                else if (userRole == null && !string.IsNullOrEmpty(RoleId))
+                {
+                    _context.UserRoles.Add(new UserRole { UserId = user.Id, RoleId = RoleId });
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            // Si hay error, recargar roles y rol actual
+            ViewBag.Roles = _context.Roles.ToList();
+            var currentRole = _context.UserRoles.FirstOrDefault(ur => ur.UserId == user.Id);
+            ViewBag.CurrentRoleId = currentRole?.RoleId;
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return NotFound();
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+                return NotFound();
+
+            user.Status = false;
+            _context.SaveChanges();
+
+            _logger.LogInformation("Usuario {UserId} deshabilitado exitosamente", id);
+            return RedirectToAction("Index");
         }
 
     }

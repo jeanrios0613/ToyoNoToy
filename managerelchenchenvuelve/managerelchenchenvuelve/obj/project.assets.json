@@ -1000,6 +1000,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.0.3"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Authorization/8.0.11": {
         "type": "package",
         "dependencies": {
@@ -4561,6 +4580,21 @@
         "lib/netstandard1.0/zh-Hant/Humanizer.resources.dll",
         "lib/netstandard2.0/zh-Hant/Humanizer.resources.dll",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
+      "sha512": "rwxaZYHips5M9vqxRkGfJthTx+Ws4O4yCuefn17J371jL3ouC5Ker43h2hXb5yd9BMnImE9rznT75KJHm6bMgg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authorization/8.0.11": {
@@ -8819,6 +8853,7 @@
       "BootstrapBlazor.BootstrapIcon.Extensions >= 9.1.0",
       "ClosedXML >= 0.105.0-rc",
       "FluentAssertions >= 8.2.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.0",
       "Microsoft.Data.SqlClient >= 6.0.2",
       "Microsoft.EntityFrameworkCore >= 8.0.0",
@@ -8835,9 +8870,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj",
-      "projectName": "managerelchenchenvuelve",
-      "projectPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve.csproj",
+      "projectUniqueName": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve - Backup.csproj",
+      "projectName": "managerelchenchenvuelve - Backup",
+      "projectPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\managerelchenchenvuelve - Backup.csproj",
       "packagesPath": "C:\\Users\\jeanr\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\jeanr\\source\\repos\\ToyoNoToy\\managerelchenchenvuelve\\managerelchenchenvuelve\\obj\\",
       "projectStyle": "PackageReference",
@@ -8889,6 +8924,10 @@
           "FluentAssertions": {
             "target": "Package",
             "version": "[8.2.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[8.0.0, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",

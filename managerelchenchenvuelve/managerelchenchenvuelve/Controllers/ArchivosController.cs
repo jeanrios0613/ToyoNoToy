@@ -22,10 +22,10 @@ public class ArchivosController : Controller
     private readonly ToyoNoToyContext   _context;
     private readonly DatabaseConnection _db;
     private readonly string rutaServidor = "..\\managerelchenchenvuelve\\wwwroot\\Reportes\\";
-    private readonly ILogger<ProcessController> _logger;
+    private readonly ILogger<ArchivosController> _logger;
 
 
-    public ArchivosController(ToyoNoToyContext context, DatabaseConnection db,ILogger<ProcessController> logger)
+    public ArchivosController(ToyoNoToyContext context, DatabaseConnection db,ILogger<ArchivosController> logger)
     {
         _context = context;
         _logger = logger;

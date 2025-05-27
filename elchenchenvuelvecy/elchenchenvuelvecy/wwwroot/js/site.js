@@ -199,8 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Santa Isabel": ["Cuango", "Miramar", "Nombre de Dios", "Palmira", "Palma Real", "Santa Isabel"]
 
 
-    }
-        ;
+    } ;
 
     provinciaSelect.innerHTML = '<option>Seleccione una opción</option>';
     provincia.forEach(provincia => {

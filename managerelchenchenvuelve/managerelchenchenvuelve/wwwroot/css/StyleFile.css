@@ -26,15 +26,15 @@
 .container__fijo {
     flex-grow: 1;
     padding: 1rem;
-    overflow-x: auto;
-    overflow-y: auto;
+    overflow: auto;
     width: 100%;
-    height: auto;
+    height: 100%;
+    max-height: calc(100vh - 100px);
 }
 
 @media (max-width: 768px) {
-    .container__fijo { 
-        max-height: calc(100vh - 300px);
+    .container__fijo {
+        max-height: calc(100vh - 400px);
     }
 }
 
