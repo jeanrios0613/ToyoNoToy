@@ -1,40 +1,38 @@
 ﻿$(document).ready(function () {
-    // TipoFormulario change handler
-    $("#TipoFormulario").change(function () {
+    var empreSections = $("#EnterprisesEmpre");
+    var negocSections = $("#EnterprisesNegoc");
+
+
+    $("#envio, #Details, #Conctact, #EnterprisesEmpre, #EnterprisesNegoc, #Emprendedor, #Negocio").hide();
+
+    $("#TipoFormulario").on("change", function () {
         var seleccion = $(this).val();
 
-        if (seleccion == "Emprendimiento") {
-            $("#envio").show();
-            $("#Details").show();
-            $("#Conctact").show();
-            $("#EnterprisesEmpre").show();
-            $("#Emprendedor").show();
-            $("#EnterprisesNegoc").hide();
-            $("#Negocio").hide();
 
-            $('div').removeClass('position-absolute');
-
-        } else if (seleccion == "Negocio existente") {
-            $("#envio").show();
-            $("#Details").show();
-            $("#Conctact").show();
-            $("#EnterprisesNegoc").show();
-            $("#Negocio").show();
-            $("#EnterprisesEmpre").hide();
-            $("#Emprendedor").hide();
-
-            $('div').removeClass('position-absolute');
-
-        } else {
-            $("#envio").hide();
-            $("#Details").hide();
-            $("#Conctact").hide();
-            $("#EnterprisesEmpre").hide();
-            $("#EnterprisesNegoc").hide();
-            $("#Emprendedor").hide();
-            $("#Negocio").hide();
+        if (empreSections.parent().length === 0) {
+            empreSections.insertAfter("#Conctact").parent();
         }
-    }).change();
+        if (negocSections.parent().length === 0) {
+            negocSections.insertAfter("#Conctact").parent();
+        }
+
+
+        $("#envio, #Details, #Conctact, #EnterprisesEmpre, #EnterprisesNegoc, #Emprendedor, #Negocio").hide();
+
+        if (seleccion == "Emprendimiento") {
+            $("#envio, #Details, #EnterprisesEmpre, #Emprendedor, #Conctact").show();
+            $("#Negocio").hide();
+            negocSections.detach();
+            $('div').removeClass('position-absolute');
+        } else if (seleccion == "Negocio existente") {
+            $("#envio, #Details, #EnterprisesNegoc, #Negocio, #Conctact").show();
+
+            empreSections.detach();
+            $('div').removeClass('position-absolute');
+        }
+    }).trigger('change');
+ 
+   
 
     if ('@TempData["SuccessMessage"]' != '') {
         $('#successModal').modal('show');
@@ -193,11 +191,36 @@
 
 document.getElementById("openModal").addEventListener("click", function () {
     let checkbox = document.getElementById("termsCheckbox");
+    let form = document.querySelector('form');
+
     if (!checkbox.checked) {
         alert("Debes aceptar los términos y condiciones.");
         return;
     }
-    $("# ").modal("show");
+
+    if (form.checkValidity()){ 
+        $("#confirmationModal").modal("show"); 
+    }
+    else {
+        
+       /*     
+        let invalidFields = form.querySelectorAll(':invalid');
+        let missingFields = [];
+        
+        invalidFields.forEach(function(field) {
+            if (field.required) {
+                let fieldName = field.getAttribute('name') || field.getAttribute('id') || 'Campo';
+                missingFields.push(fieldName);
+            }
+        });
+
+        // Mostrar mensaje con los campos faltantes
+        if (missingFields.length > 0) {
+            alert("Por favor complete los siguientes campos requeridos:\n" + missingFields.join('\n'));
+        }*/
+        
+        form.reportValidity();
+    }
 });
 
 document.getElementById("closeModal").addEventListener("click", function () {
@@ -211,3 +234,53 @@ document.getElementById("termsCheckbox").addEventListener("change", function () 
         modal.show();
     }
 });
+
+ 
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Aplica máscara 0000-0000 para el número local
+            $('#phoneNumber').mask('0000-0000');
+
+            const form = document.querySelector('form');
+            const phoneInput = document.getElementById('phoneNumber');
+
+            form.addEventListener('submit', function (e) {
+                // Antes de enviar el formulario, concatenar +507 con el valor ingresado
+                let cleanPhone = phoneInput.value.trim();
+                if (cleanPhone !== '') {
+                    phoneInput.value = '+507' + cleanPhone;
+                }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // AutoNumeric initialization code
+            new AutoNumeric('#ProyectedSales', {
+                decimalCharacter: '.',
+                digitGroupSeparator: ',',
+                decimalPlaces: 2
+            });
+
+            new AutoNumeric('#MonthlySales', {
+                decimalCharacter: '.',
+                digitGroupSeparator: ',',
+                decimalPlaces: 2
+            });
+
+            new AutoNumeric('#QuantityToInvert', {
+                decimalCharacter: '.',
+                digitGroupSeparator: ',',
+                decimalPlaces: 2
+            });
+
+            
+
+            document.getElementById('closeModal').addEventListener('click', function () {
+                confirmationModal.hide();
+            });
+
+            document.getElementById('confirmButton').addEventListener('click', function () {
+                form.submit();
+            });
+        });

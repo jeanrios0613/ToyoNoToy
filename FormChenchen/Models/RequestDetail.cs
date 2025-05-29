@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FormChenchen.Models;
 
@@ -7,13 +8,16 @@ public partial class RequestDetail
 {
     public Guid Id { get; set; }
 
+    [Required(ErrorMessage = "Este campo es obligatorio")]
     public decimal QuantityToInvert { get; set; }
 
+    [Required(ErrorMessage = "Este campo es obligatorio")]
     public string ReasonForMoney { get; set; } = null!;
 
     public Guid RequestId { get; set; }
 
     public DateTime CreationDate { get; set; }
+
 
     public string? VerifyClient { get; set; }
 

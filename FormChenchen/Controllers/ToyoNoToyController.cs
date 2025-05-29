@@ -27,7 +27,15 @@ namespace elchenchenvuelvecy.Controllers
             _logger.LogInformation("TempData Codigo: {Codigo}", TempData["CodigoSolicitud"]);
             _logger.LogInformation("TempData Phone: {Phone}", TempData["NumeroWhatsapp"]);
 
-            ViewBag.Codigo = TempData["CodigoSolicitud"];
+            var codigoSolicitud = TempData["CodigoSolicitud"]?.ToString();
+            var email = TempData["Email"]?.ToString();
+
+            if (!string.IsNullOrEmpty(codigoSolicitud) && !string.IsNullOrEmpty(email))
+            {
+                SendConfirmationEmail(email, codigoSolicitud);
+            }
+
+            ViewBag.Codigo = codigoSolicitud;
             ViewBag.phone = TempData["NumeroWhatsapp"];
 
             return View();
@@ -53,11 +61,14 @@ namespace elchenchenvuelvecy.Controllers
             _logger.LogInformation("Formulario data received - Contact: {@MonthlySales}", MonthlySales); 
             _logger.LogInformation("validando DAtos para MonthlySales: {@monto}", monto); 
 
-
+               
             try
             {
                 _logger.LogInformation("********************************* Insertando datos **************************************");
 
+                Formulario.Contact.Id = Guid.NewGuid();
+                Formulario.Enterprise.Id = Guid.NewGuid();
+                Formulario.RequestDetail.Id = Guid.NewGuid();
 
                 //******** SE LE ESTA ASIGNANDO VALORES AL A TABLA REQUESTS ********//
                 var newRequest = new Request
@@ -69,41 +80,30 @@ namespace elchenchenvuelvecy.Controllers
                     Type = 0,
                 };
 
-                _logger.LogInformation("New request created with Code: {Code}", newRequest.Code);
+
+              
+                
 
                 if (Formulario.RequestDetail.QuantityToInvert > 25000)
                 {
                     newRequest.Type = 2;
-                    newRequest.Suggestion = "Gestión Caja de Ahorros";
-                    _logger.LogInformation("Request type set to 3 - Gestion Caja de Ahorros");
+                    newRequest.Suggestion = "Gestión Caja de Ahorros"; 
                 }
                 else
                 {
                     newRequest.Type = 1;
-                    newRequest.Suggestion = "Gestión directa de Ampyme";
-                    _logger.LogInformation("Request type set to 2 - Gestion directa de Ampyme");
+                    newRequest.Suggestion = "Gestión directa de Ampyme"; 
                 }
+
+
+                _logger.LogInformation("New request created with Id: {Id}", newRequest.Id);
+                _logger.LogInformation("New request created with Code: {Code}", newRequest.Code);
+                _logger.LogInformation("New request created with CreationDate: {CreationDate}", newRequest.CreationDate);
+                _logger.LogInformation("New request created with Suggestion: {Suggestion}", newRequest.Suggestion);
+                _logger.LogInformation("New request created with Type: {Type}", newRequest.Type);
 
                 //*****************************************************************//
                 //-----------------------------------------------------------------//
-
-
-                //VALORES GLOBAL  PARA LA ACTION EnviarSolicitud
-                TempData["CodigoSolicitud"] = newRequest.Code;
-                TempData["NumeroWhatsapp"] = Formulario.Contact.Phone;
-
-
-
-                // SE CREAN NUMERO DE FORMATO GUID PARA LAS TABLAS QUE LA NECESITAN PARA SU iD
-                Formulario.Contact.Id = Guid.NewGuid();
-                Formulario.Enterprise.Id = Guid.NewGuid();
-                Formulario.RequestDetail.Id = Guid.NewGuid();
-
-
-                //EL ID NECESARIO PARA TODAS LAS TABLAS PUEDAN HACER JOIN
-                Formulario.Contact.RequestId = newRequest.Id;
-                Formulario.Enterprise.RequestId = newRequest.Id;
-                Formulario.RequestDetail.RequestId = newRequest.Id;
 
 
                 //SE INSERTAN LOS DATOS EN LA TABLA REQUEST_INFO PARA EL VISOR
@@ -177,18 +177,29 @@ namespace elchenchenvuelvecy.Controllers
 
 
                 //ESTO ES PARA INSERTAR LA DATA 
-                _logger.LogInformation("Adding entities to context");
+                _logger.LogInformation("Insertando Data para el Numero de solicitud");
                 _context.Requests.Add(newRequest);
+                _context.SaveChanges();
+
+                _logger.LogInformation("Insertando los datos de las solicitud ");
+                Formulario.Contact.RequestId = newRequest.Id;
+                Formulario.Enterprise.RequestId = newRequest.Id;
+                Formulario.RequestDetail.RequestId = newRequest.Id;
+
+
                 _context.Contacts.Add(Formulario.Contact);
                 _context.Enterprises.Add(Formulario.Enterprise);
                 _context.RequestDetails.Add(Formulario.RequestDetail);
                 _context.RequestInfos.Add(NewRequestInfo);
-
-
+                 
 
                 //REALIZA EL COMMIT DE LA DATA
                 _context.SaveChanges();
-                _logger.LogInformation("Changes saved successfully to database");
+                _logger.LogInformation("Insert finalizada");
+
+                TempData["CodigoSolicitud"] = newRequest.Code;
+                TempData["NumeroWhatsapp"] = Formulario.Contact.Phone;
+                TempData["Email"] = Formulario.Contact.Email;
 
                 return RedirectToAction("EnviarSolicitud", "ToyoNoToy");
             }
@@ -216,7 +227,7 @@ namespace elchenchenvuelvecy.Controllers
         }
 
         [HttpPost]
-        public JsonResult SendConfirmationEmail(string email)
+        public JsonResult SendConfirmationEmail(string email, string codigoSolicitud)
         {
             _logger.LogInformation("SendConfirmationEmail called for email: {Email}", email);
             try
@@ -224,8 +235,10 @@ namespace elchenchenvuelvecy.Controllers
                 var fromAddress = new MailAddress("elchenchenvuelve@outlook.com", "ElchenChenVuelve");
                 var toAddress = new MailAddress(email);
                 const string fromPassword = "Elchenchen507.";
-                const string subject = "Confirmación de Correo";
-                const string body = "Este es un correo de confirmación.";
+                const string subject = "Código de Solicitud - ElchenChenVuelve";
+                string body = $"Su código de solicitud es: {codigoSolicitud}\n\n" +
+                             "Gracias por su interés en ElchenChenVuelve.\n" +
+                             "Este código es necesario para dar seguimiento a su solicitud.";
 
                 _logger.LogInformation("Attempting to send email to: {Email}", email);
 

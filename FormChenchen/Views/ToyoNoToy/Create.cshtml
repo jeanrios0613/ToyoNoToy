@@ -23,8 +23,9 @@
 
 
 <div class="form-container">
-    @Html.ValidationSummary(true)
+    
     <form asp-controller="ToyoNotoy" asp-action="Create" method="post" enctype="multipart/form-data">
+        @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
         <h5 class="mt-4">Etapa del negocio</h5>
         <label class="form-text" >Seleccione la etapa en la que se encuentra su negocio:</label>
@@ -56,11 +57,11 @@
             <div class="row mb-3">
                 <div class="col-md-6 mb-3">
                     <label for="Nombre" class="form-label" style="width: 100%;">* Nombre</label>
-                    <input for="Contact.Nombre" name="Contact.Nombre" type="text" class="form-control" placeholder="Nombre" style="width: 100%;" required>
+                    <input asp-for="Contact.Nombre" name="Contact.Nombre" type="text" class="form-control" placeholder="Nombre" style="width: 100%;" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="Apellido" class="form-label" style="width: 100%;">* Apellido</label>
-                    <input for="Contact.Apellido" name="Contact.Apellido" type="text" class="form-control" placeholder="Apellido" style="width: 100%;" required>
+                    <input asp-for="Contact.Apellido" name="Contact.Apellido" type="text" class="form-control" placeholder="Apellido" style="width: 100%;" required>
                 </div>
             </div>
 
@@ -92,11 +93,15 @@
                 <div class="col-md-6 mb-3">
 
                     <label asp-for="Contact.Phone" class="form-label">* Teléfono celular (whatsapp)</label>
-                    <input asp-for="Contact.Phone" name="Contact.Phone" type="text" class="form-control" value="+507" placeholder="Ej: 507 0000-0000" required>
-                    <span asp-validation-for="Contact.Phone" class="text-danger"></span>
+                    <div class="input-group">
+                        <span class="input-group-text" style="background-color: #e9ecef; font-size: 0.85rem;">+507</span>
+                        <input id="phoneNumber" name="Contact.Phone" type="text" class="form-control" maxlength="9" placeholder="0000-0000" required>
+                    </div> 
                 </div>
             </div>
+
         </section>
+
         <!-- ******************************************************************************************************************** -->
         <!-- *     Este bloque pertenece a los datos del negocio asociado a la tabla  Enterprises  OPCION EMPERNDIMIENTO        * -->
         <!-- ********************************************************************************************************************* -->
@@ -104,8 +109,8 @@
             <h5 class="mt-4">Datos del Negocio</h5>
             <div class="mb-3">
                 <label asp-for="Enterprise.BusinessName" class="form-label">Nombre del negocio</label>
-                <input asp-for="Enterprise.BusinessName" name="Enterprise.BusinessName"  type="text" class="form-control" id="BusinessName">
-                <span asp-validation-for="Enterprise.BusinessName" class="text-danger"></span>
+                <input asp-for="Enterprise.BusinessName" name="Enterprise.BusinessName" type="text" class="form-control" id="BusinessName" required> 
+
             </div>
 
             <div class="row mb-3">
@@ -132,19 +137,19 @@
                         <option value="Actividades de atención de la salud humana y asistencia social">Actividades de atención de la salud humana y asistencia social</option>
                         <option value="Actividades artísticas, de entretenimiento y recreativas">Actividades artísticas, de entretenimiento y recreativas</option>
                         <option value="Otras actividades de servicios">Otras actividades de servicios</option>
-                    </select>
-                    <span asp-validation-for="Enterprise.EconomicActivity" class="text-danger"></span>
+                    </select> 
+
                 </div>
                 <div class="col-md-6 mb-3">
 
                     <label for="ProyectedSales" class="form-label" style="width: 100%; ">* Proyección de ventas mensuales</label>
-                    <input asp-for="Enterprise.ProyectedSales" name="Enterprise.ProyectedSales" type="text" class="form-control" id="ProyectedSales" style="width: 100%;" placeholder="$" required >
-                    <span asp-validation-for="Enterprise.ProyectedSales" class="text-danger"></span>
+                    <input asp-for="Enterprise.ProyectedSales" name="Enterprise.ProyectedSales" type="text" class="form-control" id="ProyectedSales" style="width: 100%;" placeholder="$" required > 
+
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="WebSite" class="form-label">Sitio web de la empresa</label>
+                <label for="WebSite" class="form-label" >Sitio web de la empresa</label>
                 <input asp-for="Enterprise.WebSite" name="Enterprise.WebSite" type="text" class="form-control" id="WebSite">
             </div>
 
@@ -152,7 +157,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="BusinessTime" class="form-label" style="width: 100%;">* Tiempo de emprendimiento</label>
                     <input asp-for="Enterprise.BusinessTime" name="Enterprise.BusinessTime"  type="text" class="form-control" id="BusinessTime" placeholder=" " style="width: 100%;" required>
-                    <span asp-validation-for="Enterprise.BusinessTime" class="text-danger"></span>
+                     
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="Instagram" class="form-label" style="width: 100%;">Instagram</label>
@@ -163,7 +168,7 @@
             <div class="mb-3">
                 <label for="BusinessDescription" class="form-label">* Describe tu idea de negocio</label>
                 <textarea asp-for="Enterprise.BusinessDescription" name="Enterprise.BusinessDescription"  class="form-control h4 ng-pristine ng-invalid ng-touched" id="BusinessDescription" placeholder="Descripción breve..." required></textarea>
-                <span asp-validation-for="Enterprise.BusinessDescription" class="text-danger"></span>
+                
             </div>
 
         </section>
@@ -174,18 +179,18 @@
             <h5 class="mt-4">Datos del Negocio</h5>
             <div class="mb-3">
                 <label asp-for="Enterprise.BusinessName" class="form-label">Nombre del negocio</label>
-                <input asp-for="Enterprise.BusinessName"  name="Enterprise.BusinessName" type="text" class="form-control" id="BusinessName">
+                <input asp-for="Enterprise.BusinessName" name="Enterprise.BusinessName" type="text" class="form-control" id="BusinessName" required>
             </div>
 
             <div class="row mb-3">
 
                 <div class="col-md-6 mb-3">
                     <label for="RucEmpresa" class="form-label bg-white custom-label" style="width: 100%;">RUC</label>
-                    <input for="Enterprise.RucEmpresa" name="Enterprise.RucEmpresa" type="text" class="form-control ng-pristine ng-valid ng-touched" id="RucEmpresa">
+                    <input for="Enterprise.RucEmpresa" name="Enterprise.RucEmpresa" type="text" class="form-control ng-pristine ng-valid ng-touched" id="RucEmpresa" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="DvEmpresa" class="form-label" style="width: 100%;">DV</label>
-                    <input for="Enterprise.DvEmpresa" name="Enterprise.DvEmpresa" type="number" class="form-control" maxlength="4" size="4" id="DvEmpresa">
+                    <input for="Enterprise.DvEmpresa" name="Enterprise.DvEmpresa" type="number" class="form-control" maxlength="4" size="4" id="DvEmpresa" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="EconomicActivity" class="form-label" style="width: 100%;">* Actividad económica</label>
@@ -283,7 +288,7 @@
             <h5 class="mt-4">Datos de la Solicitud</h5>
             <div class="mb-3">
                 <label for="QuantityToInvert" class="form-label">* ¿Cuánto Chen Chen necesitas?</label>
-                <input asp-for="RequestDetail.QuantityToInvert" name="RequestDetail.QuantityToInvert" type="text" class="form-control" id="QuantityToInvert" placeholder="$" required  >
+                <input asp-for="RequestDetail.QuantityToInvert" name="RequestDetail.QuantityToInvert" type="text" class="form-control" id="QuantityToInvert" placeholder="$" required>
                 <span asp-validation-for="RequestDetail.QuantityToInvert" class="text-danger"></span>
             </div>
             <div class="mb-3">
@@ -302,7 +307,7 @@
                 <input type="checkbox" id="termsCheckbox">
                 <label for="termsCheckbox"> Acepto los términos y condiciones</label>
                 <br><br>
-                <button type="submit" class="col position-relative col-12 my-3 d-flex justify-content-center align-items-center custom-button" id="openModal"> 
+                <button type="button" class="col position-relative col-12 my-3 d-flex justify-content-center align-items-center custom-button" id="openModal"> 
                 Enviar Solicitud
                 </button>
             </div>
@@ -310,29 +315,27 @@
         </section>
 
         <!-- Modal -->
-        <div id="confirmationModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Confirmar envío</h5>
+                        <h5 class="modal-title" id="confirmationModalLabel">Confirmar envío</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p>¿Estás seguro de que deseas enviar esta solicitud?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal">Cancelar</button>
-                        <!--form asp-action="EnviarSolicitud" asp-controller="Solicitud" method="post"-->
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="closeModal">Cancelar</button>
                         <button type="submit" class="btn btn-success" id="confirmButton">Enviar</button>
-                        <!--form-->
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal de Bootstrap -->
+        <!-- Modal de Bootstrap --> 
         <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="termsModalLabel">Términos y Condiciones</h5>
@@ -388,36 +391,15 @@
                 </div>
             </div>
         </div>
- 
-
     </form>
-</div>
-
+</div>  
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-     
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                new AutoNumeric('#ProyectedSales', {
-                    decimalCharacter: '.',
-                    digitGroupSeparator: ',',
-                    decimalPlaces: 2
-                });
 
-            new AutoNumeric('#MonthlySales', {
-            decimalCharacter: '.',
-            digitGroupSeparator: ',',
-            decimalPlaces: 2
-                });
-
-            new AutoNumeric('#QuantityToInvert', {
-            decimalCharacter: '.',
-            digitGroupSeparator: ',',
-            decimalPlaces: 2
-                });
-            });
-    </script> 
+    
 }
+
+
