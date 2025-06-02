@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormChenchen")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b39e22437fae77577dd29fee54dc8c9b819670d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf1e09eb31eb69f53d674f3761da020f01bffd21")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormChenchen")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormChenchen")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

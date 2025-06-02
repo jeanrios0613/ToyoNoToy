@@ -20,7 +20,7 @@ public partial class Contact
     [Required(ErrorMessage = "Este campo es obligatorio")]
     public string? Apellido { get; set; }
 
-
+    
     [Required(ErrorMessage = "Este campo es obligatorio")]
     public string FullName
     {

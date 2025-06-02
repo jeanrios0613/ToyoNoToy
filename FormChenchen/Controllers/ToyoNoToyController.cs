@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization; 
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace elchenchenvuelvecy.Controllers
 {
@@ -29,12 +30,14 @@ namespace elchenchenvuelvecy.Controllers
 
             var codigoSolicitud = TempData["CodigoSolicitud"]?.ToString();
             var email = TempData["Email"]?.ToString();
+            
 
-            if (!string.IsNullOrEmpty(codigoSolicitud) && !string.IsNullOrEmpty(email))
-            {
-                SendConfirmationEmail(email, codigoSolicitud);
-            }
 
+            /*    if (!string.IsNullOrEmpty(codigoSolicitud) && !string.IsNullOrEmpty(email))
+                {
+                    SendConfirmationEmail(email, codigoSolicitud);
+                }
+            */
             ViewBag.Codigo = codigoSolicitud;
             ViewBag.phone = TempData["NumeroWhatsapp"];
 
@@ -81,8 +84,8 @@ namespace elchenchenvuelvecy.Controllers
                 };
 
 
-              
-                
+            
+
 
                 if (Formulario.RequestDetail.QuantityToInvert > 25000)
                 {
@@ -102,6 +105,15 @@ namespace elchenchenvuelvecy.Controllers
                 _logger.LogInformation("New request created with Suggestion: {Suggestion}", newRequest.Suggestion);
                 _logger.LogInformation("New request created with Type: {Type}", newRequest.Type);
 
+
+                if (string.IsNullOrEmpty(Formulario.Enterprise.Instagram)) { 
+                     Formulario.Enterprise.Instagram = "N/T"; 
+                }
+
+                if (string.IsNullOrEmpty(Formulario.Enterprise.WebSite))
+                {
+                    Formulario.Enterprise.Instagram = "N/T";
+                }
                 //*****************************************************************//
                 //-----------------------------------------------------------------//
 
@@ -200,6 +212,7 @@ namespace elchenchenvuelvecy.Controllers
                 TempData["CodigoSolicitud"] = newRequest.Code;
                 TempData["NumeroWhatsapp"] = Formulario.Contact.Phone;
                 TempData["Email"] = Formulario.Contact.Email;
+
 
                 return RedirectToAction("EnviarSolicitud", "ToyoNoToy");
             }

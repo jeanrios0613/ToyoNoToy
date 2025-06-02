@@ -18,7 +18,8 @@ public partial class Enterprise
     [Required(ErrorMessage = "Este campo es obligatorio")]
     public string EconomicActivity { get; set; } = null!;
 
-    public string Instagram { get; set; } = null!;
+    
+    public string? Instagram { get; set; } 
 
     [NotMapped]
     [Required(ErrorMessage = "Este campo es obligatorio")]
@@ -36,7 +37,7 @@ public partial class Enterprise
         set { }
     }
 
-    public string WebSite { get; set; } = null!;
+    public string? WebSite { get; set; } = "No Tiene Sitio Web";
 
     public DateTime CreationDate { get; set; }
 
