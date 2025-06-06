@@ -10,6 +10,7 @@ public partial class Contact
 
     public Guid Id { get; set; }
 
+    [Required(ErrorMessage = "Este campo es obligatorio")]
     public string Email { get; set; } = null!;
 
     [NotMapped]
@@ -19,7 +20,7 @@ public partial class Contact
     [Required(ErrorMessage = "Este campo es obligatorio")]
     public string? Apellido { get; set; }
 
-
+    
     [Required(ErrorMessage = "Este campo es obligatorio")]
     public string FullName
     {
@@ -27,10 +28,13 @@ public partial class Contact
         set { }
     }
 
+    [Required(ErrorMessage = "Este campo es obligatorio")]
     public string IdentificationNumber { get; set; } = null!;
 
+    [Required(ErrorMessage = "Este campo es obligatorio")]
     public string IdentificationType { get; set; } = null!;
 
+    [Required(ErrorMessage = "Este campo es obligatorio")]
     public string Phone { get; set; } = null!;
 
     public DateTime CreationDate { get; set; }

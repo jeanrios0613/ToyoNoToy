@@ -4,7 +4,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddViewOptions(options => {
+        options.HtmlHelperOptions.ClientValidationEnabled = true;
+    });
+
 
 builder.Services.AddDbContext<ToyoNoToyContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));

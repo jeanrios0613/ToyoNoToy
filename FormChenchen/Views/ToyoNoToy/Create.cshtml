@@ -23,24 +23,25 @@
 
 
 <div class="form-container">
-    @Html.ValidationSummary(true)
+    
     <form asp-controller="ToyoNotoy" asp-action="Create" method="post" enctype="multipart/form-data">
+        @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
         <h5 class="mt-4">Etapa del negocio</h5>
         <label class="form-text" >Seleccione la etapa en la que se encuentra su negocio:</label>
         <div class="form-group">
-            <select  class="form-control" id="TipoFormulario" name="TipoFormulario">
+            <select class="form-select" id="TipoFormulario" name="TipoFormulario">
                 <option selected disabled value="">Seleccione una opción</option>
                 <option value="Emprendimiento">Emprendimiento</option>
                 <option value="Negocio existente">Negocio existente</option>
-            </select>
+            </select> 
         </div>
-        <section id="Emprendedor">
-            <label class="form-text">Persona natural o jurídica con menos de 24 meses de operaciones.</label>
+        <section id="Emprendedor" >
+            <label class="form-text" style="color: red">Persona natural o jurídica con menos de 24 meses de operaciones.</label>
             <br />
         </section>
         <section id="Negocio">
-            <label class="form-text">Persona natural o jurídica con 24 meses o más de operaciones.</label>
+            <label class="form-text" style="color: red">Persona natural o jurídica con 24 meses o más de operaciones.</label>
             <br />
         </section>
 
@@ -56,27 +57,32 @@
             <div class="row mb-3">
                 <div class="col-md-6 mb-3">
                     <label for="Nombre" class="form-label" style="width: 100%;">* Nombre</label>
-                    <input for="Contact.Nombre" name="Contact.Nombre" type="text" class="form-control" placeholder="Nombre" style="width: 100%;" required>
+                    <input asp-for="Contact.Nombre"  type="text" class="form-control" placeholder="Nombre" style="width: 100%;" required>
+                    <span asp-validation-for="Contact.Nombre" class="text-danger"></span>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="Apellido" class="form-label" style="width: 100%;">* Apellido</label>
-                    <input for="Contact.Apellido" name="Contact.Apellido" type="text" class="form-control" placeholder="Apellido" style="width: 100%;" required>
+                    <input asp-for="Contact.Apellido"  type="text" class="form-control" placeholder="Apellido" style="width: 100%;" required>
+                    <span asp-validation-for="Contact.Apellido" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6 mb-3">
                     <label asp-for="Contact.IdentificationType" class="form-label">* Tipo de Identificación</label>
-                    <select asp-for="Contact.IdentificationType"  name="Contact.IdentificationType" class="form-control" required>
-                        <option selected disabled value="">Seleccione una opción</option>
-                        <option value="Cedula">Cédula</option>
-                        <option value="Pasaporte">Pasaporte</option>
-                    </select>
-                    <span asp-validation-for="Contact.IdentificationType" class="text-danger"></span>
+                       <div class="select-container">
+                        <select asp-for="Contact.IdentificationType"  id="IdentificationType" class="form-select" required>
+                                <option selected disabled value="">Seleccione una opción</option>
+                                <option value="Cedula">Cédula</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            </select>
+						<span asp-validation-for="Contact.IdentificationType" class="text-danger"></span>
+                      </div>
+                            
                 </div>
                 <div class="col-md-6 mb-3">
                     <label asp-for="Contact.IdentificationNumber" class="form-label">* N.º de identificación</label>
-                    <input asp-for="Contact.IdentificationNumber" name="Contact.IdentificationNumber" type="text" class="form-control" placeholder="Ej: 0-0000-0000" required>
+                    <input asp-for="Contact.IdentificationNumber"  type="text" class="form-control" placeholder="Ej: 0-0000-0000" required>
                     <span asp-validation-for="Contact.IdentificationNumber" class="text-danger"></span>
                 </div>
             </div>
@@ -86,17 +92,22 @@
                 <div class="col-md-6 mb-3">
 
                     <label asp-for="Contact.Email" class="form-label">* Correo Electrónico</label>
-                    <input asp-for="Contact.Email" name="Contact.Email" type="email" class="form-control" placeholder="Ej: usuario@email.com" required>
+                    <input asp-for="Contact.Email"   type="email" class="form-control" placeholder="Ej: usuario@email.com" required>
                     <span asp-validation-for="Contact.Email" class="text-danger"></span>
                 </div>
                 <div class="col-md-6 mb-3">
 
                     <label asp-for="Contact.Phone" class="form-label">* Teléfono celular (whatsapp)</label>
-                    <input asp-for="Contact.Phone" name="Contact.Phone" type="text" class="form-control" value="+507" placeholder="Ej: 507 0000-0000" required>
+                    <div class="input-group">
+                        <span class="input-group-text" style="background-color: #e9ecef; font-size: 0.85rem;">+507</span>
+                        <input asp-for="Contact.Phone"  id="phoneNumber" type="text" class="form-control" maxlength="9" placeholder="0000-0000" required>
+                    </div> 
                     <span asp-validation-for="Contact.Phone" class="text-danger"></span>
                 </div>
             </div>
+
         </section>
+
         <!-- ******************************************************************************************************************** -->
         <!-- *     Este bloque pertenece a los datos del negocio asociado a la tabla  Enterprises  OPCION EMPERNDIMIENTO        * -->
         <!-- ********************************************************************************************************************* -->
@@ -104,14 +115,14 @@
             <h5 class="mt-4">Datos del Negocio</h5>
             <div class="mb-3">
                 <label asp-for="Enterprise.BusinessName" class="form-label">Nombre del negocio</label>
-                <input asp-for="Enterprise.BusinessName" name="Enterprise.BusinessName"  type="text" class="form-control" id="BusinessName">
-                <span asp-validation-for="Enterprise.BusinessName" class="text-danger"></span>
+                <input asp-for="Enterprise.BusinessName"  type="text" class="form-control" id="BusinessName" required> 
+
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6 mb-3">
-                    <label for="EconomicActivity" class="form-label" style="width: 100%;">* Actividad económica</label>
-                    <select asp-for="Enterprise.EconomicActivity" name="Enterprise.EconomicActivity" class="form-control" id="EconomicActivity" style="width: 100%;" required>
+                    <label asp-for="Enterprise.EconomicActivity" class="form-label" style="width: 100%;">* Actividad económica</label>
+                    <select asp-for="Enterprise.EconomicActivity"  class="form-select" id="EconomicActivity" style="width: 100%;" required>
                         <option selected disabled value="">Seleccione una opción</option>
                         <option value="Agricultura, ganadería, caza, silvicultura y pesca">Agricultura, ganadería, caza, silvicultura y pesca</option>
                         <option value="Industrias extractivas">Industrias extractivas</option>
@@ -132,38 +143,48 @@
                         <option value="Actividades de atención de la salud humana y asistencia social">Actividades de atención de la salud humana y asistencia social</option>
                         <option value="Actividades artísticas, de entretenimiento y recreativas">Actividades artísticas, de entretenimiento y recreativas</option>
                         <option value="Otras actividades de servicios">Otras actividades de servicios</option>
-                    </select>
-                    <span asp-validation-for="Enterprise.EconomicActivity" class="text-danger"></span>
+                    </select> 
+
                 </div>
                 <div class="col-md-6 mb-3">
 
                     <label for="ProyectedSales" class="form-label" style="width: 100%; ">* Proyección de ventas mensuales</label>
-                    <input asp-for="Enterprise.ProyectedSales" name="Enterprise.ProyectedSales" type="text" class="form-control" id="ProyectedSales" style="width: 100%;" placeholder="$" required >
-                    <span asp-validation-for="Enterprise.ProyectedSales" class="text-danger"></span>
+                    <input asp-for="Enterprise.ProyectedSales" type="text" class="form-control" id="ProyectedSales" style="width: 100%;" placeholder="$" required > 
+
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="WebSite" class="form-label">Sitio web de la empresa</label>
-                <input asp-for="Enterprise.WebSite" name="Enterprise.WebSite" type="text" class="form-control" id="WebSite">
+                @Html.LabelFor(m => m.Enterprise.WebSite, htmlAttributes: new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Enterprise.WebSite, new { @class = "form-control", placeholder = "https://www.ejemplo.com" })
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-6 mb-3">
-                    <label for="BusinessTime" class="form-label" style="width: 100%;">* Tiempo de emprendimiento</label>
-                    <input asp-for="Enterprise.BusinessTime" name="Enterprise.BusinessTime"  type="text" class="form-control" id="BusinessTime" placeholder=" " style="width: 100%;" required>
-                    <span asp-validation-for="Enterprise.BusinessTime" class="text-danger"></span>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="Instagram" class="form-label" style="width: 100%;">Instagram</label>
-                    <input asp-for="Enterprise.Instagram" name="Enterprise.Instagram" type="text" class="form-control" id="Instagram" placeholder="Cuenta de Instagram" style="width: 100%;">
+                <div class="col-md-6 mb-3"> 
+                        <label for="BusinessTime" class="form-label" style="width: 100%;">* Tiempo de emprendimiento</label>
+
+                        <div class="select-container">
+                            <select asp-for="Enterprise.BusinessTime"  id="BusinessTime" class="form-select" required>
+                                <option selected disabled value="">Seleccione una opción</option>
+                                <option value="Menor a 1 año">Menor a 1 año</option>
+                                <option value="De 1 a 2 Años">De 1 a 2 Años</option>
+                            </select>
+ 					     	<span asp-validation-for="Enterprise.BusinessTime" class="text-danger"></span>
+                        </div>
+
+				</div>
+
+
+                  <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.Enterprise.Instagram, new { @class = "form-label"  })
+                    @Html.TextBoxFor(m => m.Enterprise.Instagram, new { @class = "form-control", placeholder = "Cuenta de Instagram" })
                 </div>
             </div>
 
             <div class="mb-3">
                 <label for="BusinessDescription" class="form-label">* Describe tu idea de negocio</label>
-                <textarea asp-for="Enterprise.BusinessDescription" name="Enterprise.BusinessDescription"  class="form-control h4 ng-pristine ng-invalid ng-touched" id="BusinessDescription" placeholder="Descripción breve..." required></textarea>
-                <span asp-validation-for="Enterprise.BusinessDescription" class="text-danger"></span>
+                <textarea asp-for="Enterprise.BusinessDescription"   class="form-control h4 ng-pristine ng-invalid ng-touched" id="BusinessDescription" placeholder="Descripción breve..." required></textarea>
+                
             </div>
 
         </section>
@@ -173,78 +194,82 @@
         <section id="EnterprisesNegoc">
             <h5 class="mt-4">Datos del Negocio</h5>
             <div class="mb-3">
-                <label asp-for="Enterprise.BusinessName" class="form-label">Nombre del negocio</label>
-                <input asp-for="Enterprise.BusinessName"  name="Enterprise.BusinessName" type="text" class="form-control" id="BusinessName">
+                <label asp-for="Enterprise.BusinessName" class="form-label">* Nombre del Negocio</label>
+                <input asp-for="Enterprise.BusinessName"   type="text" class="form-control" id="BusinessName" required>
             </div>
 
             <div class="row mb-3">
 
                 <div class="col-md-6 mb-3">
                     <label for="RucEmpresa" class="form-label bg-white custom-label" style="width: 100%;">RUC</label>
-                    <input for="Enterprise.RucEmpresa" name="Enterprise.RucEmpresa" type="text" class="form-control ng-pristine ng-valid ng-touched" id="RucEmpresa">
+                    <input for="Enterprise.RucEmpresa"   type="text" class="form-control ng-pristine ng-valid ng-touched" id="RucEmpresa" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="DvEmpresa" class="form-label" style="width: 100%;">DV</label>
-                    <input for="Enterprise.DvEmpresa" name="Enterprise.DvEmpresa" type="number" class="form-control" maxlength="4" size="4" id="DvEmpresa">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="EconomicActivity" class="form-label" style="width: 100%;">* Actividad económica</label>
-                    <select asp-for="Enterprise.EconomicActivity" name="Enterprise.EconomicActivity" class="form-control" id="EconomicActivity" style="width: 100%;" required>
-                        <option selected disabled value="">Seleccione una opción</option>
-                        <option value="Agricultura, ganadería, caza, silvicultura y pesca">Agricultura, ganadería, caza, silvicultura y pesca</option>
-                        <option value="Industrias extractivas">Industrias extractivas</option>
-                        <option value="Industrias manufactureras">Industrias manufactureras</option>
-                        <option value="Suministro de electricidad, gas, vapor y aire acondicionado">Suministro de electricidad, gas, vapor y aire acondicionado</option>
-                        <option value="Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento">Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento</option>
-                        <option value="Construcción">Construcción</option>
-                        <option value="Comercio al por mayor y al por menor; reparación de vehículos y motocicletas">Comercio al por mayor y al por menor; reparación de vehículos y motocicletas</option>
-                        <option value="Transporte y almacenamiento">Transporte y almacenamiento</option>
-                        <option value="Alojamiento y servicios de comida">Alojamiento y servicios de comida</option>
-                        <option value="Información y comunicaciones">Información y comunicaciones</option>
-                        <option value="Actividades financieras y de seguros">Actividades financieras y de seguros</option>
-                        <option value="Actividades inmobiliarias y de alquiler">Actividades inmobiliarias y de alquiler</option>
-                        <option value="Actividades profesionales, científicas y técnicas">Actividades profesionales, científicas y técnicas</option>
-                        <option value="Actividades administrativas y de servicios de apoyo">Actividades administrativas y de servicios de apoyo</option>
-                        <option value="Administración pública y defensa; seguridad social obligatoria">Administración pública y defensa; seguridad social obligatoria</option>
-                        <option value="Educación">Educación</option>
-                        <option value="Actividades de atención de la salud humana y asistencia social">Actividades de atención de la salud humana y asistencia social</option>
-                        <option value="Actividades artísticas, de entretenimiento y recreativas">Actividades artísticas, de entretenimiento y recreativas</option>
-                        <option value="Otras actividades de servicios">Otras actividades de servicios</option>
-                    </select>
-                    <span asp-validation-for="Enterprise.EconomicActivity" class="text-danger"></span>
+                    <input for="Enterprise.DvEmpresa"  type="number" class="form-control" maxlength="4" size="4" id="DvEmpresa" required>
                 </div>
             </div>
 
 
             <div class="row mb-3">
+                  <label for="EconomicActivity" class="form-label" style="width: 100%;">* Actividad Económica</label>
+                    <div class="select-container">
+                        <select asp-for="Enterprise.EconomicActivity" name="Enterprise.EconomicActivity" class="form-select" id="EconomicActivity" style="width: 100%;" required>
+                            <option selected disabled value="">Seleccione una opción</option>
+                            <option value="Agricultura, ganadería, caza, silvicultura y pesca">Agricultura, ganadería, caza, silvicultura y pesca</option>
+                            <option value="Industrias extractivas">Industrias extractivas</option>
+                            <option value="Industrias manufactureras">Industrias manufactureras</option>
+                            <option value="Suministro de electricidad, gas, vapor y aire acondicionado">Suministro de electricidad, gas, vapor y aire acondicionado</option>
+                            <option value="Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento">Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento</option>
+                            <option value="Construcción">Construcción</option>
+                            <option value="Comercio al por mayor y al por menor; reparación de vehículos y motocicletas">Comercio al por mayor y al por menor; reparación de vehículos y motocicletas</option>
+                            <option value="Transporte y almacenamiento">Transporte y almacenamiento</option>
+                            <option value="Alojamiento y servicios de comida">Alojamiento y servicios de comida</option>
+                            <option value="Información y comunicaciones">Información y comunicaciones</option>
+                            <option value="Actividades financieras y de seguros">Actividades financieras y de seguros</option>
+                            <option value="Actividades inmobiliarias y de alquiler">Actividades inmobiliarias y de alquiler</option>
+                            <option value="Actividades profesionales, científicas y técnicas">Actividades profesionales, científicas y técnicas</option>
+                            <option value="Actividades administrativas y de servicios de apoyo">Actividades administrativas y de servicios de apoyo</option>
+                            <option value="Administración pública y defensa; seguridad social obligatoria">Administración pública y defensa; seguridad social obligatoria</option>
+                            <option value="Educación">Educación</option>
+                            <option value="Actividades de atención de la salud humana y asistencia social">Actividades de atención de la salud humana y asistencia social</option>
+                            <option value="Actividades artísticas, de entretenimiento y recreativas">Actividades artísticas, de entretenimiento y recreativas</option>
+                            <option value="Otras actividades de servicios">Otras actividades de servicios</option>
+                        </select> 
+                           <span asp-validation-for="Enterprise.EconomicActivity" class="text-danger"></span>
+                     </div>
+                          
+              </div> 
+
+
+            <div class="row mb-3">
                 <div class="col-md-6 mb-3">
                     <label for="OperationsStartDate" class="form-label" style="width: 100%;">* Fecha de Inicio de Operaciones</label>
-                    <input asp-for="Enterprise.OperationsStartDate" name="Enterprise.OperationsStartDate"  class="form-control" id="OperationsStartDate" style="width: 100%;" type="date" placeholder="dd/mm/aaaa" required>
+                    <input asp-for="Enterprise.OperationsStartDate"   class="form-control" id="OperationsStartDate" style="width: 100%;" type="date" placeholder="dd/mm/aaaa" required>
                     <span asp-validation-for="Enterprise.OperationsStartDate" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="MonthlySales" class="form-label" style="width: 100%;">* Ventas mensuales</label>
-                    <input asp-for="Enterprise.MonthlySales" name="MonthlySales" type="text" class="form-control" id="MonthlySales" placeholder="$" style="width: 100%;" required  >
+                    <input asp-for="Enterprise.MonthlySales"  type="text" class="form-control" id="MonthlySales" placeholder="$" style="width: 100%;" required  >
                     <span asp-validation-for="Enterprise.MonthlySales" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="WebSite" class="form-label">Sitio web de la empresa</label>
-                <input asp-for="Enterprise.WebSite" name="Enterprise.WebSite" type="text" class="form-control" id="WebSite">
-
+                <label asp-for="Enterprise.WebSite" class="form-label">Sitio web de la empresa</label>
+                <input asp-for="Enterprise.WebSite" type="text" class="form-control"  placeholder="https://www.ejemplo.com">
             </div>
 
             <div class="mb-3">
-                <label for="Instagram" class="form-label" style="width: 100%;">Instagram</label>
-                <input asp-for="Enterprise.Instagram" name="Enterprise.Instagram"  type="text" class="form-control" id="Instagram" placeholder="Cuenta de Instagram">
+                <label asp-for="Enterprise.Instagram" class="form-label" style="width: 100%;">Instagram</label>
+                <input asp-for="Enterprise.Instagram"  type="text" class="form-control"  placeholder="Cuenta de Instagram">
 
             </div>
 
             <div class="mb-3">
                 <label for="BusinessDescription" class="form-label">* Describe tu idea de negocio</label>
-                <textarea asp-for="Enterprise.BusinessDescription" name="Enterprise.BusinessDescription"  class="form-control h4 ng-pristine ng-invalid ng-touched" id="BusinessDescription" placeholder="Descripción breve..." required></textarea>
+                <textarea asp-for="Enterprise.BusinessDescription"  class="form-control h4 ng-pristine ng-invalid ng-touched" id="BusinessDescription" placeholder="Descripción breve..." required></textarea>
             </div>
         </section>
 
@@ -259,21 +284,23 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label class="form-label">* Provincia</label>
-                    <select asp-for="Enterprise.Province"  name="Enterprise.Province" class="form-control" id="provincia" required>
-                        <option selected disabled value="">Seleccione una opción</option>
-                    </select>
-                    <span asp-validation-for="Enterprise.Province" class="text-danger"></span>
+                    <div class="select-container">
+                        <select asp-for="Enterprise.Province"  class="form-select" id="provincia" required>
+                            <option selected disabled value="">Seleccione una opción</option>
+                        </select>
+                        <span asp-validation-for="Enterprise.Province" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">* Distrito</label>
-                    <select asp-for="Enterprise.District" name="Enterprise.District" class="form-control" id="distrito" required>
+                    <select asp-for="Enterprise.District"  class="form-select" id="distrito" required>
                         <option selected disabled value="">Seleccione una opción</option>
                     </select>
                     <span asp-validation-for="Enterprise.District" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">* Corregimiento</label>
-                    <select asp-for="Enterprise.Corregimiento" name="Enterprise.Corregimiento" class="form-control" id="corregimiento" required>
+                    <select asp-for="Enterprise.Corregimiento"  class="form-select" id="corregimiento" required>
                         <option selected disabled value="">Seleccione una opción</option>
                     </select>
                     <span asp-validation-for="Enterprise.Corregimiento" class="text-danger"></span>
@@ -283,12 +310,12 @@
             <h5 class="mt-4">Datos de la Solicitud</h5>
             <div class="mb-3">
                 <label for="QuantityToInvert" class="form-label">* ¿Cuánto Chen Chen necesitas?</label>
-                <input asp-for="RequestDetail.QuantityToInvert" name="RequestDetail.QuantityToInvert" type="text" class="form-control" id="QuantityToInvert" placeholder="$" required  >
+                <input asp-for="RequestDetail.QuantityToInvert"   type="text" class="form-control" id="QuantityToInvert" placeholder="$" required>
                 <span asp-validation-for="RequestDetail.QuantityToInvert" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label for="ReasonForMoney" class="form-label">* ¿En qué lo invertirás?</label>
-                <input asp-for="RequestDetail.ReasonForMoney" name="RequestDetail.ReasonForMoney"  type="text" class="form-control" id="ReasonForMoney" required>
+                <input asp-for="RequestDetail.ReasonForMoney"    type="text" class="form-control" id="ReasonForMoney" required>
                 <span asp-validation-for="RequestDetail.ReasonForMoney" class="text-danger"></span>
             </div>
 
@@ -302,7 +329,7 @@
                 <input type="checkbox" id="termsCheckbox">
                 <label for="termsCheckbox"> Acepto los términos y condiciones</label>
                 <br><br>
-                <button type="submit" class="col position-relative col-12 my-3 d-flex justify-content-center align-items-center custom-button" id="openModal"> 
+                <button type="button" class="col position-relative col-12 my-3 d-flex justify-content-center align-items-center custom-button" id="openModal"> 
                 Enviar Solicitud
                 </button>
             </div>
@@ -310,29 +337,27 @@
         </section>
 
         <!-- Modal -->
-        <div id="confirmationModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Confirmar envío</h5>
+                        <h5 class="modal-title" id="confirmationModalLabel">Confirmar envío</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p>¿Estás seguro de que deseas enviar esta solicitud?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal">Cancelar</button>
-                        <!--form asp-action="EnviarSolicitud" asp-controller="Solicitud" method="post"-->
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="closeModal">Cancelar</button>
                         <button type="submit" class="btn btn-success" id="confirmButton">Enviar</button>
-                        <!--form-->
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal de Bootstrap -->
+        <!-- Modal de Bootstrap --> 
         <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="termsModalLabel">Términos y Condiciones</h5>
@@ -388,36 +413,13 @@
                 </div>
             </div>
         </div>
- 
-
     </form>
-</div>
-
+</div>  
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-     
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                new AutoNumeric('#ProyectedSales', {
-                    decimalCharacter: '.',
-                    digitGroupSeparator: ',',
-                    decimalPlaces: 2
-                });
-
-            new AutoNumeric('#MonthlySales', {
-            decimalCharacter: '.',
-            digitGroupSeparator: ',',
-            decimalPlaces: 2
-                });
-
-            new AutoNumeric('#QuantityToInvert', {
-            decimalCharacter: '.',
-            digitGroupSeparator: ',',
-            decimalPlaces: 2
-                });
-            });
-    </script> 
 }
+
+

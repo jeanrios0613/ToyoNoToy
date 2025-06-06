@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\jeanr\source\repos\ToyoNoToy\managerelchenchenvuelve\managerelchenchenvuelve
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Archivos/SubirArchivo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJjaGl2b3NcU3ViaXJBcmNoaXZvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,8 +46,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvY2Vzc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Process/solicitud.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvY2Vzc1xzb2xpY2l0dWQuY3NodG1s
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Reportes/Reporte.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0ZXNcUmVwb3J0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Requests/Solicitud.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdHNcU29saWNpdHVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Shared/Error.cshtml]
@@ -54,8 +62,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Shared/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Usuario/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Usuario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/Usuario/UpdateUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xVcGRhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jeanr/source/repos/ToyoNoToy/managerelchenchenvuelve/managerelchenchenvuelve/Views/_ViewStart.cshtml]
