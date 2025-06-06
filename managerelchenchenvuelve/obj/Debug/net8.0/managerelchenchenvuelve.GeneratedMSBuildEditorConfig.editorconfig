@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\jeanr\source\repos\ProyectosCA\Toy_-_No_Toy\managerelchenchenvuelve
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Process/ErrorSis.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvY2Vzc1xFcnJvclNpcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Process/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvY2Vzc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,10 +60,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Requests/Solicitud.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdHNcU29saWNpdHVkLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jeanr/source/repos/ProyectosCA/Toy_-_No_Toy/managerelchenchenvuelve/Views/Shared/_ValidationScriptsPartial.cshtml]

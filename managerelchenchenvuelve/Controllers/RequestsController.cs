@@ -33,8 +33,14 @@ namespace managerelchenchenvuelve.Controllers
         // GET: RequestsController/solicitud
         public ActionResult solicitud(string? id)
         {
+            /******   Variable Siempre para colocar en el Inicio de Cada GET  ******/
+
             var username = HttpContext.Session.GetString("UserName");
             var Roles = HttpContext.Session.GetString("Roles");
+
+            ViewBag.nombreUsuario = username;
+            ViewBag.AdminUser = Roles;
+
 
             if (string.IsNullOrEmpty(username))
             {
@@ -42,7 +48,13 @@ namespace managerelchenchenvuelve.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            string query =   @"SELECT  * 
+
+            /**********************************************************************/
+
+            /******  QUERY PARA MOSTRAR DATA AL FRONT  ******/
+            try
+            {
+                string query = @"SELECT  * 
                                  FROM ( SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
                                        FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
                                        CASE 
@@ -67,68 +79,75 @@ namespace managerelchenchenvuelve.Controllers
 
                                       FROM  [dbo].[Request_info] as RI ) as REQS  WHERE Codigo_de_solicitud = @Codigo ";
 
-            SqlParameter[] parameters = new SqlParameter[]
-                {
+                SqlParameter[] parameters = new SqlParameter[]
+                    {
                     new SqlParameter("@Codigo",id)
-                };
+                    };
 
-            DataTable dt = _db.ExecuteQuery(query,parameters); ;
+                DataTable dt = _db.ExecuteQuery(query, parameters); ;
 
-            RequestInfo info = null;
+                RequestInfo info = null;
 
-            if (dt.Rows.Count > 0)
-            {
-                DataRow row = dt.Rows[0];
-                info = new RequestInfo
+                if (dt.Rows.Count > 0)
                 {
-                    CodigoDeSolicitud = row["Codigo_de_solicitud"].ToString(),
-                    FechaDeCreacion = string.IsNullOrEmpty(row["Fecha_de_Creacion"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["Fecha_de_Creacion"].ToString()),
-                    FechaActualizacion = row["Fecha_Actualizacion"].ToString(),
-                    Gestor = row["Gestor"].ToString(),
-                    EtapaDelNegocio = row["Etapa_del_Negocio"].ToString(),
-                    CorreoElectronico = row["Correo_Electronico"].ToString(),
-                    Nombre = row["Nombre"].ToString(),
-                    Apellido = row["Apellido"].ToString(),
-                    NumeroIdentificacion = row["Numero_identificacion"].ToString(),
-                    TipoIdentificacion = row["Tipo_identificacion"].ToString(),
-                    Telefono = row["Telefono"].ToString(),
-                    NombreNegocio = row["Nombre_Negocio"].ToString(),
-                    DescripcionNegocio = row["Descripcion_negocio"].ToString(),
-                    ActividadEconomica = row["Actividad_economica"].ToString(),
-                    Instagram = row["Instagram"].ToString(),
-                    Ruc = row["RUC"].ToString(),
-                    WebSite = row["Web_Site"].ToString(),
-                    Provincia = row["Provincia"].ToString(),
-                    Distrito = row["Distrito"].ToString(),
-                    Corregimiento = row["corregimiento"].ToString(),
-                    ProyeccionVentasMensuales = row["Proyeccion_ventas_mensuales"].ToString(),
-                    VentasMensuales = row["Ventas_mensuales"].ToString(),
-                    FechaInicioOperaciones = row["Fecha_Inicio_Operaciones"].ToString(),
-                    CuantoChenchenNecesitas = row["Cuanto_Chenchen_necesitas"].ToString(),
-                    EnQueLoInvertiras = row["En_que_lo_invertiras"].ToString(),
-                    VerificacionCliente = row["Verificacion_Cliente"].ToString(),
-                    GestionRealizada = row["Gestion_Realizada"].ToString(),
-                    TipoAtencion = row["Tipo_atencion"].ToString(),
-                    PorqueNoContacto = row["Porque_no_contacto"].ToString(),
-                    Etapa = row["Etapa"].ToString(),
-                    UsuarioAsignado = row["Usuario_Asignado"].ToString(),
-                    TiempoTranscurrido = row["TiempoTranscurrido"].ToString()
+                    DataRow row = dt.Rows[0];
+                    info = new RequestInfo
+                    {
+                        CodigoDeSolicitud = row["Codigo_de_solicitud"].ToString(),
+                        FechaDeCreacion = string.IsNullOrEmpty(row["Fecha_de_Creacion"].ToString()) ? (DateTimeOffset?)null : DateTimeOffset.Parse(row["Fecha_de_Creacion"].ToString()),
+                        FechaActualizacion = row["Fecha_Actualizacion"].ToString(),
+                        Gestor = row["Gestor"].ToString(),
+                        EtapaDelNegocio = row["Etapa_del_Negocio"].ToString(),
+                        CorreoElectronico = row["Correo_Electronico"].ToString(),
+                        Nombre = row["Nombre"].ToString(),
+                        Apellido = row["Apellido"].ToString(),
+                        NumeroIdentificacion = row["Numero_identificacion"].ToString(),
+                        TipoIdentificacion = row["Tipo_identificacion"].ToString(),
+                        Telefono = row["Telefono"].ToString(),
+                        NombreNegocio = row["Nombre_Negocio"].ToString(),
+                        DescripcionNegocio = row["Descripcion_negocio"].ToString(),
+                        ActividadEconomica = row["Actividad_economica"].ToString(),
+                        Instagram = row["Instagram"].ToString(),
+                        Ruc = row["RUC"].ToString(),
+                        WebSite = row["Web_Site"].ToString(),
+                        Provincia = row["Provincia"].ToString(),
+                        Distrito = row["Distrito"].ToString(),
+                        Corregimiento = row["corregimiento"].ToString(),
+                        ProyeccionVentasMensuales = row["Proyeccion_ventas_mensuales"].ToString(),
+                        VentasMensuales = row["Ventas_mensuales"].ToString(),
+                        FechaInicioOperaciones = row["Fecha_Inicio_Operaciones"].ToString(),
+                        CuantoChenchenNecesitas = row["Cuanto_Chenchen_necesitas"].ToString(),
+                        EnQueLoInvertiras = row["En_que_lo_invertiras"].ToString(),
+                        VerificacionCliente = row["Verificacion_Cliente"].ToString(),
+                        GestionRealizada = row["Gestion_Realizada"].ToString(),
+                        TipoAtencion = row["Tipo_atencion"].ToString(),
+                        PorqueNoContacto = row["Porque_no_contacto"].ToString(),
+                        Etapa = row["Etapa"].ToString(),
+                        UsuarioAsignado = row["Usuario_Asignado"].ToString(),
+                        TiempoTranscurrido = row["TiempoTranscurrido"].ToString(),
+                        TipoRequest = Convert.ToInt16(row["TipoRequest"].ToString()),
 
+                    };
+                }
 
+                if (info == null)
+                {
+                    return NotFound();
+                }
 
-                };
+                ViewBag.EtapaNeogicio = info.EtapaDelNegocio;
+
+                ViewBag.Codigo = id;
+                return View(info);
             }
+            catch (Exception ex)
+            {    
+                _logger.LogError(ex, "Error en Process/Index");
+                return RedirectToAction("Login", "Account");
+    }
 
-            if (info == null)
-            {
-                return NotFound();
-            }
 
-
-            ViewBag.AdminUser = HttpContext.Session.GetString("Roles");
-            ViewBag.Codigo = id;
-            return View(info);
-        }
+}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -201,7 +220,9 @@ namespace managerelchenchenvuelve.Controllers
             {
                 _logger.LogError(ex, "Error al procesar la solicitud");
                 ModelState.AddModelError("", "Ocurrió un error al procesar la solicitud.");
-                return View(formData);
+                
+                return RedirectToAction("ErrorSis", "Process");
+                
             }
         }
 

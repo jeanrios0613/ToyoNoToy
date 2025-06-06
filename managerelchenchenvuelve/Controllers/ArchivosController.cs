@@ -42,6 +42,7 @@ public class ArchivosController : Controller
             _logger.LogWarning("No se encontró usuario en la sesión");
             return RedirectToAction("Login", "Account");
         }
+
         _logger.LogInformation("Buscando archivos para ProcessId: {ProcessId}", ProcessId);
         var archivos = _context.DocumentReferences.Where(a => a.ProcessInstanceId == ProcessId).ToList();
         _logger.LogInformation("Archivos encontrados: {Count}", archivos.Count);

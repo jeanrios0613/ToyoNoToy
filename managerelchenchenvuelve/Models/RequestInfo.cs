@@ -76,6 +76,8 @@ public partial class RequestInfo
 
      public int? Tiempo { get; set; }
 
+     public int? TipoRequest { get; set; }
+
      
     public Guid? CodId { get; set; }
 

@@ -19,7 +19,7 @@
             <form asp-controller="Account" asp-action="Login" method="post">
                 @Html.AntiForgeryToken()
                 <div class="input-box">
-                    <input class="form-control" type="text" placeholder="Usuario" required name="username" />
+                    <input class="form-control" style="opacity: 1.0" type="text" placeholder="Usuario" required name="username" />
                 </div>
                 <div class="input-box">
                     <input class="form-control" type="password" placeholder="Contraseña" required name="password" />

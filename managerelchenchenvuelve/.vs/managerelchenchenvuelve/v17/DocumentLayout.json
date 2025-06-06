@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\proyectosca\\toy_-_no_toy\\managerelchenchenvuelve\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|solutionrelative:wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\proyectosca\\toy_-_no_toy\\managerelchenchenvuelve\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\proyectosca\\toy_-_no_toy\\managerelchenchenvuelve\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|c:\\users\\jeanr\\source\\repos\\proyectosca\\toy_-_no_toy\\managerelchenchenvuelve\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E7E8AA7-3896-1A95-63C5-32171D976EE7}|managerelchenchenvuelve.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,49 +14,19 @@
       "DocumentGroups": [
         {
           "DockedHeight": 408,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.css",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\wwwroot\\css\\Login.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\Login.css",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\wwwroot\\css\\Login.css",
-              "RelativeToolTip": "wwwroot\\css\\Login.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-29T20:43:04.638Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T20:42:45.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T20:40:36.93Z",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\jeanr\\source\\repos\\ProyectosCA\\Toy_-_No_Toy\\managerelchenchenvuelve\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:15:12.417Z",
               "EditorCaption": ""
             }
           ]

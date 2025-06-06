@@ -3,11 +3,13 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = "solicitud";
+ 
+ 
 }
 
-<div class="container"> 
  
-
+     
+    <div class="container__fijo">
         <div class="d-flex justify-content-between mb-3">
             <h4>Solicitud Nro.: @Html.DisplayFor(model => model.CodigoDeSolicitud)</h4>
             <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("SubirArchivo","Archivos", new { ProcessId = Model.CodigoDeSolicitud })'">Agregar Información</button>
@@ -34,22 +36,22 @@
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Código De Solicitud Chen Chen</label>
-                                <div class="info-box" style="height: 40px"><spam>@Html.DisplayFor(model => model.CodigoDeSolicitud)</spam></div>
+                                <div class="info-box" style="min-height: 40px"><spam>@Html.DisplayFor(model => model.CodigoDeSolicitud)</spam></div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Fecha De Creación</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.FechaDeCreacion)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.FechaDeCreacion)</div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Recomendación</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Gestor)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Gestor)</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Etapa Del Negocio</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.EtapaDelNegocio)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.EtapaDelNegocio)</div>
                             </div>
                         </div>
                     </div>
@@ -61,31 +63,31 @@
                     <div class="row mb-3">
                         <div class="col-md-6 mb-3">
                             <label class="label-muted">Tipo de identificación</label>
-                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Nombre)</div>
+                            <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Nombre)</div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="label-muted">Número de identificación</label>
-                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Apellido)</div>
+                            <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Apellido)</div>
                         </div>
                     </div>
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Tipo de identificación</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.TipoIdentificacion)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.TipoIdentificacion)</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Número de identificación</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.NumeroIdentificacion)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.NumeroIdentificacion)</div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Correo Electronico</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.CorreoElectronico)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.CorreoElectronico)</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Teléfono</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Telefono)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Telefono)</div>
                             </div>
                         </div>
                     </div>
@@ -98,55 +100,58 @@
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Nombre del Negocio</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.NombreNegocio)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.NombreNegocio)</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Actividad económica</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.ActividadEconomica)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.ActividadEconomica)</div>
                             </div>
                         </div>
-                       <section id="Emprendimiento" style="@(Model.EtapaDelNegocio == "Emprendimiento" ? "" : "display: none;")">
+                    
+                    @if (Model.EtapaDelNegocio == "Emprendimiento")
+                    {
                                <div class="row mb-3">
                                     <div class="col-md-6 mb-3">
                                         <label class="label-muted">Proyección de ventas mensuales</label>
-                                        <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.ProyeccionVentasMensuales)</div>
+                                        <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.ProyeccionVentasMensuales)</div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="label-muted">Actividad económica</label>
-                                        <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.ActividadEconomica)</div>
+                                        <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.ActividadEconomica)</div>
                                     </div>
                             </div>
-                       </section>
+                      }
 
-                        <section id="NegocioExistente" style="@(Model.EtapaDelNegocio == "Negocio Existente" ? "" : "display: none;")">
+                    @if (Model.EtapaDelNegocio == "Negocio existente")
+                    {
 
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-3">
                                         <label class="label-muted">Fecha de Inicio de Operaciones</label>
-                                        <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.FechaInicioOperaciones)</div>
+                                        <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.FechaInicioOperaciones)</div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="label-muted">Ventas mensuales</label>
-                                        <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.VentasMensuales)</div>
+                                        <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.VentasMensuales)</div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6 mb-3">
                                         <label class="label-muted">RUC</label>
-                                        <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Ruc)</div>
+                                        <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Ruc)</div>
                                     </div>
                                     
                                 </div>
-                           </section>
+                          }
 
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3">
                                     <label class="label-muted">Web Site</label>
-                                    <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.WebSite)</div>
+                                    <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.WebSite)</div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="label-muted">Instagram</label>
-                                    <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Instagram)</div>
+                                    <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Instagram)</div>
                                 </div>
                             </div>
 
@@ -158,100 +163,36 @@
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Provincia</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Provincia)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Provincia)</div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">Distrito</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Distrito)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Distrito)</div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
                                 <label class="label-muted">corregimiento</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Corregimiento)</div>
+                                <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.Corregimiento)</div>
                             </div>
                         </div>
                     </div>
                
                 
                     <!-- Datos De Contacto -->
-                    <div class="card-custom mb-4">
-
-                        <h6 class="mb-3">Datos del Negocio</h6>
-                        <div class="row mb-3">  
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Nombre del Negocio</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.NombreNegocio)</div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Actividad económica</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.ActividadEconomica)</div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Fecha de Inicio de Operaciones</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.FechaInicioOperaciones)</div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Ventas mensuales</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.VentasMensuales)</div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">RUC</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Ruc)</div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Web Site</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.WebSite)</div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Instagram</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Instagram)</div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <label class="label-muted">Descripción del negocio</label>
-                            <textarea class="form-control" rows="4" disabled readonly>@Html.DisplayFor(model => model.DescripcionNegocio)</textarea>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Provincia</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Provincia)</div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">Distrito</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Distrito)</div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3">
-                                <label class="label-muted">corregimiento</label>
-                                <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.Corregimiento)</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    
 
                     <div class="card-custom mb-4">
                         <h6 class="mb-3">Detalles de la solicitud</h6>
 
                         <div class="row mb-3">
                             <label class="label-muted">¿Cuanto Chenchen necesitas?</label>
-                            <div class="info-box" style="height: 40px">@Html.DisplayFor(model => model.CuantoChenchenNecesitas)</div>
+                            <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.CuantoChenchenNecesitas)</div>
                         </div>
                         <div class="row mb-3">
                             <label class="label-muted">¿En qué lo invertirás?</label>
-                            <div class="info-box" style="min-height: 40px">@Html.DisplayFor(model => model.EnQueLoInvertiras)</div>
+                            <div class="info-box" style="min-min-height: 40px">@Html.DisplayFor(model => model.EnQueLoInvertiras)</div>
                         </div>
 
                         <div class="row mb-3">
@@ -306,29 +247,32 @@
                                 </label>
                             </div>
                         </section>
+                          
+                    @if (ViewBag.AdminUser == "ADMINISTRADOR" || Model.UsuarioAsignado.ToUpperInvariant() == ViewBag.nombreUsuario.ToUpperInvariant())
+                    {
+                        <section style="@(Model.Gestor == "Gestión directa de Ampyme" ? "" : "display: none;")">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <section id="to-pass" style="@(Model.Etapa == "En Curso" ? "" : "display: none;")">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Solicitar Cambio', 'ChangeRequest')"> Solicitar Cambio </button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
+                                </section>
 
-                    <section style="@(Model.Gestor == "Gestión directa de Ampyme" ? "" : "display: none;")">
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <section id="to-pass" style="@(Model.Etapa == "En Curso" ? "" : "display: none;")">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Solicitar Cambio', 'ChangeRequest')"> Solicitar Cambio </button>
-                                <button type="button" class="btn btn-primary btn-sm" onclick="$('#approvalModal').modal('show')">Aprobar</button>
-                                <button type="button" class="btn btn-secondary btn-sm" onclick="showCancelModal()">Cancelar</button>
-                            </section>
+                                <section id="to-pass" style="@(Model.Etapa == "Solicitar Cambio" ? "" : "display: none;") @(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Aprobar Cambio', 'AprovedChange')">Aprobar Cambio</button>
+                                </section>
 
-                            <section id="to-pass" style="@(Model.Etapa == "Solicitar Cambio" ? "" : "display: none;") @(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Aprobar Cambio', 'AprovedChange')">Aprobar Cambio</button>
-                            </section>
+                                <section id="to-pass" style="@(Model.Etapa == "Re-Abrir Solicitud" ? "" : "display: none;") @(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Abrir Solicitud', 'OpenRequest')">Confirma Solicitud</button>
+                                </section>
 
-                            <section id="to-pass" style="@(Model.Etapa == "Re-Abrir Solicitud" ? "" : "display: none;") @(ViewBag.AdminUser == "ADMINISTRADOR" ? "" : "display: none;")">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Abrir Solicitud', 'OpenRequest')">Confirma Solicitud</button>
-                            </section>
-
-                            <section id="reopen" style="@(Model.Etapa == "Completada" ? "" : "display: none;") ">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Aprobar', 'AprovedRequest')"> Re - Apertura </button>
-                            </section>
-                        </div>
-                    </section>
-                    </div>
+                                <section id="reopen" style="@(Model.Etapa == "Completada" ? "" : "display: none;") ">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="showCommentModal('Re-Aprobar', 'AprovedRequest')"> Re - Apertura </button>
+                                </section>
+                            </div>
+                        </section>
+                    }
+                </div>
                 </div>
 
 
@@ -424,4 +368,4 @@
  
         </form>
   </div> 
-
+ 

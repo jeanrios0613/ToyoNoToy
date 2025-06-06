@@ -10,10 +10,13 @@
 	<link href="~/css/filecom.css" rel="stylesheet" />
 	<link href="~/css/stylereport.css" rel="stylesheet" />
 
-
-</head>
+ </head>
 <body class="bg-light"  style="height: 100vh; margin: 0;">
-     
+    @{
+        var nombre = Context.Session.GetString("Nombre") ?? "";
+        var rol = Context.Session.GetString("Roles") ?? "";
+        var iniciales = string.Join("", @nombre.Split(' ').Select(n => n.FirstOrDefault()));
+    }
      <div id="viewport">
         <aside id="sidebar">
             <header class="sidebar text-center py-3">
@@ -22,7 +25,7 @@
             <ul class="nav flex-column">
                 <li class="nav-item"> 
                     <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#solicitudesSubmenu" role="button" aria-expanded="false">
-                        <i class="zmdi zmdi-view-dashboard"></i> Solicitudes
+                        <i class="zmdi zmdi-view-dashboard"></i> <strong>🏠 Solicitudes</strong>
                     </a>
                     <div class="collapse" id="solicitudesSubmenu">
                         <ul class="nav flex-column ps-3">
@@ -36,13 +39,13 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Reportes/Reporte"><i class="zmdi zmdi-link"></i> Reportes</a>
+                    <a class="nav-link" href="../Reportes/Reporte"><i class="zmdi zmdi-link"></i>📊 Reportes</a>
+                </li>
+                <li class="nav-item" style="@(rol == "ADMINISTRADOR" ? "" : "display: none;")">
+                    <a class="nav-link" href="../Usuario/Index"><i class="zmdi zmdi-widgets"></i>➕ Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Usuario/Index"><i class="zmdi zmdi-widgets"></i> Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="zmdi zmdi-calendar"></i> Documentos</a>
+                    <a class="nav-link" href="#"><i class="zmdi zmdi-calendar"></i>📄 Documentos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="zmdi zmdi-info-outline"></i> About</a>
@@ -51,27 +54,44 @@
         </aside>
          
         <div id="content">
-             <nav class="navbar navbar-expand-lg navbar-light bg-light">
+             <nav class="navbar">
                 <div class="container-fluid d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2">
-                       
-                    </div>
+                        <button class="btn btn-primary"  onclick="window.history.back()">← Volver</button>
+                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <span>Hola, @Context.Session.GetString("Nombre")</span>
-                        <form asp-controller="Account" asp-action="Logout" method="post">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-sm btn-primary">Cerrar Sesión</button>
-                        </form>
+                        <div class="dropdown">
+                            <button class="btn btn-link text-dark text-decoration-none no-caret d-flex align-items-center gap-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                               
+                                <strong>@nombre</strong>
+                                <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                      @iniciales 
+                                </div>
+                               
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow rounded-3 p-3 mt-2" aria-labelledby="userDropdown">
+                                <li class="mb-2">
+                                   
+                                </li>
+                                <li>
+                                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-grid">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Cerrar Sesión</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
             </nav> 
              
             
-                <div class="container__fijo">
-                     <main role="main">
-                          @RenderBody()
-                     </main>
-                </div> 
+            <div class="container">
+                <main role="main">
+                    @RenderBody()
+                </main>
+            </div> 
 
         </div>  
     </div>

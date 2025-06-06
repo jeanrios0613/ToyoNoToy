@@ -19,8 +19,8 @@
  
 <input type="hidden" name="TareaUser" id="TareaUser" value="@ViewBag.Tarea" />
  
-<div class="container">
-    <div class="card-custom">
+ 
+<div class="card-custom">
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <div   class="p-table__opts__navs">
                 <div class="p-table__opts__navs__titles">
@@ -136,8 +136,8 @@
                                 Estado
                             </div>
                         </th>
-                         
-                        <th  style="min-width:140px; width: 140px; top: 0px; z-index: 100;  @(tareaasigna == "C" ? "display: none;" : "")">
+
+                    <th style="min-width:140px; width: 140px; top: 0px; z-index: 100;  @(tareaasigna == "C" || tareaasigna == "B" ? "display: none;" : "")">
                             <div class="mat-sort-header-container">
                                 Duración
                             </div>
@@ -198,7 +198,7 @@
                                          </span>
                                      </td>
 
-                                    <td style="cursor: pointer; min-width: 140px; width: 140px; @(item.Etapa == "Completada" ? "display: none;" : "")">
+                                <td style="cursor: pointer; min-width: 140px; width: 140px; @(tareaasigna == "C" || tareaasigna == "B" ? "display: none;" : "")">
                                         <div class="p-table__content__cell">
                                             @{  
                                                 var dias =  item.Tiempo ;
@@ -206,11 +206,11 @@
                                                 {
                                                         <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟢</span>
                                                 }
-                                                else if (dias >= 3 && dias <= 5)
+                                                else if (dias >= 3 && dias <5)
                                                 {
                                                         <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🟡</span>
                                                 }
-                                                else if (dias >  5)
+                                                else if (dias >=  5)
                                                 {
                                                         <span style="@(item.Etapa == "Completada" ? "display: none;" : "")">🔴</span>
                                                 }
@@ -307,7 +307,7 @@
     </div>
 
 
-</div>
+
 
 <div id="action-bar" class="action-bar-custom">
     <div class="d-flex flex-column text-end">

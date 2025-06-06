@@ -25,7 +25,12 @@ namespace managerelchenchenvuelve.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var errorViewModel = new ErrorViewModel 
+            { 
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Message = "Ha ocurrido un error inesperado. Por favor, comuníquese con el administrador del sistema."
+            };
+            return View(errorViewModel);
         }
     }
 }

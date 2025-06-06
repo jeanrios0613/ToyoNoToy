@@ -33,32 +33,35 @@ namespace managerelchenchenvuelve.Controllers
         // GET: ProcessController
         public ActionResult Index(string? id = null, int page = 1, int pageSize = 10, string? tarea = "P", string? search = null, string? business = null,string?  ListUser = null)
         {
-            var username  = HttpContext.Session.GetString("UserName");
-            var Userss    = HttpContext.Session.GetString("Userss");
-            var Roles     = HttpContext.Session.GetString("Roles");
 
-			try
+            /******   Variable Siempre para colocar en el Inicio de Cada GET  ******/
+
+            var username = HttpContext.Session.GetString("UserName");
+            var Userss = HttpContext.Session.GetString("Userss");
+            var Roles = HttpContext.Session.GetString("Roles");
+
+            ViewBag.nombreUsuario = username;
+            ViewBag.AdminUser = Roles;
+
+            _logger.LogInformation("Accediendo a Process/Index"); 
+            _logger.LogInformation("Usuario en sesión: {Username}", username);
+
+            if (string.IsNullOrEmpty(username))
             {
-                _logger.LogInformation("Accediendo a Process/Index");
+                _logger.LogWarning("No se encontró usuario en la sesión");
+                return RedirectToAction("Login", "Account");
+            }
 
-                // Obtener el nombre de usuario de la sesión
-                _logger.LogInformation("Usuario en sesión: {Username}", username);
 
-                if (string.IsNullOrEmpty(username))
-                {
-                    _logger.LogWarning("No se encontró usuario en la sesión");
-                    return RedirectToAction("Login", "Account");
-                }
- 
+            /**********************************************************************/
 
-					ViewBag.nombreUsuario  = username;
+
+            /******  QUERY PARA MOSTRAR DATA AL FRONT  ******/
+            try
+            { 
 
                 List<DatosReca> Datos = new List<DatosReca>();
-
-
-
-              
-
+ 
                 string query = @"SELECT *
                                  FROM (SELECT  CONCAT( RI.codigo_de_solicitud, '  ', RI.NOMBRE,'  ',RI.APELLIDO,'  ', RI.NUMERO_IDENTIFICACION,'  ',RI.GESTOR) AS CompletaActividad, 
                                        FORMAT(SWITCHOFFSET(RI.Fecha_de_creacion, '-05:00'),'MMMM dd, yyyy hh:mm tt','es-es') AS FechaFormateada,  
@@ -231,8 +234,8 @@ namespace managerelchenchenvuelve.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error en Process/Index");
-                return RedirectToAction("Login", "Account");
+                _logger.LogError(ex, "Error en cargar pantalla principal");
+                return RedirectToAction("ErrorSis", "Process");
             }
         }
 
@@ -259,7 +262,7 @@ namespace managerelchenchenvuelve.Controllers
             }
             catch
             {
-                return View();
+                return View(); 
             }
         }
 
@@ -301,7 +304,7 @@ namespace managerelchenchenvuelve.Controllers
             }
             catch
             {
-                return View();
+                return View(); 
             }
         }
 
@@ -372,9 +375,34 @@ namespace managerelchenchenvuelve.Controllers
             }
             catch (Exception ex)
             {
-                // opcional: _logger.LogError(ex, "Error al asignar tareas");
-                return StatusCode(500, "Error al asignar tareas");
+                
+                _logger.LogError(ex, "Error al asignar tareas");
+                return RedirectToAction("ErrorSis", "Process");
             }
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult ErrorSis()
+        {
+            /******   Variable Siempre para colocar en el Inicio de Cada GET  ******/
+
+            var username = HttpContext.Session.GetString("UserName");
+            var Userss = HttpContext.Session.GetString("Userss");
+            var Roles = HttpContext.Session.GetString("Roles");
+
+            ViewBag.nombreUsuario = username;
+            ViewBag.AdminUser = Roles;
+             
+            if (string.IsNullOrEmpty(username))
+            {
+                _logger.LogWarning("No se encontró usuario en la sesión");
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            /**********************************************************************/
+            return View();
         }
 
 

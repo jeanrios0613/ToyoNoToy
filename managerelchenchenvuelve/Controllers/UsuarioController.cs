@@ -52,7 +52,7 @@ namespace managerelchenchenvuelve.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Useres user, string? RoleId)
         {
-            _logger.LogInformation("Iniciando creación de usuario: {RoleId}",  RoleId);
+            _logger.LogInformation("Iniciando creación de usuario: {RoleId}",  RoleId);      
             _logger.LogInformation("Datos recibidos - UserName: {UserName}, Email: {Email}, Names: {Names}, Lastname: {Lastname}",
                          user.UserName, user.Email, user.Names, user.Lastname);
 
@@ -91,7 +91,8 @@ namespace managerelchenchenvuelve.Controllers
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Error al crear usuario: {Message}", ex.Message);
-                    ModelState.AddModelError("", $"Error al crear el usuario: {ex.Message}");
+                    ModelState.AddModelError("", $"Error al crear el usuario: {ex.Message}"); 
+                    return RedirectToAction("ErrorSis", "Process");
                 }
             }
             else

@@ -245,7 +245,11 @@ public partial class ToyoNoToyContext : DbContext
             entity.Property(e => e.WebSite)
                 .HasMaxLength(4000)
                 .HasColumnName("Web_Site");
-        });
+            entity.Property(e => e.TipoRequest)
+                .HasColumnType("int(14)");
+
+
+        }); 
 
         modelBuilder.Entity<RequestsCopium>(entity =>
         {
@@ -275,7 +279,10 @@ public partial class ToyoNoToyContext : DbContext
             entity.Property(e => e.Names).HasMaxLength(30).IsRequired();
             entity.Property(e => e.PasswordHash).IsRequired();
             entity.Property(e => e.UserName).HasMaxLength(256).IsRequired();
-            entity.Property(e => e.Updatepass).HasColumnName("UPDATEPASS");
+            entity.Property(e => e.DateUpdate).HasColumnName("DateUpdate");
+            entity.Property(e => e.IndUpdate)
+                 .HasColumnName("IndUpdate")
+                 .HasDefaultValue(false);
         });
 
         modelBuilder.Entity<UserRole>(entity =>
@@ -292,11 +299,19 @@ public partial class ToyoNoToyContext : DbContext
                 .HasNoKey()
                 .ToView("vw_UserRolesInfo");
 
+            entity.Property(e => e.id).HasMaxLength(450);
             entity.Property(e => e.Description).HasMaxLength(64);
             entity.Property(e => e.Email).HasMaxLength(256);
             entity.Property(e => e.Nombre).HasMaxLength(61);
             entity.Property(e => e.RolName).HasMaxLength(256);
             entity.Property(e => e.Username).HasMaxLength(256);
+            entity.Property(e => e.DateUpdate).HasColumnType("datetime");
+            entity.Property(e => e.IndUpdate)
+                  .HasColumnName("IndUpdate")        
+                  .HasDefaultValue(false);           
+
+
+
         });
 
         OnModelCreatingPartial(modelBuilder);

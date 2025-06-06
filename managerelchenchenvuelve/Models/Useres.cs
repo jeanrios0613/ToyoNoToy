@@ -19,11 +19,14 @@ public partial class Useres
 
     public DateTime? Created { get; set; }
 
-    public DateTime? Updatepass { get; set; }
+    public DateTime? DateUpdate { get; set; }
 
     public string? Lastname { get; set; }
 
     public string? Names { get; set; }
 
     public bool Status { get; set; }
+
+    public bool IndUpdate { get; set; }
+
 }

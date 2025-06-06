@@ -45,7 +45,7 @@ namespace managerelchenchenvuelve.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string username, string password, string returnUrl = null)
+        public async Task<IActionResult> Login(string username, string password, string? returnUrl = null)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -58,13 +58,13 @@ namespace managerelchenchenvuelve.Controllers
 
             string encryptedPassword = EncryptPass.Encriptar(password);
 
-            string query =  " SELECT (case  " +
+            string query = " SELECT Id, DateUpdate, IndUpdate,(case  " +
                             " when  UR.rolname = 'ADMINISTRADOR' " +
                             " then 'chenchen'  " +
                             " else UR.Username " +
                             " END) AS userss  , Nombre, RolName , status" +
                             " FROM [vw_UserRolesInfo] as UR " +
-                            " WHERE [UserName] = @username AND [PasswordHash] = @PasswordHash";
+                            " WHERE [UserName] = @username   AND [PasswordHash] = @PasswordHash";
 
             SqlParameter[] parameters = new SqlParameter[]
              {
@@ -73,26 +73,33 @@ namespace managerelchenchenvuelve.Controllers
             };
 
             DataTable result;
-           
+            result = _db.ExecuteQuery(query, parameters);
+            _logger.LogInformation("*********** mensaje de password: {encryptedPassword}", encryptedPassword);
 
             try
-            {
-                result = _db.ExecuteQuery(query, parameters);
+            {   
                 
-                foreach (DataRow row in result.Rows)
+
+                
+                foreach (DataRow row in result.Rows) 
                 {
                     string? StatusUser = row["status"].ToString();
 
                     users.Add(new VwUserRolesInfo
-                    {
-                         Nombre    = row["Nombre"].ToString(),
-						 RolName   = row["RolName"].ToString(), 
-                         Username  = row["userss"].ToString(),
-                         Status    = Convert.ToBoolean(row["status"].ToString()),
+                    {    id         = row["id"].ToString(),
+                         Nombre     = row["Nombre"].ToString(),  
+						 RolName    = row["RolName"].ToString(), 
+                         Username   = row["userss"].ToString(),
+                         Status     = Convert.ToBoolean(row["status"].ToString()),  
+                         DateUpdate = string.IsNullOrWhiteSpace(row["DateUpdate"]?.ToString())  ? DateTime.Now: Convert.ToDateTime(row["DateUpdate"]),
+                          IndUpdate = Convert.ToBoolean(row["IndUpdate"].ToString()),
                     });
                 }
 
-              
+                int cantidad = users.Count;
+
+                _logger.LogInformation("*********** mensaje de cantidad : {cantidad}", cantidad);
+
                 if (users.Count > 0)
                 {
                     HttpContext.Session.SetString("Userss", users[0].Username);
@@ -161,6 +168,7 @@ namespace managerelchenchenvuelve.Controllers
                     return Redirect(returnUrl);
                 }
 
+
                 return RedirectToAction("Index", "Process");
             }
             catch (Exception ex)
@@ -178,6 +186,76 @@ namespace managerelchenchenvuelve.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Clear();
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpGet] 
+        public IActionResult ChangePassword(string id)
+        {
+            var username = HttpContext.Session.GetString("UserName");
+            if (string.IsNullOrEmpty(username))
+            {
+                _logger.LogWarning("No se encontró usuario en la sesión");
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            if (string.IsNullOrEmpty(id))
+                return NotFound();
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+                return NotFound();
+
+            var roles = _context.Roles.ToList();
+            ViewBag.Roles = roles;
+            var userRole = _context.UserRoles.FirstOrDefault(ur => ur.UserId == id);
+            ViewBag.CurrentRoleId = userRole?.RoleId;
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] 
+        public  IActionResult  ChangePassword(string NewPassword, string ConfirmPassword)
+        {
+            if (string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(ConfirmPassword))
+            {
+                ViewData["Mensaje"] = "Todos los campos son requeridos.";
+                return View();
+            }
+
+            if (NewPassword != ConfirmPassword)
+            {
+                ViewData["Mensaje"] = "Las contraseñas no coinciden.";
+                return View();
+            }
+
+            try
+            {
+                string? username = HttpContext.Session.GetString("UserName");
+                string  encryptedPassword = EncryptPass.Encriptar(NewPassword);
+
+                string query = "UPDATE Users SET PasswordHash = @NewPasswordHash,IndUpdate = @ValorActuliza, DateUpdate = @DateUpdate  WHERE UserName = @Username";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@NewPasswordHash",encryptedPassword),
+                    new SqlParameter("@ValorActuliza",false),
+                    new SqlParameter("@DateUpdate", DateTimeOffset.UtcNow.AddMonths(3)),
+                    new SqlParameter("@Username", username)
+                };
+
+                _db.ExecuteNonQuery(query, parameters);
+                
+                ViewData["Mensaje"] = "Contraseña actualizada exitosamente.";
+                _logger.LogInformation("Contraseña actualizada para el usuario: {Username}", username);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al cambiar la contraseña");
+                ViewData["Mensaje"] = "Error al cambiar la contraseña. Por favor, intente nuevamente.";
+            }
+
+            return RedirectToAction("Index", "Process");
         }
     }
 }
