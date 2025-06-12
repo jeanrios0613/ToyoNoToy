@@ -13,7 +13,7 @@ public partial class Enterprise
     public string? BusinessName { get; set; }
 
     [Required(ErrorMessage = "Este campo es obligatorio")]
-    public string? BusinessDescription { get; set; }
+    public string BusinessDescription { get; set; }
 
     [Required(ErrorMessage = "Este campo es obligatorio")]
     public string EconomicActivity { get; set; } = null!;
@@ -53,6 +53,7 @@ public partial class Enterprise
     public string District { get; set; } = null!;
 
     [Required(ErrorMessage = "Este campo es obligatorio")]
+    [RegularExpression(@"^(\d{1,3}(,\d{3})*|\d+)(\.\d{1,2})?$", ErrorMessage = "Ingrese un número válido con hasta 2 decimales.")]
     public decimal MonthlySales { get; set; }
 
     [Required(ErrorMessage = "Este campo es obligatorio")]
@@ -62,6 +63,7 @@ public partial class Enterprise
     public string Province { get; set; } = null!;
 
     [Required(ErrorMessage = "Este campo es obligatorio")]
+    [RegularExpression(@"^(\d{1,3}(,\d{3})*|\d+)(\.\d{1,2})?$", ErrorMessage = "Ingrese un número válido con hasta 2 decimales.")]
     public decimal  ProyectedSales { get; set; }
 
     public virtual Request Request { get; set; } = null!;

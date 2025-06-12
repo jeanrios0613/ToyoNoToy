@@ -6,6 +6,7 @@
 
     public class FormularioClass
     {
+        public string TipoFormulario { get; set; }
         public Contact Contact { get; set; } = new Contact();
         public Enterprise Enterprise { get; set; } = new Enterprise();
         public Request Request { get; set; } = new Request();

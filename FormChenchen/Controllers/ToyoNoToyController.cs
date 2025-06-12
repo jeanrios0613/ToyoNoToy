@@ -83,9 +83,7 @@ namespace elchenchenvuelvecy.Controllers
                     Type = 0,
                 };
 
-
-            
-
+                 
 
                 if (Formulario.RequestDetail.QuantityToInvert > 25000)
                 {

@@ -189,39 +189,7 @@
     }
 });
 
-document.getElementById("openModal").addEventListener("click", function () {
-    let checkbox = document.getElementById("termsCheckbox");
-    let form = document.querySelector('form');
 
-    if (!checkbox.checked) {
-        alert("Debes aceptar los términos y condiciones.");
-        return;
-    }
-
-    if (form.checkValidity()){ 
-        $("#confirmationModal").modal("show"); 
-    }
-    else {
-        
-            
-        let invalidFields = form.querySelectorAll(':invalid');
-        let missingFields = [];
-        
-        invalidFields.forEach(function(field) {
-            if (field.required) {
-                let fieldName = field.getAttribute('name') || field.getAttribute('id') || 'Campo';
-                missingFields.push(fieldName);
-            }
-        });
-
-
-        if (missingFields.length > 0) {
-            TempData["SuccessMessage"] = ("Por favor complete los siguientes campos requeridos:\n" + missingFields.join('\n'));
-        }
-        
-        form.reportValidity();
-    }
-});
 
 
 
@@ -233,26 +201,21 @@ document.getElementById("termsCheckbox").addEventListener("change", function () 
 });
 
  
+ 
+
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Aplica máscara 0000-0000 para el número local
-    $('#phoneNumber').mask('0000-0000');
 
     const form = document.querySelector('form');
     const phoneInput = document.getElementById('phoneNumber');
 
     form.addEventListener('submit', function (e) {
-        // Antes de enviar el formulario, concatenar +507 con el valor ingresado
         let cleanPhone = phoneInput.value.trim();
         if (cleanPhone !== '') {
             phoneInput.value = '+507' + cleanPhone;
         }
-    });
-});
+    }); 
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    // AutoNumeric initialization code
     new AutoNumeric('#ProyectedSales', {
         decimalCharacter: '.',
         digitGroupSeparator: ',',
@@ -284,4 +247,78 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function clearSelection(idSeleccion) {
         document.getElementById(idSeleccion).value = '';
-    }
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const openModalBtn = document.getElementById('openModal');
+    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+    const form = document.querySelector('form');
+    const termsCheckbox = document.getElementById('termsCheckbox');
+
+    openModalBtn.addEventListener('click', function () {
+        if (!termsCheckbox.checked) {
+            alert('Debe aceptar los términos y condiciones para continuar');
+            return;
+        }
+
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+        let firstInvalidField = null;
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('is-invalid');
+                if (!firstInvalidField) {
+                    firstInvalidField = field;
+                }
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+
+        if (!isValid) {
+            alert('Por favor complete todos los campos requeridos');
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+            }
+            return;
+        }
+
+        const validationMessages = form.querySelectorAll('.text-danger');
+        let hasValidationErrors = false;
+
+        validationMessages.forEach(span => {
+            if (span.textContent.trim() !== '') {
+                hasValidationErrors = true;
+            }
+        });
+
+        if (hasValidationErrors) {
+            alert('Por favor corrija los errores en el formulario antes de continuar.');
+            return;
+        }
+
+        confirmationModal.show();
+    });
+
+
+    document.getElementById('confirmButton').addEventListener('click', function () {
+        form.submit();
+    });
+
+    document.getElementById('closeModal').addEventListener('click', function () {
+        confirmationModal.hide();
+    });
+
+    form.querySelectorAll('input, select, textarea').forEach(field => {
+        field.addEventListener('input', function () {
+            if (this.value.trim()) {
+                this.classList.remove('is-invalid');
+            }
+        });
+    });
+});
